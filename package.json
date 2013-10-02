@@ -1,0 +1,23 @@
+{
+  "name": "photonews",
+  "version": "0.0.1",
+  "description": "showcasing modown components",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "express-annotations": "*",
+    "express-map": "*",
+    "express-state": "*",
+    "express-view": "*",
+    "express-yui": "*",
+    "locator": "*",
+    "locator-handlebars": "*",
+    "locator-yui": "*"
+  },
+  "repository": "",
+  "author": "mojito team <mojito-team@yahoo-inc.com>",
+  "license": "BSD"
+}
