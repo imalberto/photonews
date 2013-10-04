@@ -2,7 +2,7 @@
 photonews
 =========
 
-"FooBar" app to show example usage of "modown" family of components.
+Example web application to show usage of "modown" family of components.
 
 ## Instructions
 
