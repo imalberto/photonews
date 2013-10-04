@@ -11,7 +11,7 @@ YUI.add('news-model', function (Y, NAME) {
             this.config = config;
         },
 
-        process: function (search, raw) {
+        _process: function (search, raw) {
             var articles = [],
                 article,
                 results,
@@ -59,21 +59,26 @@ YUI.add('news-model', function (Y, NAME) {
                 articles,
                 select;
 
-            articles = my.process(search, Y.MockTumblrModel);
-            callback(articles);
-            return;
+            // articles = my._process(search, Y.MockTumblrModel);
+            // callback(null, articles);
+            // return;
             //
             search = search || 'senate';
 
             count /= 1;
             start /= 1;
 
-            select = 'select * from tumblr.posts where username="yahoo"';
+            select = 'select * from tumblr.posts where username="{search}" ' +
+                        'and start={start} and num={count}';
+            select = Y.Lang.sub(select, {search: "yahoo"});
+            select = Y.Lang.sub(select, {start: start});
+            select = Y.Lang.sub(select, {count: count});
+
             Y.log('YQL: ' + select, 'debug', NAME);
             
             Y.YQL(select, function (raw) {
-                articles = my.process(search, raw);
-                callback(articles);
+                articles = my._process(search, raw);
+                callback(null, articles);
             });
             
         }

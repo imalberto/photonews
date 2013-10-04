@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE.txt file for terms.
+ */
 
 /*jslint nomen:true, node:true*/
 /*global YUI*/
@@ -11,7 +16,7 @@ YUI.add('flickr-model', function (Y, NAME) {
             this.config = config;
         },
 
-        process: function (search, raw) {
+        _process: function (search, raw) {
             var photos = [],
                 photo,
                 i;
@@ -45,9 +50,9 @@ YUI.add('flickr-model', function (Y, NAME) {
                 photos,
                 select;
 
-            photos = my.process(search, Y.MockFlickrModel);
-            callback(photos);
-            return;
+            // photos = my._process(search, Y.MockFlickrModel);
+            // callback(null, photos);
+            // return;
             // 
             search = search || 'mojito';
 
@@ -55,14 +60,14 @@ YUI.add('flickr-model', function (Y, NAME) {
             start /= 1;
 
             select = 'select * from ' + 'flickr.photos.search ' +
-                    '(' + (start || 0) + ',' + (count || 20) + ') ' +
+                    '(' + (start || 0) + ',' + (count || 4) + ') ' +
                     'where has_geo="true" and ' + 'tags="' + search + '"' +
                     'and api_key="' + API_KEY + '"';
             Y.log('YQL: ' + select, 'debug', NAME);
             
             Y.YQL(select, function (raw) {
-                photos = my.process(search, raw);
-                callback(photos);
+                photos = my._process(search, raw);
+                callback(null, photos);
             });
             
         }

@@ -10,3 +10,8 @@ photonews
     node ./app.js
 
 
+## What's Next ?
+
+- pagination
+- use `Y.Model` for event driven rendering
+- page composition

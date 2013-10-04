@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE.txt file for terms.
+ */
 
 /*jslint nomen:true, node:true*/
-
+/*global PN*/
 var express = require('express'),
     expmap = require('express-map'),
     expstate = require('express-state'),
@@ -16,12 +21,13 @@ var express = require('express'),
 
 ////
 // global
-global.PN = {};
-PN.CACHE = {};
-PN.CONFIG = {};
+global.PN = {
+    CACHE: {},
+    CONFIG: {}
+};
 
 ////
-// app express setup
+// app setup
 loc = new Locator({
     buildDirectory: __dirname + '/build'
 });
@@ -31,7 +37,7 @@ app = express();
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
 app.set('locator', loc);
-app.set('layout', 'index');
+app.set('layout', 'main');
 
 expmap.extend(app);
 expstate.extend(app);
@@ -40,10 +46,10 @@ expyui.extend(app);
 
 ////
 // middleware
-//app.use(express.compress());
-//app.use(express.favicon());
+app.use(express.compress());
+app.use(express.favicon());
 
-// for production: move to CDN
+// move to CDN if necessary
 app.use(expyui['static'](__dirname + '/build'));
 app.yui.setCoreFromAppOrigin();
 app.yui.applyConfig({
@@ -59,7 +65,6 @@ function mapRoute(name, path, callbacks) {
     app.get(path, expyui.expose(), callbacks);
     app.map(path, name);
 }
-console.log(routes);
 
 mapRoute('home', '/', routes.home);
 mapRoute('news', '/news', routes.news);
@@ -67,13 +72,12 @@ mapRoute('photos', '/photos', routes.photos);
 mapRoute('about', '/about', routes.about);
 
 PN.ROUTES = { routes: app.getRouteMap() };
-app.expose(PN);
+app.expose(PN, 'PN');
 
 loc.plug(new LocatorHandlebars({ format: 'yui' }))
-    .plug(new LocatorYUI({ config: { cache: true } }))
+    .plug(new LocatorYUI())
     .parseBundle(__dirname);
 
-// using the 'ready' feature in app.yui
 app.yui.ready(function (err) {
     if (err) {
         console.log(err);
@@ -81,7 +85,6 @@ app.yui.ready(function (err) {
         return;
     }
 
-    // preload the server instance before serving requests
     var Y = app.yui.use('flickr-model', 'news-model');
     if (!Y.FlickrModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');

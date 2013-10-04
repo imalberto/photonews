@@ -1,7 +1,7 @@
 {
   "name": "photonews",
   "version": "0.0.1",
-  "description": "showcasing modown components",
+  "description": "PhotoNews web app showcasing modown components",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +18,6 @@
     "locator-yui": "*"
   },
   "repository": "",
-  "author": "mojito team <mojito-team@yahoo-inc.com>",
+  "author": "alberto chan <imalberto@gmail.com>",
   "license": "BSD"
 }
