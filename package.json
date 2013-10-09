@@ -11,11 +11,11 @@
     "express-annotations": "*",
     "express-map": "*",
     "express-state": "*",
-    "express-view": "*",
-    "express-yui": "*",
-    "locator": "*",
-    "locator-handlebars": "*",
-    "locator-yui": "*"
+    "express-view": "git://github.com/caridy/express-view",
+    "express-yui": "git://github.com/caridy/express-yui#locator-yui",
+    "locator": "git://github.com/caridy/locator#ready-promise",
+    "locator-handlebars": "git://github.com/caridy/locator-handlebars#bundle-templates",
+    "locator-yui": "git://github.com/caridy/locator-yui"
   },
   "repository": "",
   "author": "alberto chan <imalberto@gmail.com>",
