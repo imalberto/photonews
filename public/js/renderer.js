@@ -28,25 +28,26 @@ YUI.add('renderer', function (Y, NAME) {
 
         _renderClient: function (config, req, res) {
             var viewName,
+                className,
                 locals,
                 app = YApp,
                 rendered;
 
 
             viewName = config.viewName;
-            rendered = app.get('viewContainer').one('.' + viewName + '-view');
+            className = viewName + '-view';
+            rendered = app.get('viewContainer').one('.' + className);
             locals = config.locals || {};
 
             if (rendered) {
                 app.showContent(rendered, {
                     view: viewName,
                     config: {}
-                }, {
-                    update: false,
-                    transition: false
                 });
             } else {
-                app.showView(viewName, locals, {
+                app.showView(viewName, {
+                    container: Y.Node.create('<div class="' + className + '"></div>')
+                }, {
                     render: true,
                     update: true
                 });

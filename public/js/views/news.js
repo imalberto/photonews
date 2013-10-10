@@ -5,7 +5,7 @@
  */
 
 /*jslint nomen:true, node:true*/
-/*global YUI*/
+/*global YUI, YApp*/
 
 YUI.add('news-view', function (Y, NAME) {
 
@@ -29,7 +29,8 @@ YUI.add('news-view', function (Y, NAME) {
                 container = this.get('container'),
                 html = '<h3> No Articles Update Available </h3>',
                 model = Y.NewsModel,
-                query = 'senate';
+                query = 'senate',
+                node;
 
 
             // TODO move model out of the "render" method
@@ -47,6 +48,12 @@ YUI.add('news-view', function (Y, NAME) {
                 }
 
                 html = my.newsTemplate({ src: 'news', articles: articles});
+
+                // HACK
+                node = Y.Node.create(html);
+                html = node.getHTML();
+                //
+    
                 container.setHTML(html);
 
                 return this;
@@ -59,13 +66,14 @@ YUI.add('news-view', function (Y, NAME) {
         prev: function (e) {
         },
 
-        ATTRS: {
-            container: {
-                valueFn: function () {
-                    return Y.Node.create('<div class="news-view-container"/>');
-                }
-            }
-        }
+        ATTRS: {}
+        // ATTRS: {
+        //     container: {
+        //         valueFn: function () {
+        //             return Y.Node.create('<div class="news-view"/>');
+        //         }
+        //     }
+        // }
     });
 
     Y.namespace('Views').NewsView = NewsView;

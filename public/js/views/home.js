@@ -5,7 +5,7 @@
  */
 
 /*jslint nomen:true, node:true*/
-/*global YUI*/
+/*global YUI, YApp*/
 
 YUI.add('home-view', function (Y, NAME) {
 
@@ -23,10 +23,23 @@ YUI.add('home-view', function (Y, NAME) {
         initializer: function (config) {
         },
 
+        // render: function () {
+        //     var app = YApp,
+        //         container = app.get('viewContainer'),
+        //         html = 'Loading ...';
+
+
+        //     html = this.template({ src: 'home'});
+
+        //     container.setHTML(html);
+
+        //     return this;
+        // },
         render: function () {
             var app = YApp,
                 container = this.get('container'),
-                html = '<h3> Default Landing Page</h3>';
+                html = '<h3> Default Landing Page</h3>',
+                node;
 
 
             if (!container.inDoc()) {
@@ -35,18 +48,26 @@ YUI.add('home-view', function (Y, NAME) {
             }
 
             html = this.template({ src: 'home'});
+
+            // HACK
+            node = Y.Node.create(html);
+            html = node.getHTML();
+            //
+            
             container.setHTML(html);
 
             return this;
         },
 
-        ATTRS: {
-            container: {
-                valueFn: function () {
-                    return Y.Node.create('<div class="home-view-container"/>');
-                }
-            }
-        }
+        ATTRS: {}
+        // ATTRS: {
+        //     container: {
+        //         valueFn: function () {
+        //             return Y.Node.create('<div class="home-view"/>');
+        //             // return Y.one('.home-view');
+        //         }
+        //     }
+        // }
     });
 
     Y.namespace('Views').HomeView = HomeView;
