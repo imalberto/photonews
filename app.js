@@ -59,20 +59,11 @@ app.yui.applyConfig({
 
 ////
 // routes
-routes = require('./routes');
-
-function mapRoute(name, path, callbacks) {
-    app.get(path, expyui.expose(), callbacks);
-    app.map(path, name);
-}
-
-mapRoute('home', '/', routes.home);
-mapRoute('news', '/news', routes.news);
-mapRoute('photos', '/photos', routes.photos);
-mapRoute('about', '/about', routes.about);
-
-PN.ROUTES = { routes: app.getRouteMap() };
-app.expose(PN, 'PN');
+// routes = require('./routes');
+// mapRoute('home', '/', routes.home);
+// mapRoute('news', '/news', routes.news);
+// mapRoute('photos', '/photos', routes.photos);
+// mapRoute('about', '/about', routes.about);
 
 loc.plug(new LocatorHandlebars({ format: 'yui' }))
     .plug(new LocatorYUI())
@@ -85,11 +76,64 @@ app.yui.ready(function (err) {
         return;
     }
 
-    var Y = app.yui.use('flickr-model', 'news-model');
+    var Y = app.yui.use('util', 'renderer',
+                        'home-handler', 'news-handler',
+                        'flickr-model', 'news-model'),
+        classify = Y.PN.util.classify,
+        routes,
+        views;
+
     if (!Y.FlickrModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');
         return;
     }
+
+    Y.Env.runtime = 'server';
+
+    /**
+    @param {String} name
+    @param {String} path
+    @param {Function} handlerName* 1..n
+    **/
+    function mapRoute() {
+
+        var args = [].slice.call(arguments),
+            name = args[0],
+            path = args[1],
+            handlerNames = args.slice(2),
+            handlers = [];
+
+        handlerNames.forEach(function (handlerName) {
+            handlers.push(Y.Handlers[classify(handlerName)]);
+        });
+        
+        app.get.apply(app, [].concat(path).concat(expyui.expose()).concat(handlers));
+        app.map(path, name);
+        app.annotate(path, {
+            dispatch: {
+                handlerNames: handlerNames
+            }
+        });
+    }
+
+    mapRoute('home', '/', 'home-handler');
+    mapRoute('news', '/news', 'news-handler');
+
+    routes = app.getRouteMap();
+    views = {};
+    Object.keys(routes).forEach(function (name) {
+        var routeConfig = routes[name];
+
+        views[name] = {
+            type: 'Views.' + classify(name) + 'View', // 'Views.HomeView'
+            preserve: true // default
+        };
+    });
+
+
+    PN.ROUTES = { routes: routes};
+    PN.VIEWS = { views: views};
+    app.expose(PN, 'PN');
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);

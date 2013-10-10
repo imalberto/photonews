@@ -5,12 +5,11 @@
  */
 
 /*jslint nomen:true, node:true*/
-/* global YUI*/
+/*global YUI*/
 
-YUI.add('pn-home-view', function (Y, NAME) {
+YUI.add('home-view', function (Y, NAME) {
 
-    var PN = Y.PN,
-        HomeView,
+    var HomeView,
         start = 0,
         count = 6;
 
@@ -25,12 +24,14 @@ YUI.add('pn-home-view', function (Y, NAME) {
         },
 
         render: function () {
-            var container = this.get('container'),
+            var app = YApp,
+                container = this.get('container'),
                 html = '<h3> Default Landing Page</h3>';
 
 
             if (!container.inDoc()) {
                 Y.one('body').append(container);
+                // Y.one(YApp.get('viewContainer')).append(container);
             }
 
             html = this.template({ src: 'home'});
@@ -42,13 +43,13 @@ YUI.add('pn-home-view', function (Y, NAME) {
         ATTRS: {
             container: {
                 valueFn: function () {
-                    return Y.Node.create('<div class="home"/>');
+                    return Y.Node.create('<div class="home-view-container"/>');
                 }
             }
         }
     });
 
-    Y.namespace('PN').HomeView = HomeView;
+    Y.namespace('Views').HomeView = HomeView;
 
 }, '0.0.1', {
     affinity: 'client',
