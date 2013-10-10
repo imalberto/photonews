@@ -25,9 +25,8 @@ YUI.add('news-view', function (Y, NAME) {
 
         render: function () {
             var my = this,
-                app = YApp,
                 container = this.get('container'),
-                html = '<h3> No Articles Update Available </h3>',
+                html = 'Loading ...',
                 model = Y.NewsModel,
                 query = 'senate',
                 node;
@@ -38,7 +37,6 @@ YUI.add('news-view', function (Y, NAME) {
 
                 if (!container.inDoc()) {
                     Y.one('body').append(container);
-                    // Y.one(app.get('viewContainer')).append(container);
                 }
 
                 if (err) {
@@ -49,11 +47,6 @@ YUI.add('news-view', function (Y, NAME) {
 
                 html = my.newsTemplate({ src: 'news', articles: articles});
 
-                // HACK
-                node = Y.Node.create(html);
-                html = node.getHTML();
-                //
-    
                 container.setHTML(html);
 
                 return this;

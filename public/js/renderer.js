@@ -23,6 +23,7 @@ YUI.add('renderer', function (Y, NAME) {
             var viewName = config.viewName,
                 locals = config.locals;
 
+            viewName += '-page';
             res.render(viewName, locals);
         },
 

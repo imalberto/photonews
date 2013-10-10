@@ -23,51 +23,22 @@ YUI.add('home-view', function (Y, NAME) {
         initializer: function (config) {
         },
 
-        // render: function () {
-        //     var app = YApp,
-        //         container = app.get('viewContainer'),
-        //         html = 'Loading ...';
-
-
-        //     html = this.template({ src: 'home'});
-
-        //     container.setHTML(html);
-
-        //     return this;
-        // },
         render: function () {
-            var app = YApp,
-                container = this.get('container'),
-                html = '<h3> Default Landing Page</h3>',
-                node;
-
+            var container = this.get('container'),
+                html = 'Loading ...';
 
             if (!container.inDoc()) {
                 Y.one('body').append(container);
-                // Y.one(YApp.get('viewContainer')).append(container);
             }
 
             html = this.template({ src: 'home'});
 
-            // HACK
-            node = Y.Node.create(html);
-            html = node.getHTML();
-            //
-            
             container.setHTML(html);
 
             return this;
         },
 
         ATTRS: {}
-        // ATTRS: {
-        //     container: {
-        //         valueFn: function () {
-        //             return Y.Node.create('<div class="home-view"/>');
-        //             // return Y.one('.home-view');
-        //         }
-        //     }
-        // }
     });
 
     Y.namespace('Views').HomeView = HomeView;
