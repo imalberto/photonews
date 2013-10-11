@@ -23,7 +23,9 @@ var express = require('express'),
 // global
 global.PN = {
     CACHE: {},
-    CONFIG: {}
+    CONFIG: {},
+    ROUTES: {},
+    VIEWS: {}
 };
 
 ////
@@ -90,11 +92,6 @@ app.yui.ready(function (err) {
 
     Y.Env.runtime = 'server';
 
-    /**
-    @param {String} name
-    @param {String} path
-    @param {Function} handlerName* 1..n
-    **/
     function mapRoute() {
 
         var args = [].slice.call(arguments),
@@ -104,7 +101,16 @@ app.yui.ready(function (err) {
             handlers = [];
 
         handlerNames.forEach(function (handlerName) {
-            handlers.push(Y.Handlers[classify(handlerName)]);
+
+            var fname = classify(handlerName);
+
+            if (handlerName.indexOf('-model') > -1) {
+                // TODO
+            } else if (handlerName.indexOf('-handler') > -1) {
+                handlers.push(Y.Handlers[fname]);
+            } else {
+                console.error('** ERROR ** : unknown handle type: ' + handlerName);
+            }
         });
         
         app.get.apply(app, [].concat(path).concat(expyui.expose()).concat(handlers));
@@ -125,14 +131,14 @@ app.yui.ready(function (err) {
         var routeConfig = routes[name];
 
         views[name] = {
-            type: 'Views.' + classify(name) + 'View', // 'Views.HomeView'
-            preserve: true // default
+            type: 'Views.' + classify(name) + 'View',
+            preserve: false
         };
     });
 
 
-    PN.ROUTES = { routes: routes};
-    PN.VIEWS = { views: views};
+    PN.ROUTES.routes = routes;
+    PN.VIEWS.views = views;
     app.expose(PN, 'PN');
 
     app.listen(appPort, function () {
