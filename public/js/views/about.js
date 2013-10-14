@@ -7,10 +7,9 @@
 /*jslint nomen:true, node:true*/
 /* global YUI*/
 
-YUI.add('pn-about-view', function (Y, NAME) {
+YUI.add('about-view', function (Y, NAME) {
 
-    var PN = Y.PN,
-        AboutView,
+    var AboutView,
         start = 0,
         count = 6;
 
@@ -44,13 +43,13 @@ YUI.add('pn-about-view', function (Y, NAME) {
         ATTRS: {
             container: {
                 valueFn: function () {
-                    return Y.Node.create('<div class="about"/>');
+                    return Y.Node.create('<div class="about-view"/>');
                 }
             }
         }
     });
 
-    Y.namespace('PN').AboutView = AboutView;
+    Y.namespace('Views').AboutView = AboutView;
 
 }, '0.0.1', {
     affinity: 'client',

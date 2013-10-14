@@ -5,12 +5,11 @@
  */
 
 /*jslint nomen:true, node:true*/
-/* global YUI*/
+/*global YUI, YApp*/
 
-YUI.add('pn-news-view', function (Y, NAME) {
+YUI.add('news-view', function (Y, NAME) {
 
-    var PN = Y.PN,
-        NewsView,
+    var NewsView,
         start = 0,
         count = 2;
 
@@ -27,9 +26,10 @@ YUI.add('pn-news-view', function (Y, NAME) {
         render: function () {
             var my = this,
                 container = this.get('container'),
-                html = '<h3> No Articles Update Available </h3>',
+                html = 'Loading ...',
                 model = Y.NewsModel,
-                query = 'senate';
+                query = 'senate',
+                node;
 
 
             // TODO move model out of the "render" method
@@ -46,6 +46,7 @@ YUI.add('pn-news-view', function (Y, NAME) {
                 }
 
                 html = my.newsTemplate({ src: 'news', articles: articles});
+
                 container.setHTML(html);
 
                 return this;
@@ -58,16 +59,17 @@ YUI.add('pn-news-view', function (Y, NAME) {
         prev: function (e) {
         },
 
-        ATTRS: {
-            container: {
-                valueFn: function () {
-                    return Y.Node.create('<div class="news"/>');
-                }
-            }
-        }
+        ATTRS: {}
+        // ATTRS: {
+        //     container: {
+        //         valueFn: function () {
+        //             return Y.Node.create('<div class="news-view"/>');
+        //         }
+        //     }
+        // }
     });
 
-    Y.namespace('PN').NewsView = NewsView;
+    Y.namespace('Views').NewsView = NewsView;
 
 }, '0.0.1', {
     affinity: 'client',

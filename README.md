@@ -13,5 +13,4 @@ Example web application to show usage of "modown" family of components.
 ## What's Next ?
 
 - pagination
-- use `Y.Model` for event driven rendering
-- page composition
+- view composition

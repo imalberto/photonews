@@ -24,8 +24,12 @@
                 <a class="pure-menu-heading" href="/">PhotoNews</a>
                 <ul>
                     <li class="pure-menu-selected"><a href="/news">News</a></li>
+                    <li><a href="/#">Photos</a></li>
+                    <li><a href="/#">About</a></li>
+                    <!--
                     <li><a href="/photos">Photos</a></li>
                     <li><a href="/about">About</a></li>
+                    -->
                 </ul>
             </div>
         </div>
@@ -40,25 +44,49 @@
     <script>{{{state}}}</script>
 
     <script>
-    app.yui.use('loader-photonews', 'pn-app', 'pn-home-view', 'pn-photos-view', 'pn-news-view', 'pn-about-view', function (Y) {
+    // TODO include the modules using template
+    app.yui.use(
+    'util', 'renderer',
+    'home-handler', 'news-handler',
+    'pn-app',
+    'home-view', 'news-view', 'photos-view', 'about-view', function (Y) {
 
-        var routeConfigs = PN.ROUTES,
-            app;
+        var routes = PN.ROUTES.routes,
+            views = PN.VIEWS.views,
+            i,
+            YApp;
 
-        app = new Y.PN.App({
+        YApp = new Y.PN.App({
             container: '#pn-container',
             viewContainer: '#pn-view-container',
 
             transitions: true,
-            serverRouting: true
+            serverRouting: true,
+
+            views: views
         });
 
-        // setup the routes
-        Y.Array.each(app.namedRoutes, function (route, i) {
-            var routeConfig = routeConfigs.routes[route.name];
-            if (routeConfig) {
-                app.route(routeConfig.path, route.callbacks);
-                app.get('routes')[i].name = route.name;
+        window.YApp = YApp;
+
+        i = 0;
+        Object.keys(routes).forEach(function (name) {
+            var routeConfig = routes[name],
+                util = Y.PN.util,
+                dispatch,
+                handlers = [];
+
+            if (routeConfig.annotations && routeConfig.annotations.dispatch) {
+                dispatch = routeConfig.annotations.dispatch;
+
+                dispatch.handlerNames.forEach(function (handlerName) {
+                    handlers.push(Y.Handlers[util.classify(handlerName)]);
+                });
+                YApp.route(routeConfig.path, handlers);
+                // YApp.get('routes')[i] = {
+                //     name: name,
+                //     dispatch: dispatch // save it for later if necessary
+                // };
+                i = i + 1;
             }
         });
 
@@ -68,7 +96,7 @@
           console.log('standalone mode');
         }
 
-        app.render({rendered: true}).dispatch();
+        YApp.render({rendered: true}).dispatch();
     });
     </script>
 </body>
