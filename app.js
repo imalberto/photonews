@@ -16,8 +16,7 @@ var express = require('express'),
     LocatorYUI = require('locator-yui'),
     app,
     appPort,
-    loc,
-    routes;
+    loc;
 
 ////
 // global
@@ -58,14 +57,6 @@ app.yui.applyConfig({
     debug: true,
     combine: false
 });
-
-////
-// routes
-// routes = require('./routes');
-// mapRoute('home', '/', routes.home);
-// mapRoute('news', '/news', routes.news);
-// mapRoute('photos', '/photos', routes.photos);
-// mapRoute('about', '/about', routes.about);
 
 loc.plug(new LocatorHandlebars({ format: 'yui' }))
     .plug(new LocatorYUI())
@@ -124,6 +115,8 @@ app.yui.ready(function (err) {
 
     mapRoute('home', '/', 'home-handler');
     mapRoute('news', '/news', 'news-handler');
+    // mapRoute('photos', '/photos', 'photos-handler');
+    // mapRoute('about', '/about', 'about-handler');
 
     routes = app.getRouteMap();
     views = {};
