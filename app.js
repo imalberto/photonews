@@ -16,14 +16,15 @@ var express = require('express'),
     LocatorYUI = require('locator-yui'),
     app,
     appPort,
-    loc,
-    routes;
+    loc;
 
 ////
 // global
 global.PN = {
     CACHE: {},
-    CONFIG: {}
+    CONFIG: {},
+    ROUTES: {},
+    VIEWS: {}
 };
 
 ////
@@ -57,23 +58,6 @@ app.yui.applyConfig({
     combine: false
 });
 
-////
-// routes
-routes = require('./routes');
-
-function mapRoute(name, path, callbacks) {
-    app.get(path, expyui.expose(), callbacks);
-    app.map(path, name);
-}
-
-mapRoute('home', '/', routes.home);
-mapRoute('news', '/news', routes.news);
-mapRoute('photos', '/photos', routes.photos);
-mapRoute('about', '/about', routes.about);
-
-PN.ROUTES = { routes: app.getRouteMap() };
-app.expose(PN, 'PN');
-
 loc.plug(new LocatorHandlebars({ format: 'yui' }))
     .plug(new LocatorYUI())
     .parseBundle(__dirname);
@@ -85,11 +69,70 @@ app.yui.ready(function (err) {
         return;
     }
 
-    var Y = app.yui.use('flickr-model', 'news-model');
+    var Y = app.yui.use('util', 'renderer',
+                        'home-handler', 'news-handler',
+                        'flickr-model', 'news-model'),
+        classify = Y.PN.util.classify,
+        routes,
+        views;
+
     if (!Y.FlickrModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');
         return;
     }
+
+    Y.Env.runtime = 'server';
+
+    function mapRoute() {
+
+        var args = [].slice.call(arguments),
+            name = args[0],
+            path = args[1],
+            handlerNames = args.slice(2),
+            handlers = [];
+
+        handlerNames.forEach(function (handlerName) {
+
+            var fname = classify(handlerName);
+
+            if (handlerName.indexOf('-model') > -1) {
+                // TODO
+            } else if (handlerName.indexOf('-handler') > -1) {
+                handlers.push(Y.Handlers[fname]);
+            } else {
+                console.error('** ERROR ** : unknown handle type: ' + handlerName);
+            }
+        });
+        
+        app.get.apply(app, [].concat(path).concat(expyui.expose()).concat(handlers));
+        app.map(path, name);
+        app.annotate(path, {
+            dispatch: {
+                handlerNames: handlerNames
+            }
+        });
+    }
+
+    mapRoute('home', '/', 'home-handler');
+    mapRoute('news', '/news', 'news-handler');
+    // mapRoute('photos', '/photos', 'photos-handler');
+    // mapRoute('about', '/about', 'about-handler');
+
+    routes = app.getRouteMap();
+    views = {};
+    Object.keys(routes).forEach(function (name) {
+        var routeConfig = routes[name];
+
+        views[name] = {
+            type: 'Views.' + classify(name) + 'View',
+            preserve: false
+        };
+    });
+
+
+    PN.ROUTES.routes = routes;
+    PN.VIEWS.views = views;
+    app.expose(PN, 'PN');
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);

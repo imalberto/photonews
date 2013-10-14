@@ -7,10 +7,9 @@
 /*jslint nomen:true, node:true*/
 /* global YUI*/
 
-YUI.add('pn-photos-view', function (Y, NAME) {
+YUI.add('photos-view', function (Y, NAME) {
 
-    var PN = Y.PN,
-        PhotosView,
+    var PhotosView,
         start = 0,
         count = 4;
 
@@ -64,13 +63,13 @@ YUI.add('pn-photos-view', function (Y, NAME) {
         ATTRS: {
             container: {
                 valueFn: function () {
-                    return Y.Node.create('<div class="photos"/>');
+                    return Y.Node.create('<div class="photos-view"/>');
                 }
             }
         }
     });
 
-    Y.namespace('PN').PhotosView = PhotosView;
+    Y.namespace('Views').PhotosView = PhotosView;
 
 }, '0.0.1', {
     affinity: 'client',
