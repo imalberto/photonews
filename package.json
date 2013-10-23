@@ -15,7 +15,7 @@
     "express-yui": "git://github.com/caridy/express-yui#locator-yui",
     "locator": "git://github.com/caridy/locator#ready-promise",
     "locator-handlebars": "git://github.com/caridy/locator-handlebars#bundle-templates",
-    "locator-yui": "git://github.com/caridy/locator-yui"
+    "locator-yui": "0.1.x"
   },
   "repository": "",
   "author": "alberto chan <imalberto@gmail.com>",
