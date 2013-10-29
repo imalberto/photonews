@@ -69,69 +69,27 @@ app.yui.ready(function (err) {
         return;
     }
 
+    // TODO helper to load all those modules detected by Locator
     var Y = app.yui.use('util', 'renderer',
                         'home-handler', 'news-handler',
                         'flickr-model', 'news-model'),
-        classify = Y.PN.util.classify,
-        routes,
-        views;
+        router = require('lib/router');
+
+    Y.Env.runtime = 'server';
+    router.extend(app);
 
     if (!Y.FlickrModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');
         return;
     }
 
-    Y.Env.runtime = 'server';
-
-    function mapRoute() {
-
-        var args = [].slice.call(arguments),
-            name = args[0],
-            path = args[1],
-            handlerNames = args.slice(2),
-            handlers = [];
-
-        handlerNames.forEach(function (handlerName) {
-
-            var fname = classify(handlerName);
-
-            if (handlerName.indexOf('-model') > -1) {
-                // TODO
-            } else if (handlerName.indexOf('-handler') > -1) {
-                handlers.push(Y.Handlers[fname]);
-            } else {
-                console.error('** ERROR ** : unknown handle type: ' + handlerName);
-            }
-        });
-        
-        app.get.apply(app, [].concat(path).concat(expyui.expose()).concat(handlers));
-        app.map(path, name);
-        app.annotate(path, {
-            dispatch: {
-                handlerNames: handlerNames
-            }
-        });
-    }
-
-    mapRoute('home', '/', 'home-handler');
-    mapRoute('news', '/news', 'news-handler');
+    app.mapRoute('home', '/', 'home-handler');
+    app.mapRoute('news', '/news', 'news-handler');
     // mapRoute('photos', '/photos', 'photos-handler');
     // mapRoute('about', '/about', 'about-handler');
 
-    routes = app.getRouteMap();
-    views = {};
-    Object.keys(routes).forEach(function (name) {
-        var routeConfig = routes[name];
-
-        views[name] = {
-            type: 'Views.' + classify(name) + 'View',
-            preserve: false
-        };
-    });
-
-
-    PN.ROUTES.routes = routes;
-    PN.VIEWS.views = views;
+    PN.ROUTES.routes = app.getRouteMap();
+    PN.VIEWS.views = app.getViewsConfig();
     app.expose(PN, 'PN');
 
     app.listen(appPort, function () {
