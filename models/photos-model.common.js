@@ -7,12 +7,16 @@
 /*jslint nomen:true, node:true*/
 /*global YUI*/
 
-YUI.add('flickr-model', function (Y, NAME) {
+YUI.add('photos-model', function (Y, NAME) {
 
-    var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e';
+    var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e',
+        classify = Y.PN.util.classify,
+        Class;
 
-    Y.FlickrModel = {
-        init: function (config) {
+    Class = Y.Base.create('photosModelListClass', Y.ModelList, [], {
+        model: Y.Models.PhotoModel,
+
+        initializer: function (config) {
             this.config = config;
         },
 
@@ -70,7 +74,26 @@ YUI.add('flickr-model', function (Y, NAME) {
                 callback(null, photos);
             });
             
-        }
-    };
+        },
 
-}, '0.0.1', { requires: ['yql', 'mock-flickr-model'] });
+        sync: function (action, options, cb) {
+            if (action !== 'read') {
+                return cb(new Error('action not supported: ' + action));
+            }
+        
+            this.search('eiffel', 2, 5, function (err, articles) {
+                cb(err, articles);
+            });
+        }
+    }, {
+        ATTRS: {
+        }
+    });
+
+    Y.namespace('Models')[classify(NAME)] = Class;
+
+}, '0.0.1', { requires: [
+    'yql',
+    'model-list',
+    'photo-model'
+]});
