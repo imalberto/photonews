@@ -45,6 +45,8 @@ expstate.extend(app);
 expview.extend(app);
 expyui.extend(app);
 
+app.use(require('./lib/middleware/renderer')());
+
 ////
 // middleware
 app.use(express.compress());
@@ -60,6 +62,7 @@ app.yui.applyConfig({
 
 loc.plug(new LocatorHandlebars({ format: 'yui' }))
     .plug(new LocatorYUI())
+    // Add more locator-plugins here as necessary
     .parseBundle(__dirname);
 
 app.yui.ready(function (err) {
@@ -71,20 +74,44 @@ app.yui.ready(function (err) {
 
     // TODO helper to load all those modules detected by Locator
     var Y = app.yui.use('util', 'renderer',
-                        'home-handler', 'news-handler',
-                        'flickr-model', 'news-model'),
+                        'default-controller', 'default-model',
+                        'news-controller', 'photos-controller',
+                        'news-model', 'photos-model',
+                        'post-model', 'photo-model',
+                        'home-handler', 'news-handler'),
         router = require('lib/router');
 
     Y.Env.runtime = 'server';
     router.extend(app);
 
-    if (!Y.FlickrModel) {
+    if (!Y.Models.DefaultModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');
         return;
     }
 
-    app.mapRoute('home', '/', 'home-handler');
-    app.mapRoute('news', '/news', 'news-handler');
+    // register any custom handlers
+    // TODO consolidate 
+    app.registerHandlers();
+    app.registerModels();
+    app.registerControllers();
+
+    // show homepage landing (no model)
+    app.page('home', '/'); // use default model, default controller
+    // TODO what convention to use to tell the handler to use a model vs
+    // model-list ?
+    app.page('news', '/news'); // use custom model, default controller
+    // TODO How to tell which model to use ?
+    // TODO Should the controller the one that dictates which to use ?
+
+    // app.page('news', 'news-model-list', '/news');
+    app.page('photos', '/photos'); // use custom model, custom controller
+
+    // app.page('photos'); // default to /photos
+
+    // app.mapRoute('home', '/', 'home-handler');
+    // app.mapRoute('news', '/news', 'news-handler');
+    // app.mapRoute('photo', '/photos/:photo_id');
+    //
     // mapRoute('photos', '/photos', 'photos-handler');
     // mapRoute('about', '/about', 'about-handler');
 

@@ -4,12 +4,13 @@
 
 YUI.add('news-model', function (Y, NAME) {
 
-    var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e';
+    var Class,
+        classify = Y.PN.util.classify;
 
-    Y.NewsModel = {
-        init: function (config) {
-            this.config = config;
-        },
+    Class = Y.Base.create('newsModelListClass', Y.ModelList, [], {
+        model: Y.Models.PostModel,
+
+        API_KEY: '84921e87fb8f2fc338c3ff9bf51a412e',
 
         _process: function (search, raw) {
             var articles = [],
@@ -52,7 +53,6 @@ YUI.add('news-model', function (Y, NAME) {
 
         },
 
-
         search: function (search, start, count, callback) {
 
             var my = this,
@@ -81,8 +81,52 @@ YUI.add('news-model', function (Y, NAME) {
                 callback(null, articles);
             });
             
+        },
+
+        initializer: function () {
+        },
+
+        sync: function (action, options, cb) {
+            if (action !== 'read') {
+                return cb(new Error('action not supported: ' + action));
+            }
+        
+            this.search('yahoo', 2, 5, function (err, articles) {
+                cb(err, articles);
+            });
         }
-    };
 
-}, '0.0.1', { requires: ['yql', 'mock-tumblr-model'] });
+        // findAll: function () {
+        //     var my = this;
 
+        //     return new YPromise(function (fulfill, reject) {
+        //         YQL.find(xxx, function (err, data) {
+        //             if (err) {
+        //                 reject(err);
+        //                 return;
+        //             }
+
+        //             my.setAttrs(data);
+
+        //             fulfill(my);
+        //         });
+        //     });
+        // },
+        // find: function (id) {
+        //     return {};
+        // }
+
+    }, {
+        ATTRS: {
+        }
+    });
+
+    Y.namespace('Models')[classify(NAME)] = Class;
+
+}, '@VERSION', { requires: [
+    'yql',
+    'util',
+    'model-list',
+    'promise',
+    'post-model'
+]});

@@ -15,7 +15,8 @@
     "express-yui": "~0.1.0",
     "locator": "git://github.com/caridy/locator#ready-promise",
     "locator-handlebars": "git://github.com/caridy/locator-handlebars#bundle-templates",
-    "locator-yui": "0.1.x"
+    "locator-yui": "0.1.x",
+    "yui": "~3.13.0"
   },
   "devDependencies": {
     "jshint": "~1.1.0",
@@ -23,7 +24,11 @@
   },
   "scripts": {
     "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js",
-    "test": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js ./models/*.js ./public/**/*.js ./routes/*.js ./views/*.js"
+    "pretest": "npm run lint",
+    "xtest": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js ./models/*.js ./public/**/*.js ./routes/*.js ./views/*.js"
+  },
+  "locator": {
+    "-rulesets": "app-rulesets.js"
   },
   "repository": "",
   "author": "alberto chan <imalberto@gmail.com>",
