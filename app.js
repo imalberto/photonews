@@ -107,10 +107,10 @@ app.yui.ready(function (err) {
     // TODO Should the controller the one that dictates which to use ?
 
     // app.page('news', 'news-model-list', '/news');
-    app.page('photos', '/photos'); // use custom model, custom controller
+    app.page('photos'); // use custom model, custom controller
 
-    app.page('about', '/about'); // only static content; default model, default controller
-    app.page('contact');
+    // app.page('about', '/about'); // only static content; default model, default controller
+    // app.page('contact');
 
     // app.page('photos'); // default to /photos
 
