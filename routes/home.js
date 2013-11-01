@@ -7,13 +7,13 @@
 /*jslint nomen:true, node:true*/
 
 
-var Y;
-
-function home(req, res) {
-    Y = Y || req.app.yui.use();
-
-    res.render('home');
-}
-
-module.exports = home;
+// var Y;
+// 
+// function home(req, res) {
+//     Y = Y || req.app.yui.use();
+// 
+//     res.render('home');
+// }
+// 
+// module.exports = home;
 

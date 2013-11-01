@@ -109,6 +109,9 @@ app.yui.ready(function (err) {
     // app.page('news', 'news-model-list', '/news');
     app.page('photos', '/photos'); // use custom model, custom controller
 
+    app.page('about', '/about'); // only static content; default model, default controller
+    app.page('contact');
+
     // app.page('photos'); // default to /photos
 
     // app.mapRoute('home', '/', 'home-handler');
