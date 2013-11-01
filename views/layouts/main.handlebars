@@ -24,8 +24,8 @@
                 <a class="pure-menu-heading" href="/">PhotoNews</a>
                 <ul>
                     <li class="pure-menu-selected"><a href="/news">News</a></li>
-                    <li><a href="/#">Photos</a></li>
-                    <li><a href="/#">About</a></li>
+                    <li><a href="/photos">Photos</a></li>
+                    <li><a href="/about">About</a></li>
                     <!--
                     <li><a href="/photos">Photos</a></li>
                     <li><a href="/about">About</a></li>
@@ -47,7 +47,11 @@
     // TODO include the modules using template
     app.yui.use(
     'util', 'renderer',
-    'home-handler', 'news-handler',
+    'default-model', 'default-controller',
+    'news-controller', 'photos-controller',
+    'news-model', 'photos-model',
+    'post-model', 'photo-model',
+    'home-handler', 'news-handler', 'photos-handler',
     'pn-app',
     'home-view', 'news-view', 'photos-view', 'about-view', function (Y) {
 
@@ -71,24 +75,36 @@
         i = 0;
         Object.keys(routes).forEach(function (name) {
             var routeConfig = routes[name],
-                util = Y.PN.util,
-                dispatch,
+                classify = Y.PN.util.classify,
                 handlers = [];
 
-            if (routeConfig.annotations && routeConfig.annotations.dispatch) {
-                dispatch = routeConfig.annotations.dispatch;
-
-                dispatch.handlerNames.forEach(function (handlerName) {
-                    handlers.push(Y.Handlers[util.classify(handlerName)]);
-                });
-                YApp.route(routeConfig.path, handlers);
-                // YApp.get('routes')[i] = {
-                //     name: name,
-                //     dispatch: dispatch // save it for later if necessary
-                // };
-                i = i + 1;
-            }
+            // TODO instead of deriving the name here, add it to the routeConfig
+            //      annotations
+            handlers.push(Y.Handlers[classify(name + '-handler')]);
+            YApp.route(routeConfig.path, handlers);
         });
+
+        // i = 0;
+        // Object.keys(routes).forEach(function (name) {
+        //     var routeConfig = routes[name],
+        //         util = Y.PN.util,
+        //         dispatch,
+        //         handlers = [];
+
+        //     if (routeConfig.annotations && routeConfig.annotations.dispatch) {
+        //         dispatch = routeConfig.annotations.dispatch;
+
+        //         dispatch.handlerNames.forEach(function (handlerName) {
+        //             handlers.push(Y.Handlers[util.classify(handlerName)]);
+        //         });
+        //         YApp.route(routeConfig.path, handlers);
+        //         // YApp.get('routes')[i] = {
+        //         //     name: name,
+        //         //     dispatch: dispatch // save it for later if necessary
+        //         // };
+        //         i = i + 1;
+        //     }
+        // });
 
 
         if (Y.config.win.navigator.standalone) {

@@ -9,6 +9,8 @@
 
 YUI.add('photos-model', function (Y, NAME) {
 
+    'use strict';
+
     var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e',
         classify = Y.PN.util.classify,
         Class;

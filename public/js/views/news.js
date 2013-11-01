@@ -21,36 +21,51 @@ YUI.add('news-view', function (Y, NAME) {
         },
 
         initializer: function (config) {
+            this.config = config;
         },
 
         render: function () {
             var my = this,
                 container = this.get('container'),
+                locals = this.get('locals'),
                 html = 'Loading ...',
-                model = Y.NewsModel,
+                // model = Y.NewsModel,
                 query = 'senate',
                 node;
 
+            if (!container.inDoc()) {
+                Y.one('body').append(container);
+            }
+
+            if (!locals.items) {
+                console.error('Error loading news items');
+                container.setHTML('Error loading news items');
+                return;
+            }
+
+            html = my.newsTemplate({items: locals.items});
+            container.setHTML(html);
+            return this;
 
             // TODO move model out of the "render" method
-            model.search(query, start, count, function (err, articles) {
+            // model.search(query, start, count, function (err, articles) {
 
-                if (!container.inDoc()) {
-                    Y.one('body').append(container);
-                }
+            //     if (!container.inDoc()) {
+            //         Y.one('body').append(container);
+            //     }
 
-                if (err) {
-                    console.log('Error loading articles for query "%s" :', query, err);
-                    container.setHTML(html);
-                    return this;
-                }
+            //     if (err) {
+            //         console.log('Error loading articles for query "%s" :', query, err);
+            //         container.setHTML(html);
+            //         return this;
+            //     }
 
-                html = my.newsTemplate({ src: 'news', articles: articles});
+            //     html = my.newsTemplate({ src: 'news', articles: articles});
 
-                container.setHTML(html);
+            //     container.setHTML(html);
 
-                return this;
-            });
+            //     return this;
+            // });
         },
 
         // pagination

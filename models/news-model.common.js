@@ -4,6 +4,8 @@
 
 YUI.add('news-model', function (Y, NAME) {
 
+    'use strict';
+
     var Class,
         classify = Y.PN.util.classify;
 
@@ -70,7 +72,7 @@ YUI.add('news-model', function (Y, NAME) {
 
             select = 'select * from tumblr.posts where username="{search}" ' +
                         'and start={start} and num={count}';
-            select = Y.Lang.sub(select, {search: "yahoo"});
+            select = Y.Lang.sub(select, {search: 'yahoo'});
             select = Y.Lang.sub(select, {start: start});
             select = Y.Lang.sub(select, {count: count});
 

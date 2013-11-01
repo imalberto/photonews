@@ -6,6 +6,9 @@
 
 /*jslint nomen:true, node:true*/
 /*global PN*/
+
+'use strict';
+
 var express = require('express'),
     expmap = require('express-map'),
     expstate = require('express-state'),
@@ -72,7 +75,7 @@ app.yui.ready(function (err) {
         return;
     }
 
-    // TODO helper to load all those modules detected by Locator
+   // TODO helper to load all those modules detected by Locator
     var Y = app.yui.use('util', 'renderer',
                         'default-controller', 'default-model',
                         'news-controller', 'photos-controller',

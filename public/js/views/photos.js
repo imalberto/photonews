@@ -22,36 +22,32 @@ YUI.add('photos-view', function (Y, NAME) {
         },
 
         initializer: function (config) {
+            //
         },
 
         render: function () {
             var my = this,
                 container = this.get('container'),
-                html = '<h3> No Photos Available </h3>',
-                model = Y.FlickrModel,
-                query = 'yahoo';
+                locals = this.get('locals'),
+                html = '<h3> No Photos Available </h3>';
 
 
-            // TODO move model out of "render" for decouple
-            model.search(query, start, count, function (err, photos) {
+            // Append the container element to the DOM if its not already on
+            // the page
+            if (!container.inDoc()) {
+                Y.one('body').append(container);
+            }
 
-                // Append the container element to the DOM if its not already on
-                // the page
-                if (!container.inDoc()) {
-                    Y.one('body').append(container);
-                }
-
-                if (err) {
-                    console.log('Error loading photos for query "%s" :', query, err);
-                    container.setHTML(html);
-                    return this;
-                }
-
-                html = my.photosTemplate({ src: 'photos', photos: photos });
+            if (!locals.items) {
+                console.log('Error loading photos');
                 container.setHTML(html);
-
                 return this;
-            });
+            }
+
+            html = my.photosTemplate({items: locals.items});
+            container.setHTML(html);
+
+            return this;
         },
 
         // for pagination
@@ -61,12 +57,15 @@ YUI.add('photos-view', function (Y, NAME) {
         },
 
         ATTRS: {
-            container: {
-                valueFn: function () {
-                    return Y.Node.create('<div class="photos-view"/>');
-                }
-            }
         }
+
+        // ATTRS: {
+        //     container: {
+        //         valueFn: function () {
+        //             return Y.Node.create('<div class="photos-view"/>');
+        //         }
+        //     }
+        // }
     });
 
     Y.namespace('Views').PhotosView = PhotosView;
@@ -75,7 +74,7 @@ YUI.add('photos-view', function (Y, NAME) {
     affinity: 'client',
     requires: [
         'view',
-        'flickr-model',
+        'photos-model',
         'photonews-template-photos'
     ]
 });
