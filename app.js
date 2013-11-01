@@ -48,7 +48,6 @@ expstate.extend(app);
 expview.extend(app);
 expyui.extend(app);
 
-app.use(require('./lib/middleware/renderer')());
 
 ////
 // middleware

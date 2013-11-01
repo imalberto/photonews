@@ -25,7 +25,7 @@ YUI.add('news-handler', function (Y, NAME) {
 
         query = req.params.q || 'senate';
 
-        model.load(function (err, response) {
+        model.load({}, function (err, response) {
             if (err) {
                 console.error('** ERROR ** failed loading articles for query "%s"', query);
                 return renderer.render('error');
