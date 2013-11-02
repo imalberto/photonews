@@ -58,7 +58,6 @@
 
         var routes = PN.ROUTES.routes,
             views = PN.VIEWS.views,
-            i,
             YApp;
 
         YApp = new Y.PN.App({
@@ -73,71 +72,14 @@
 
         window.YApp = YApp;
 
-        /*
-        YApp.marker= function (req, res, next) {
-            console.log('----------------------------------------------');
-            console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-            console.log('----------------------------------------------');
-            next();
-        };
-        // TODO find a more appropriate way to attach the renderer here
-        YApp.renderer = app.renderer;
-        */
-
-        i = 0;
         Object.keys(routes).forEach(function (name) {
-            /*
-            var routeConfig = routes[name],
-                classify = Y.PN.util.classify,
-                handlers = [];
-
-            // TODO instead of deriving the name here, add it to the routeConfig
-            //      annotations
-            handlers.push('marker');
-            handlers.push('renderer');
-            handlers.push(Y.Handlers[classify(name + '-handler')]);
-            YApp.route(routeConfig.path, handlers);
-            */
-
-            // app.page() will do the following:
-            // - insalled the 'marker' and 'renderer' middleware
-            // - lookup the handler by 'name' and look up the handler function
-            //   in Y.Handlers
-            //
-            // app.page(routeConfig.path, 'name');
-            // app.page(routeConfig.path, Y.Handlers[classify(name + '-handler')]);
-
             var routeConfig = routes[name];
             app.page(name, routeConfig.path);
         });
 
-        // i = 0;
-        // Object.keys(routes).forEach(function (name) {
-        //     var routeConfig = routes[name],
-        //         util = Y.PN.util,
-        //         dispatch,
-        //         handlers = [];
-
-        //     if (routeConfig.annotations && routeConfig.annotations.dispatch) {
-        //         dispatch = routeConfig.annotations.dispatch;
-
-        //         dispatch.handlerNames.forEach(function (handlerName) {
-        //             handlers.push(Y.Handlers[util.classify(handlerName)]);
-        //         });
-        //         YApp.route(routeConfig.path, handlers);
-        //         // YApp.get('routes')[i] = {
-        //         //     name: name,
-        //         //     dispatch: dispatch // save it for later if necessary
-        //         // };
-        //         i = i + 1;
-        //     }
-        // });
-
-
-        if (Y.config.win.navigator.standalone) {
-          // TODO
-          console.log('standalone mode');
-        }
+        // if (Y.config.win.navigator.standalone) {
+        //     // Y.log('standalone mode');
+        // }
 
         YApp.render({rendered: true}).dispatch();
     });

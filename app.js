@@ -103,6 +103,7 @@ app.yui.ready(function (err) {
     app.page('photos'); // use custom model, custom controller
 
     // app.page('about', '/about'); // only static content; default model, default controller
+    /*
     app.page('contact', '/aboutus', function (req, res) {
         res.render('aboutus');
     });
@@ -117,6 +118,7 @@ app.yui.ready(function (err) {
             res.render('notfound');
         }
     });
+    */
 
     PN.ROUTES.routes = app.getRouteMap();
     PN.VIEWS.views = app.getViewsConfig();
