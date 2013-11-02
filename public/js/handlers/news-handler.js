@@ -14,28 +14,36 @@ YUI.add('news-handler', function (Y, NAME) {
     Route = Y.namespace('Handlers')[util.classify(NAME)] = function (req, res) {
 
         var renderer = Y.Renderer,
+            ControllerClass = Y.Controllers.NewsController,
             ModelClass = Y.Models.NewsModel,
             start = req.params.start || 0,
             count = req.params.count || 2,
+            controller,
             model,
             config,
             query;
 
         model = new ModelClass(req.params);
+        controller = new ControllerClass({model: model});
 
-        query = req.params.q || 'senate';
+        res.render('news', controller);
 
-        model.load({}, function (err, response) {
-            if (err) {
-                console.error('** ERROR ** failed loading articles for query "%s"', query);
-                return renderer.render('error');
-            }
-            config = {
-                viewName: 'news',
-                locals: { items: response }
-            };
-            renderer.render(config, req, res);
-        });
+        // query = req.params.q || 'senate';
+
+        // model.load({}, function (err, response) {
+        //     if (err) {
+        //         console.error('** ERROR ** failed loading articles for query "%s"', query);
+        //         return renderer.render('error');
+        //     }
+        //     config = {
+        //         viewName: 'news',
+        //         locals: { items: response }
+        //     };
+        //     renderer.render(config, req, res);
+        // });
+
+        //////////////////////////////////////////////////////////////////////
+        //
 
         // TODO this handler is acting as a controller
         //      move the "data fetching" as a middleware prior to executing
@@ -55,7 +63,12 @@ YUI.add('news-handler', function (Y, NAME) {
     };
 
 }, '0.0.1', {
-    requires: ['util', 'renderer', 'news-model']
+    requires: [
+        'util',
+        'renderer',
+        'news-controller',
+        'news-model'
+    ]
 });
 
 

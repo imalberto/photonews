@@ -14,6 +14,11 @@ YUI.add('about-handler', function (Y, NAME) {
 		var renderer = Y.Renderer,
 			config = {};
 
+		// Default handler on the server will create a default model, and 
+		// a default controller if necessary (if not specified), and will
+		// res.render() by passing the name.
+		//
+		// The same thing should be done on the client side.
 		renderer.render(config, req, res);
 	};
 

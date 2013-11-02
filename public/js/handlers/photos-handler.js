@@ -7,7 +7,7 @@
 /*jslint nomen:true, node:true*/
 /*global YUI*/
 
-YUI.add('photos-handler', function (Y, NAME) {
+YUI.add('XXX-photos-handler', function (Y, NAME) {
     var Route,
         util = Y.PN.util;
 

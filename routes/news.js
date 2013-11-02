@@ -6,6 +6,23 @@
 
 /*jslint nomen:true, node:true*/
 
+/**
+Blueprint for handlers
+
+function (req, res) {
+    var model = new Y.Models.NewsModel(req.params),
+        controller = new Y.Controllers.NewsController(model);
+
+    controller.then(function (err, data) {
+        if (err) {
+            return res.render('error', // error context //);
+        }
+        res.render('news', {items: data});    
+    });
+}
+
+**/
+
 // var Y;
 // 
 // function news(req, res) {

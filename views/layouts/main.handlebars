@@ -47,6 +47,7 @@
     // TODO include the modules using template
     app.yui.use(
     'util', 'renderer',
+    'router-middleware', // installed the render and router on `app`
     'default-model', 'default-controller',
     'news-controller', 'photos-controller',
     'news-model', 'photos-model',
@@ -72,16 +73,42 @@
 
         window.YApp = YApp;
 
+        /*
+        YApp.marker= function (req, res, next) {
+            console.log('----------------------------------------------');
+            console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+            console.log('----------------------------------------------');
+            next();
+        };
+        // TODO find a more appropriate way to attach the renderer here
+        YApp.renderer = app.renderer;
+        */
+
         i = 0;
         Object.keys(routes).forEach(function (name) {
+            /*
             var routeConfig = routes[name],
                 classify = Y.PN.util.classify,
                 handlers = [];
 
             // TODO instead of deriving the name here, add it to the routeConfig
             //      annotations
+            handlers.push('marker');
+            handlers.push('renderer');
             handlers.push(Y.Handlers[classify(name + '-handler')]);
             YApp.route(routeConfig.path, handlers);
+            */
+
+            // app.page() will do the following:
+            // - insalled the 'marker' and 'renderer' middleware
+            // - lookup the handler by 'name' and look up the handler function
+            //   in Y.Handlers
+            //
+            // app.page(routeConfig.path, 'name');
+            // app.page(routeConfig.path, Y.Handlers[classify(name + '-handler')]);
+
+            var routeConfig = routes[name];
+            app.page(name, routeConfig.path);
         });
 
         // i = 0;
