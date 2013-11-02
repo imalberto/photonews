@@ -20,6 +20,7 @@ YUI.add('home-view', function (Y, NAME) {
 
         initializer: function (config) {
             this.config = config;
+            Y.log('Initialized !!!', 'info', NAME);
         },
 
         render: function () {
@@ -42,7 +43,7 @@ YUI.add('home-view', function (Y, NAME) {
 
     Y.namespace('Views').HomeView = HomeView;
 
-}, '0.0.1', {
+}, '@VERSION', {
     affinity: 'client',
     requires: [
         'view',

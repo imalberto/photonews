@@ -75,12 +75,12 @@ app.yui.ready(function (err) {
     }
 
    // TODO helper to load all those modules detected by Locator
-    var Y = app.yui.use('util', 'renderer',
+    var Y = app.yui.use('util',
                         'default-controller', 'default-model',
                         'news-controller', 'photos-controller',
                         'news-model', 'photos-model',
                         'post-model', 'photo-model',
-                        'home-handler', 'news-handler'),
+                        'news-handler'),
         router = require('lib/router');
 
     Y.Env.runtime = 'server';
@@ -97,28 +97,26 @@ app.yui.ready(function (err) {
     app.registerModels();
     app.registerControllers();
 
-    // show homepage landing (no model)
+    // Showing the various ways to register routes
     app.page('home', '/'); // use default model, default controller
-    // TODO what convention to use to tell the handler to use a model vs
-    // model-list ?
     app.page('news', '/news'); // use custom model, default controller
-    // TODO How to tell which model to use ?
-    // TODO Should the controller the one that dictates which to use ?
-
-    // app.page('news', 'news-model-list', '/news');
     app.page('photos'); // use custom model, custom controller
 
     // app.page('about', '/about'); // only static content; default model, default controller
-    // app.page('contact');
-
-    // app.page('photos'); // default to /photos
-
-    // app.mapRoute('home', '/', 'home-handler');
-    // app.mapRoute('news', '/news', 'news-handler');
-    // app.mapRoute('photo', '/photos/:photo_id');
-    //
-    // mapRoute('photos', '/photos', 'photos-handler');
-    // mapRoute('about', '/about', 'about-handler');
+    app.page('contact', '/aboutus', function (req, res) {
+        res.render('aboutus');
+    });
+    app.page('admin', '/admin', function (req, res, next) {
+        // authenticate request here
+        req.params.isAuth = true;
+        next();
+    }, function (req, res) {
+        if (req.params.isAuth) {
+            res.render('admin');
+        } else {
+            res.render('notfound');
+        }
+    });
 
     PN.ROUTES.routes = app.getRouteMap();
     PN.VIEWS.views = app.getViewsConfig();

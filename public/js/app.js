@@ -46,10 +46,6 @@ YUI.add('pn-app', function (Y, NAME) {
             // TODO setup initial view
 
             return this;
-        },
-
-        dummy: function () {
-            console.log('!!! DUMMY !!!');
         }
 
     }, {

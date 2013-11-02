@@ -5,64 +5,70 @@
  */
 
 /*jslint nomen:true, node:true*/
-/*global YUI, YApp*/
+/* global YUI*/
 
-YUI.add('news-view', function (Y, NAME) {
+YUI.add('photos-view', function (Y, NAME) {
+
     'use strict';
 
-    var NewsView;
+    var PhotosView;
 
-    NewsView = Y.Base.create('newsView', Y.View, [], {
+    PhotosView = Y.Base.create('photosView', Y.View, [], {
 
-        newsTemplate: Y.Template.get('photonews/news'),
+        photosTemplate: Y.Template.get('photonews/photos'),
 
         events: {
+            // setup events
         },
 
         initializer: function (config) {
             this.config = config;
+            Y.log('Initialized !!!', 'info', NAME);
         },
 
         render: function () {
             var my = this,
                 container = this.get('container'),
                 locals = this.get('locals'),
-                html = 'Loading ...';
+                html = '<h3> No Photos Available </h3>';
 
+
+            // Append the container element to the DOM if its not already on
+            // the page
             if (!container.inDoc()) {
                 Y.one('body').append(container);
             }
 
             if (!locals.items) {
-                console.error('Error loading news items');
-                container.setHTML('Error loading news items');
-                return;
+                console.log('Error loading photos');
+                container.setHTML(html);
+                return this;
             }
 
-            html = my.newsTemplate({items: locals.items});
+            html = my.photosTemplate({items: locals.items});
             container.setHTML(html);
 
             return this;
         },
 
-        // pagination
-        next: function () {
-            console.log('IMPLEMENT ME');
-        },
+        // for pagination
         prev: function () {
             console.log('IMPLEMENT ME');
         },
+        next: function () {
+            console.log('IMPLEMENT ME');
+        },
 
-        ATTRS: {}
+        ATTRS: {
+        }
     });
 
-    Y.namespace('Views').NewsView = NewsView;
+    Y.namespace('Views').PhotosView = PhotosView;
 
-}, '0.0.1', {
+}, '@VERSION', {
     affinity: 'client',
     requires: [
         'view',
-        'news-model',
-        'photonews-template-news'
+        'photonews-template-photos'
     ]
 });

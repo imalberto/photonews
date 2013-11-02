@@ -9,6 +9,8 @@
 
 YUI.add('about-view', function (Y, NAME) {
 
+    'use strict';
+
     var AboutView;
 
     AboutView = Y.Base.create('aboutView', Y.View, [], {
@@ -20,6 +22,7 @@ YUI.add('about-view', function (Y, NAME) {
 
         initializer: function (config) {
             this.config = config;
+            Y.log('Initialized !!!', 'info', NAME);
         },
 
         render: function () {
@@ -50,7 +53,7 @@ YUI.add('about-view', function (Y, NAME) {
 
     Y.namespace('Views').AboutView = AboutView;
 
-}, '0.0.1', {
+}, '@VERSION', {
     affinity: 'client',
     requires: [
         'view',
