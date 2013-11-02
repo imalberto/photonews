@@ -9,9 +9,9 @@
 
 YUI.add('photos-view', function (Y, NAME) {
 
-    var PhotosView,
-        start = 0,
-        count = 4;
+    'use strict';
+
+    var PhotosView;
 
     PhotosView = Y.Base.create('photosView', Y.View, [], {
 
@@ -22,7 +22,9 @@ YUI.add('photos-view', function (Y, NAME) {
         },
 
         initializer: function (config) {
-            //
+            this.config = config;
+
+            console.log('photos-view initialized !!!');
         },
 
         render: function () {
@@ -51,21 +53,15 @@ YUI.add('photos-view', function (Y, NAME) {
         },
 
         // for pagination
-        prev: function (e) {
+        prev: function () {
+            console.log('IMPLEMENT ME');
         },
-        next: function (e) {
+        next: function () {
+            console.log('IMPLEMENT ME');
         },
 
         ATTRS: {
         }
-
-        // ATTRS: {
-        //     container: {
-        //         valueFn: function () {
-        //             return Y.Node.create('<div class="photos-view"/>');
-        //         }
-        //     }
-        // }
     });
 
     Y.namespace('Views').PhotosView = PhotosView;

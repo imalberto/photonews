@@ -9,9 +9,7 @@
 
 YUI.add('home-view', function (Y, NAME) {
 
-    var HomeView,
-        start = 0,
-        count = 6;
+    var HomeView;
 
     HomeView = Y.Base.create('homeView', Y.View, [], {
 
@@ -21,6 +19,7 @@ YUI.add('home-view', function (Y, NAME) {
         },
 
         initializer: function (config) {
+            this.config = config;
         },
 
         render: function () {

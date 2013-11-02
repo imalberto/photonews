@@ -8,10 +8,9 @@
 /*global YUI, YApp*/
 
 YUI.add('news-view', function (Y, NAME) {
+    'use strict';
 
-    var NewsView,
-        start = 0,
-        count = 2;
+    var NewsView;
 
     NewsView = Y.Base.create('newsView', Y.View, [], {
 
@@ -28,10 +27,7 @@ YUI.add('news-view', function (Y, NAME) {
             var my = this,
                 container = this.get('container'),
                 locals = this.get('locals'),
-                html = 'Loading ...',
-                // model = Y.NewsModel,
-                query = 'senate',
-                node;
+                html = 'Loading ...';
 
             if (!container.inDoc()) {
                 Y.one('body').append(container);
@@ -45,43 +41,19 @@ YUI.add('news-view', function (Y, NAME) {
 
             html = my.newsTemplate({items: locals.items});
             container.setHTML(html);
+
             return this;
-
-            // TODO move model out of the "render" method
-            // model.search(query, start, count, function (err, articles) {
-
-            //     if (!container.inDoc()) {
-            //         Y.one('body').append(container);
-            //     }
-
-            //     if (err) {
-            //         console.log('Error loading articles for query "%s" :', query, err);
-            //         container.setHTML(html);
-            //         return this;
-            //     }
-
-            //     html = my.newsTemplate({ src: 'news', articles: articles});
-
-            //     container.setHTML(html);
-
-            //     return this;
-            // });
         },
 
         // pagination
-        next: function (e) {
+        next: function () {
+            console.log('IMPLEMENT ME');
         },
-        prev: function (e) {
+        prev: function () {
+            console.log('IMPLEMENT ME');
         },
 
         ATTRS: {}
-        // ATTRS: {
-        //     container: {
-        //         valueFn: function () {
-        //             return Y.Node.create('<div class="news-view"/>');
-        //         }
-        //     }
-        // }
     });
 
     Y.namespace('Views').NewsView = NewsView;

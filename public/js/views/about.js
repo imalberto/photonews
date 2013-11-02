@@ -9,9 +9,7 @@
 
 YUI.add('about-view', function (Y, NAME) {
 
-    var AboutView,
-        start = 0,
-        count = 6;
+    var AboutView;
 
     AboutView = Y.Base.create('aboutView', Y.View, [], {
 
@@ -21,6 +19,7 @@ YUI.add('about-view', function (Y, NAME) {
         },
 
         initializer: function (config) {
+            this.config = config;
         },
 
         render: function () {

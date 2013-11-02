@@ -98,26 +98,6 @@ YUI.add('news-model', function (Y, NAME) {
             });
         }
 
-        // findAll: function () {
-        //     var my = this;
-
-        //     return new YPromise(function (fulfill, reject) {
-        //         YQL.find(xxx, function (err, data) {
-        //             if (err) {
-        //                 reject(err);
-        //                 return;
-        //             }
-
-        //             my.setAttrs(data);
-
-        //             fulfill(my);
-        //         });
-        //     });
-        // },
-        // find: function (id) {
-        //     return {};
-        // }
-
     }, {
         ATTRS: {
         }
