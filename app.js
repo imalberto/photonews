@@ -9,7 +9,8 @@
 
 'use strict';
 
-var express = require('express'),
+var debug = require('debug')('app'),
+    express = require('express'),
     expmap = require('express-map'),
     expstate = require('express-state'),
     expview = require('express-view'),
@@ -86,16 +87,11 @@ app.yui.ready(function (err) {
     Y.Env.runtime = 'server';
     router.extend(app);
 
+    // TODO find a more efficient way to determine if all modules are loaded
     if (!Y.Models.DefaultModel) {
         console.error('** ERROR **: YUI modules not loaded in server instance');
         return;
     }
-
-    // register any custom handlers
-    // TODO consolidate 
-    app.registerHandlers();
-    app.registerModels();
-    app.registerControllers();
 
     // Showing the various ways to register routes
     app.page('home', '/'); // use default model, default controller

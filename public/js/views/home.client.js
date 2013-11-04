@@ -8,6 +8,7 @@
 /*global YUI, YApp*/
 
 YUI.add('home-view', function (Y, NAME) {
+    'use strict';
 
     var HomeView;
 

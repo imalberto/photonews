@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "debug": "*",
     "express": "3.x",
     "express-annotations": "*",
     "express-map": "*",

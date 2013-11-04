@@ -4,11 +4,13 @@
  * See the accompanying LICENSE.txt file for terms.
  */
 
-/*jslint nomen:true, node:true*/
+/*jslint nomen:true, browser:true*/
 /*global YUI*/
 
 
 YUI.add('pn-app', function (Y, NAME) {
+    'use strict';
+
     var PhotoNews;
 
     PhotoNews = Y.Base.create('photoNews', Y.App, [], {
@@ -24,13 +26,12 @@ YUI.add('pn-app', function (Y, NAME) {
 
         initializer: function () {
             // TODO
-            console.log('!!! initializer !!!');
+            Y.log('!!! initializer !!!', 'info', NAME);
         },
 
         render: function (options) {
             var viewContainer,
-                container,
-                content;
+                container;
 
             PhotoNews.superclass.render.apply(this, arguments);
 
@@ -43,7 +44,8 @@ YUI.add('pn-app', function (Y, NAME) {
             container = this.get('container');
             viewContainer = this.get('viewContainer');
 
-            // TODO setup initial view
+            // Setup initial view here if content is not prerendered on the
+            // server
 
             return this;
         }
