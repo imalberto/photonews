@@ -81,8 +81,7 @@ app.yui.ready(function (err) {
         return;
     }
 
-   // TODO helper to load all those modules detected by Locator
-   // app.yui.use(Object.keys(app.yui._serverModules))
+    // TODO helper to load all those modules detected by Locator
     var Y = app.yui.use('util',
                         'default-controller', 'default-model',
                         'news-controller', 'photos-controller',
@@ -90,7 +89,7 @@ app.yui.ready(function (err) {
                         'post-model', 'photo-model',
                         'news-handler');
 
-
+    // var Y = app.yui.use(Object.keys(app.yui._serverModules));
     router.extend(app);
 
     // Showing the various usecases to register routes
