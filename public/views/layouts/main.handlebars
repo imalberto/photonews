@@ -45,38 +45,40 @@
 
     <script>
 
-    function dispatchY(Y) {
+        var args;
 
-        var routes = Y.config.global.ROUTES,
-            views = Y.config.global.VIEWS,
-            YApp;
+        function dispatchY(Y, NAME) {
+            var routes = Y.config.global.ROUTES,
+                views = Y.config.global.VIEWS,
+                YApp;
 
-        YApp = new Y.PN.App({
-            container: '#pn-container',
-            viewContainer: '#pn-view-container',
+            YApp = new Y.PN.App({
+                container: '#pn-container',
+                viewContainer: '#pn-view-container',
 
-            transitions: true,
-            serverRouting: true,
+                transitions: true,
+                serverRouting: true,
 
-            views: views
-        });
+                views: views
+            });
 
-        Y.config.global.YApp = YApp;
+            Y.config.global.YApp = YApp;
 
-        Object.keys(routes).forEach(function (name) {
-            var routeConfig = routes[name];
-            app.page(name, routeConfig.path);
-        });
+            Object.keys(routes).forEach(function (name) {
+                var routeConfig = routes[name];
+                app.page(name, routeConfig.path);
+            });
 
-        // if (Y.config.win.navigator.standalone) {
-        //     // Y.log('standalone mode');
-        // }
+            // if (Y.config.win.navigator.standalone) {
+            //     // Y.log('standalone mode');
+            // }
 
-        YApp.render({rendered: true}).dispatch();
-    }
+            YApp.render({rendered: true}).dispatch();
+        }
 
-    var args = window.CLIENT_MODULES.concat(dispatchY);
-    app.yui.use.apply(app.yui, args);
+        args = window.CLIENT_MODULES.concat(dispatchY);
+        app.yui.use.apply(app.yui, args);
+
     </script>
 </body>
 </html>
