@@ -44,20 +44,11 @@
     <script>{{{state}}}</script>
 
     <script>
-    // TODO include the modules using template
-    app.yui.use(
-    'util',
-    'router-middleware', // installed the render and router on `app`
-    'default-model', 'default-controller',
-    'news-controller', 'photos-controller',
-    'news-model', 'photos-model',
-    'post-model', 'photo-model',
-    'news-handler',
-    'pn-app',
-    'home-view', 'news-view', 'photos-view', 'about-view', function (Y) {
 
-        var routes = PN.ROUTES.routes,
-            views = PN.VIEWS.views,
+    function dispatchY(Y) {
+
+        var routes = Y.config.global.ROUTES,
+            views = Y.config.global.VIEWS,
             YApp;
 
         YApp = new Y.PN.App({
@@ -70,7 +61,7 @@
             views: views
         });
 
-        window.YApp = YApp;
+        Y.config.global.YApp = YApp;
 
         Object.keys(routes).forEach(function (name) {
             var routeConfig = routes[name];
@@ -82,7 +73,10 @@
         // }
 
         YApp.render({rendered: true}).dispatch();
-    });
+    }
+
+    var args = window.CLIENT_MODULES.concat(dispatchY);
+    app.yui.use.apply(app.yui, args);
     </script>
 </body>
 </html>

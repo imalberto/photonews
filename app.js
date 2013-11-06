@@ -11,50 +11,32 @@
 
 var debug = require('debug')('app'),
     express = require('express'),
-    expmap = require('express-map'),
-    expstate = require('express-state'),
     expview = require('express-view'),
     expyui = require('express-yui'),
     router = require('lib/router'),
-    Locator = require('locator'),
-    LocatorHandlebars = require('locator-handlebars'),
-    LocatorYUI = require('locator-yui'),
+    locator = require('./locator'),
     app,
     appPort,
     loc;
 
 ////
-// global
-global.PN = {
-    CACHE: {},
-    CONFIG: {},
-    ROUTES: {},
-    VIEWS: {}
-};
-
-////
-// setup Locator
-loc = new Locator({
-    buildDirectory: __dirname + '/build'
-});
-
-////
 // app setup
 app = express();
-
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
-app.set('locator', loc);
 app.set('layout', 'main');
 
-expmap.extend(app);
-expstate.extend(app);
+// setup Locator and mount it on "app"
+locator(app);
+
+// Augment "app" with useful "modown" extensions
 expview.extend(app);
 expyui.extend(app);
+router.extend(app);
 
 
 ////
-// middleware
+// regular express.js middleware
 app.use(express.compress());
 app.use(express.favicon());
 
@@ -66,11 +48,8 @@ app.yui.applyConfig({
     combine: false
 });
 
-loc.plug(new LocatorHandlebars({ format: 'yui' }))
-    .plug(new LocatorYUI())
-    // Add more locator-plugins here as necessary
-    .parseBundle(__dirname);
-
+// expose the router configuration
+app.use(router.expose());
 
 app.yui.ready(function (err) {
     if (err) {
@@ -81,16 +60,7 @@ app.yui.ready(function (err) {
         return;
     }
 
-    // TODO helper to load all those modules detected by Locator
-    var Y = app.yui.use('util',
-                        'default-controller', 'default-model',
-                        'news-controller', 'photos-controller',
-                        'news-model', 'photos-model',
-                        'post-model', 'photo-model',
-                        'news-handler');
-
-    // var Y = app.yui.use(Object.keys(app.yui._serverModules));
-    router.extend(app);
+    var Y = app.yui.use.apply(app.yui, app.getServerModules());
 
     // Showing the various usecases to register routes
     app.page('home', '/'); // setting '/' as the path vs the default '/home'
@@ -113,14 +83,10 @@ app.yui.ready(function (err) {
     //     if (req.params.isAuth) {
     //         res.render('admin');
     //     } else {
-    //         res.render('notfound');
+    //         next(new Error('User not authenticated'));
     //     }
     // });
-
-    PN.ROUTES.routes = app.getRouteMap();
-    PN.VIEWS.views = app.getViewsConfig();
-    app.expose(PN, 'PN');
-    // app.use(router.expose());
+    //
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);
