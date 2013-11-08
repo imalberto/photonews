@@ -26,13 +26,20 @@ appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
 app.set('layout', 'main');
 
+
+
 // setup Locator and mount it on "app"
 locator(app);
 
 // Augment "app" with useful "modown" extensions
+// TODO add lazy load for locator in expview - same as expyui
 expview.extend(app);
 expyui.extend(app);
 router.extend(app);
+
+//app.set('state namespace', 'MYAPP');
+app.expose({}, 'DATA');
+app.enable('strict routing');
 
 
 ////

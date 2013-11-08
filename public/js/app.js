@@ -5,7 +5,7 @@
  */
 
 /*jslint nomen:true, browser:true*/
-/*global YUI*/
+/*global DATA, YUI*/
 
 
 YUI.add('pn-app', function (Y, NAME) {
@@ -27,6 +27,9 @@ YUI.add('pn-app', function (Y, NAME) {
         initializer: function () {
             // TODO
             Y.log('!!! initializer !!!', 'info', NAME);
+
+            this.on('photosView:next', this.nextPhotos);
+            this.on('photosView:prev', this.prevPhotos);
         },
 
         render: function (options) {
@@ -48,10 +51,65 @@ YUI.add('pn-app', function (Y, NAME) {
             // server
 
             return this;
+        },
+
+        nextPhotos: function () {
+            var model;
+            model = this.get('model');
+            model.load({}, function (err, res) {
+            });
+        },
+        prevPhotos: function () {
+            var model;
+            model = this.get('model');
+            model.load({}, function (err, res) {
+            });
         }
 
     }, {
         ATTRS: {
+            // data: {
+            //     value: null
+            // },
+
+            // raw data, possibly rendered on the server side
+            data: {
+                valueFn: function () {
+                    var path = this.getPath(),
+                        data;
+
+                    if (path === '/news') {
+                        data = DATA || [];
+                    } else if (path === '/photos') {
+                        data = DATA || [];
+                    } else {
+                        data = {};
+                    }
+                    return data;
+                }
+            },
+
+            // helper
+            model: {
+                valueFn: function () {
+                    var path = this.getPath(),
+                        model;
+
+                    if (path === '/news') {
+                        model = new Y.Models.NewsModel(this.get('data'));
+                    } else if (path === '/photos') {
+                        model = new Y.Models.NewsModel(this.get('data'));
+                    } else {
+                        model = new Y.Model();
+                    }
+                    return model;
+                }
+            },
+
+            // Indicate state that the app is booting up from server rendering
+            bootstrap: {
+                value: false
+            }
         }
     });
 

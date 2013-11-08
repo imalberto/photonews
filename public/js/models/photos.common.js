@@ -70,20 +70,25 @@ YUI.add('photos-model', function (Y, NAME) {
                     'where has_geo="true" and ' + 'tags="' + search + '"' +
                     'and api_key="' + API_KEY + '"';
             Y.log('YQL: ' + select, 'debug', NAME);
-            
+
             Y.YQL(select, function (raw) {
                 photos = my._process(search, raw);
                 callback(null, photos);
             });
-            
+
         },
 
         sync: function (action, options, cb) {
             if (action !== 'read') {
                 return cb(new Error('action not supported: ' + action));
             }
-        
-            this.search('eiffel', 2, 5, function (err, articles) {
+
+            // TODO caching
+
+            // if (this.size() > 0) {
+            //     return cb(null, this.toJSON());
+            // }
+            this.search('samsung', 2, 5, function (err, articles) {
                 cb(err, articles);
             });
         }

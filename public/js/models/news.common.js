@@ -77,22 +77,27 @@ YUI.add('news-model', function (Y, NAME) {
             select = Y.Lang.sub(select, {count: count});
 
             Y.log('YQL: ' + select, 'debug', NAME);
-            
+
             Y.YQL(select, function (raw) {
                 articles = my._process(search, raw);
                 callback(null, articles);
             });
-            
+
         },
 
         initializer: function () {
+
         },
 
         sync: function (action, options, cb) {
             if (action !== 'read') {
                 return cb(new Error('action not supported: ' + action));
             }
-        
+
+            // if (this.size() > 0) {
+            //     return cb(null, this.toJSON());
+            // }
+
             this.search('yahoo', 2, 5, function (err, articles) {
                 cb(err, articles);
             });

@@ -50,6 +50,7 @@
         function dispatchY(Y, NAME) {
             var routes = Y.config.global.ROUTES,
                 views = Y.config.global.VIEWS,
+                data = Y.config.global.DATA,
                 YApp;
 
             YApp = new Y.PN.App({
@@ -60,6 +61,9 @@
                 serverRouting: true,
 
                 views: views
+
+                // data: data
+
             });
 
             Y.config.global.YApp = YApp;

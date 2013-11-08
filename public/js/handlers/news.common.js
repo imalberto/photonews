@@ -20,6 +20,8 @@ YUI.add('news-handler', function (Y, NAME) {
             controller,
             model;
 
+        // TODO generalize the model creation to reuse data already added to
+        //      instead of fetching from server again.
         model = new ModelClass(req.params);
         controller = new ControllerClass({model: model});
 
