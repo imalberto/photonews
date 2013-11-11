@@ -1,16 +1,7 @@
 /*jslint nomen:true, node:true*/
 /*jshint expr:true*/
-/*global YUI*/
 
-
-var debug = require('debug')('app'),
-    express = require('express'),
-    expmap = require('express-map'),
-    expstate = require('express-state'),
-    expview = require('express-view'),
-    expyui = require('express-yui'),
-    router = require('lib/router'),
-    Locator = require('locator'),
+var Locator = require('locator'),
     LocatorHandlebars = require('locator-handlebars'),
     LocatorYUI = require('locator-yui');
 

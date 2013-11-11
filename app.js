@@ -5,19 +5,16 @@
  */
 
 /*jslint nomen:true, node:true*/
-/*global PN*/
 
 'use strict';
 
-var debug = require('debug')('app'),
-    express = require('express'),
+var express = require('express'),
     expview = require('express-view'),
     expyui = require('express-yui'),
     router = require('lib/router'),
     locator = require('./locator'),
     app,
-    appPort,
-    loc;
+    appPort;
 
 ////
 app = express();
@@ -64,7 +61,7 @@ app.yui.ready(function (err) {
         return;
     }
 
-    var Y = app.yui.use.apply(app.yui, app.getServerModules());
+    app.yui.use.apply(app.yui, app.getServerModules());
 
     //
     app.page('home', '/');
