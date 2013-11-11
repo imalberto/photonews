@@ -12,7 +12,7 @@
     "express-annotations": "*",
     "express-map": "*",
     "express-state": "*",
-    "express-view": "git://github.com/caridy/express-view",
+    "express-view": "*",
     "express-yui": "~0.1.0",
     "locator": "git://github.com/caridy/locator#ready-promise",
     "locator-handlebars": "git://github.com/caridy/locator-handlebars#bundle-templates",
