@@ -20,26 +20,23 @@ var debug = require('debug')('app'),
     loc;
 
 ////
-// app setup
 app = express();
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
 app.set('layout', 'main');
+app.enable('strict routing');
 
-
-
-// setup Locator and mount it on "app"
+////
 locator(app);
 
-// Augment "app" with useful "modown" extensions
-// TODO add lazy load for locator in expview - same as expyui
+////
+// Augment "app"
 expview.extend(app);
 expyui.extend(app);
 router.extend(app);
 
 //app.set('state namespace', 'MYAPP');
 app.expose({}, 'DATA');
-app.enable('strict routing');
 
 
 ////
@@ -69,10 +66,10 @@ app.yui.ready(function (err) {
 
     var Y = app.yui.use.apply(app.yui, app.getServerModules());
 
-    // Showing the various usecases to register routes
-    app.page('home', '/'); // setting '/' as the path vs the default '/home'
-    app.page('news', '/news'); // same as app.page('news');
-    app.page('photos'); // will default to '/photos'
+    //
+    app.page('home', '/');
+    app.page('news', '/news');
+    app.page('photos');
 
     // app.page('about', '/about');
 
@@ -81,7 +78,7 @@ app.yui.ready(function (err) {
     //     res.render('aboutus');
     // });
 
-    // add a middleware, and a handler
+    //
     // app.page('admin', '/admin', function (req, res, next) {
     //     // authenticate request here
     //     req.params.isAuth = true;

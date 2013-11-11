@@ -94,10 +94,6 @@ YUI.add('news-model', function (Y, NAME) {
                 return cb(new Error('action not supported: ' + action));
             }
 
-            // if (this.size() > 0) {
-            //     return cb(null, this.toJSON());
-            // }
-
             this.search('yahoo', 2, 5, function (err, articles) {
                 cb(err, articles);
             });

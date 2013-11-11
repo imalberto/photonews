@@ -11,19 +11,18 @@ YUI.add('news-handler', function (Y, NAME) {
     'use strict';
 
     var Route,
-        util = Y.PN.util;
+        classify = Y.PN.util.classify;
 
-    Route = Y.namespace('Handlers')[util.classify(NAME)] = function (req, res) {
+    Route = Y.namespace('Handlers')[classify(NAME)] = function (req, res) {
 
         var ControllerClass = Y.Controllers.NewsController,
             ModelClass = Y.Models.NewsModel,
             controller,
-            model;
+            model,
+            data = (Y.config.global.DATA && Y.config.global.DATA['news']) || [];
 
-        // TODO generalize the model creation to reuse data already added to
-        //      instead of fetching from server again.
-        model = new ModelClass(req.params);
-        controller = new ControllerClass({model: model});
+        model = new ModelClass(data);
+        controller = new ControllerClass({name: 'news', model: model});
 
         res.render('news', controller);
 

@@ -85,9 +85,6 @@ YUI.add('photos-model', function (Y, NAME) {
 
             // TODO caching
 
-            // if (this.size() > 0) {
-            //     return cb(null, this.toJSON());
-            // }
             this.search('samsung', 2, 5, function (err, articles) {
                 cb(err, articles);
             });
