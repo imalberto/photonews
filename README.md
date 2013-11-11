@@ -6,13 +6,8 @@ Example web application to show usage of "modown" family of components.
 
 ## What's Next ?
 
-- Isolating the "infrastructure" pieces from the main app
-- Simplifying the necessary boiler plate to get a basic app going
-
-## Future
-
-- Pagination
-- View Composition
+- ES6 modules
+- view composition
 
 ## Instructions
 
@@ -30,6 +25,4 @@ app_dir/
 ├── routes/
 ├── tests/
 ├── views/
-├──
-├──
 ```
