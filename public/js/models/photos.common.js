@@ -85,7 +85,7 @@ YUI.add('photos-model', function (Y, NAME) {
 
             // TODO caching
 
-            this.search('samsung', 2, 5, function (err, articles) {
+            this.search('eiffel', 2, 4, function (err, articles) {
                 cb(err, articles);
             });
         }
