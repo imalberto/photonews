@@ -1,3 +1,10 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 body {
     color: #666;
 }
@@ -31,6 +38,36 @@ h1,h2,h3,h4,h5,h6 {
     border-radius: 0;
     background-color: rgb(45, 17, 82);
     padding: 5px;
+}
+
+#background-img {
+    z-index: -999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: transparent url('http://farm3.staticflickr.com/2109/2120309884_a32354d7b6_o.jpg') 0 0 no-repeat fixed;
+    background-size: cover;
+}
+
+.news-view {
+    background-color: rgb(244, 237, 247);
+}
+
+.content {
+    background-color: white;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 30px;
+}
+
+.content-subhead {
+    color: rgb(76, 13, 112);
+}
+
+.post-title {
+    color: rgb(132, 56, 176);
 }
 
 .gallery-background {
@@ -123,90 +160,6 @@ h1,h2,h3,h4,h5,h6 {
         font-weight: bold;
         text-shadow: 0px 1px 1px rgb(35, 111, 31);
         border-radius: 4px;
-    }
-
-.art-content {
-}
-
-    .art-info {
-        max-width: 1281px;
-        /* top: 200px; */
-        margin: 0 auto;
-    }
-
-    .art-box, .art-browser, .art-paginator {
-        background: rgba(27, 29, 46, 0.7);
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 0.9em;
-        font-weight: lighter;
-        line-height: 1.75em;
-        border-color: transparent;
-    }
-
-    .art-main {
-        margin-right: 50px;
-    }
-
-    .art-box {
-        padding: 30px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        height: 350px;
-    }
-
-        .art-box h2 {
-            color: #DABEEB;
-            font-weight: normal;
-        }
-
-        .art-box h4 {
-            color: white;
-            font-weight: normal;
-            margin-bottom: -10px;
-        }
-
-        .art-box h4 a {
-            color: #DD87F5;
-        }
-
-        .art-box li {
-            color: #E7BDF2;
-            font-weight: lighter;
-            line-height: 1.2em;
-        }
-
-        .art-box li a {
-            color: #DD87F5;
-        }
-
-    .art-browser {
-        margin-top: 50px;
-        height: 150px;
-        padding: 20px;
-        padding-bottom: 0px;
-        text-align: center;
-    }
-
-        .art-browser .art-image {
-            display: inline-block;
-            margin-left: 10px;
-            margin-right: 10px;
-            max-width: 170px;
-            overflow: hidden;
-        }
-
-        .art-browser img {
-            min-height: 125px;
-            height: 125px;
-            width: auto;
-            border-radius: 5px;
-        }
-
-    .art-paginator {
-        padding: 30px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        height: auto;
     }
 
 .footer {
