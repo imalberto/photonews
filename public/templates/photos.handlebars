@@ -1,37 +1,24 @@
 <div class="pure-g-r">
-	<div class="pure-u-1-5">
+	<div class="pure-u-2-3 text-box">
+	    <div class="l-box">
+	        <h1 class="text-box-head">The city is your museum.</h1>
+	        <p class="text-box-subhead">Explore the public art that makes your neighborhood beautiful</p>
+	        <p class="text-box-byline">Powered by Yahoo open source technology, and photos from the Flickr and Tumblr community.</p>
+	        <p class="text-box-byline">Built by Yahoo engineers, for the community around us all.</p>
+	    </div>
 	</div>
-	<div class="pure-u-3-5">
-
-		<div class="pure-g-r">
-			{{#items}}
-	        <div class="pure-u-1-2 photo-box">
-	        	<div xclass="l-box">
-		            <a href="{{url}}"><img src="{{url}}" alt="{{title}}"></a>
-		            <aside class="photo-box-caption">{{title}}</aside>
-	            </div>
-	        </div>
-	        {{/items}}
+	{{#each items}}
+		<div class="pure-u-1-3 photo-box">
+		    <a href="{{ url }}">
+		        <img src="{{ url }}"
+		             alt="{{ title }}">
+		    </a>
+		    <aside class="photo-box-caption">
+		        {{ title }}
+		        <span>
+		            by <a href="{{ url }}">{{ title }}</a> / <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+		        </span>
+		    </aside>
 		</div>
-
-	</div>
-	<div class="pure-u-1-5">
-	</div>
+	{{/each}}
 </div>
-
-<p></p>
-<!-- TODO add some space here, and center the paginator -->
-<!--
-<div style="text-align: center;">
-	<ul class="pure-paginator">
-	    <li><a class="pure-button prev" href="#">&#171;</a></li>
-	    <li><a class="pure-button pure-button-active" href="#">1</a></li>
-	    <li><a class="pure-button" href="#">2</a></li>
-	    <li><a class="pure-button" href="#">3</a></li>
-	    <li><a class="pure-button" href="#">4</a></li>
-	    <li><a class="pure-button" href="#">5</a></li>
-	    <li><a class="pure-button next" href="#">&#187;</a></li>
-	</ul>
-</div>
--->
-
