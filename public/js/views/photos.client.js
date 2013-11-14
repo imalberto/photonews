@@ -18,12 +18,12 @@ YUI.add('photos-view', function (Y, NAME) {
         photosTemplate: Y.Template.get('photonews/photos'),
 
         events: {
-            // setup events
         },
 
         initializer: function (config) {
             this.config = config;
             Y.log('Initialized !!!', 'info', NAME);
+
         },
 
         render: function () {

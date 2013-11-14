@@ -28,7 +28,7 @@ YUI.add('news-view', function (Y, NAME) {
             var my = this,
                 container = this.get('container'),
                 locals = this.get('locals'),
-                html = 'Loading ...';
+                html = '<h3> No Posts Available </h3>';
 
             if (!container.inDoc()) {
                 Y.one('body').append(container);
