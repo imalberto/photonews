@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE.txt file for terms.
+ */
+
 /*jslint nomen:true, node:true*/
 /*jshint expr:true*/
 
@@ -12,7 +18,6 @@ module.exports = function (app) {
         buildDirectory: __dirname + '/build'
     });
 
-    // expyui and expview dependency on locator
     loc.plug(new LocatorHandlebars({format: 'yui'}))
         .plug(new LocatorYUI())
         .parseBundle(__dirname);

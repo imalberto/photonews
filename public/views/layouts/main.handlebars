@@ -50,7 +50,6 @@
         function dispatchY(Y, NAME) {
             var NS = Y.config.global,
                 routes = NS.ROUTES,
-                views = NS.VIEWS,
                 YApp;
 
             YApp = new Y.PN.App({
@@ -59,9 +58,7 @@
 
                 transitions: true,
                 root: '/',
-                serverRouting: true,
-
-                views: views,
+                serverRouting: true
 
             });
 
@@ -71,10 +68,6 @@
                 var routeConfig = routes[name];
                 app.page(name, routeConfig.path);
             });
-
-            // if (Y.config.win.navigator.standalone) {
-            //     // Y.log('standalone mode');
-            // }
 
             YApp.render({rendered: true}).dispatch();
         }

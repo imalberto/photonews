@@ -9,9 +9,9 @@
 'use strict';
 
 var express = require('express'),
-    expview = require('express-view'),
     expyui = require('express-yui'),
-    router = require('./lib/router'),
+    librouter = require('./lib/router'),
+    libapp = require('./lib/application'),
     locator = require('./locator'),
     app,
     appPort;
@@ -20,9 +20,8 @@ var express = require('express'),
 app = express();
 
 // Augment "app"
-expview.extend(app);
-expyui.extend(app);
-router.extend(app);
+libapp.extend(app);
+librouter.extend(app);
 
 ////
 appPort = process.env.PORT || 8666;
@@ -51,7 +50,7 @@ app.yui.applyConfig({
 });
 
 // expose the router configuration
-app.use(router.expose());
+app.use(librouter.expose());
 
 app.yui.ready(function (err) {
     if (err) {
