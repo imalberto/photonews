@@ -1,6 +1,6 @@
 import {Controllers} from 'default-controller';
 import {PN} from 'util';
-import NewsModel from 'model/news';
+import NewsModel from 'models/news';
 import {Base} from 'base';
 
 var classify = PN.util.classify,
