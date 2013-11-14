@@ -11,7 +11,9 @@ Example web application to show usage of "modown" family of components.
 
 ## Instructions
 
+    npm i -g grunt (skip if you have `grunt` already installed globally)
     npm i
+    grunt
     node ./app.js
 
 ## Application Structure
@@ -21,7 +23,7 @@ app_dir/
 ├── build/ 
 ├── lib/
 ├── models/
-├── public
+├── public/
 ├── routes/
 ├── tests/
 ├── views/
