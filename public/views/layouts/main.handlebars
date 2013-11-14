@@ -48,9 +48,9 @@
         var args;
 
         function dispatchY(Y, NAME) {
-            var routes = Y.config.global.ROUTES,
-                views = Y.config.global.VIEWS,
-                data = Y.config.global.DATA,
+            var NS = Y.config.global,
+                routes = NS.ROUTES,
+                views = NS.VIEWS,
                 YApp;
 
             YApp = new Y.PN.App({
@@ -58,15 +58,14 @@
                 viewContainer: '#pn-view-container',
 
                 transitions: true,
+                root: '/',
                 serverRouting: true,
 
                 views: views,
 
-                bootstrap: true
-
             });
 
-            Y.config.global.YApp = YApp;
+            NS.YApp = YApp;
 
             Object.keys(routes).forEach(function (name) {
                 var routeConfig = routes[name];

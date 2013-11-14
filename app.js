@@ -11,30 +11,31 @@
 var express = require('express'),
     expview = require('express-view'),
     expyui = require('express-yui'),
-    router = require('lib/router'),
+    router = require('./lib/router'),
     locator = require('./locator'),
     app,
     appPort;
 
 ////
 app = express();
+
+// Augment "app"
+expview.extend(app);
+expyui.extend(app);
+router.extend(app);
+
+////
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
 app.set('layout', 'main');
 app.enable('strict routing');
 
 ////
+// setup Locator
 locator(app);
-
-////
-// Augment "app"
-expview.extend(app);
-expyui.extend(app);
-router.extend(app);
 
 //app.set('state namespace', 'MYAPP');
 app.expose({}, 'DATA');
-
 
 ////
 // regular express.js middleware
