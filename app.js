@@ -11,7 +11,7 @@
 var express = require('express'),
     expview = require('express-view'),
     expyui = require('express-yui'),
-    router = require('lib/router'),
+    router = require('./lib/router'),
     locator = require('./locator'),
     app,
     appPort;
