@@ -1,0 +1,225 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: #666;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #111;
+}
+
+.l-box {
+    padding: 2em;
+}
+
+.pure-menu .pure-menu-heading {
+    color: white;
+}
+
+.pure-menu .pure-menu-selected {
+    margin-right: 20px;
+}
+
+.pure-menu .pure-menu-selected a {
+    color: white;
+}
+
+.pure-menu li a:hover, .pure-menu li a:focus {
+    background-color: rgb(69, 27, 125);
+}
+
+.header .pure-menu {
+    border-bottom-color: black;
+    border-radius: 0;
+    background-color: rgb(45, 17, 82);
+    padding: 5px;
+}
+
+#background-img {
+    z-index: -999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: transparent url('http://farm3.staticflickr.com/2109/2120309884_a32354d7b6_o.jpg') 0 0 no-repeat fixed;
+    background-size: cover;
+}
+
+.news-view {
+    background-color: rgb(244, 237, 247);
+}
+
+.content {
+    background-color: white;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 30px;
+}
+
+.content-subhead {
+    color: rgb(76, 13, 112);
+}
+
+.post-title {
+    color: rgb(132, 56, 176);
+}
+
+.gallery-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+    z-index: -1000;
+}
+
+.photo-box, .text-box {
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+}
+
+
+    .photo-box img {
+        min-height: 300px;
+        width: 100%;
+    }
+
+    .photo-box aside {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 1em 0.5em;
+        color: white;
+        width: 100%;
+        font-size: 80%;
+        text-align: right;
+        background: -moz-linear-gradient(top,  rgba(16,27,30,0) 0%, rgba(12,2,2,1) 90%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(16,27,30,0)), color-stop(90%,rgba(12,2,2,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(16,27,30,0) 0%,rgba(12,2,2,1) 90%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(16,27,30,0) 0%,rgba(12,2,2,1) 90%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(16,27,30,0) 0%,rgba(12,2,2,1) 90%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(16,27,30,0) 0%,rgba(12,2,2,1) 90%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00101b1e', endColorstr='#0c0202',GradientType=0 ); /* IE6-9 */
+
+    }
+
+    .photo-box aside span {
+        color: #aaa;
+    }
+
+        .photo-box aside span a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+.text-box {
+    background: rgb(28, 28, 37); /* bluish grey */
+    color: rgb(133, 154, 238); /* steel blue */
+}
+
+    .text-box-head {
+        color: #fff;
+        border-bottom: 2px solid rgb(43, 43, 58);
+        padding-bottom: 0.2em;
+    }
+
+    .text-box-subhead {
+        font-weight: normal;
+        font-size: 150%;
+    }
+
+    .text-box-byline {
+        font-weight: lighter;
+        font-size: 100%;
+        color: rgb(167, 175, 209);;
+    }
+
+.form-box {
+    text-align: center;
+    font-size: 120%;
+    border-bottom: 1px solid #eee;
+}
+
+    .form-box .pure-button {
+        background-color: #61B842;
+        color: white;
+        vertical-align: top;
+        font-size: 85%;
+        font-weight: bold;
+        text-shadow: 0px 1px 1px rgb(35, 111, 31);
+        border-radius: 4px;
+    }
+
+.footer {
+    background: #111;
+    color: #666;
+    text-align: center;
+    padding: 1em;
+    font-size: 80%;
+}
+
+@media (max-width: 1281px) {
+    .art-box {
+        height: auto;
+    }
+
+    .art-browser {
+        height: auto;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 767px) {
+    .photo-box, .text-box {
+        text-align: center;
+    }
+
+        .photo-box img {
+            width: 100%;
+        }
+
+    .text-box {
+        height: auto;
+    }
+
+    .art-column {
+        width: 100%;
+    }
+
+    .art-box {
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 481px) {
+
+    .art-box, .art-browser, .art-paginator {
+        margin: 10px;
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+
+    .art-browser .art-image {
+        width: 45%;
+        height: auto;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .art-browser img {
+        width: 100%;
+        height: auto;
+    }
+}

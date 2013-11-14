@@ -42,7 +42,8 @@ YUI.add('photos-model', function (Y, NAME) {
                 photos.push({
                     id: photo.id,
                     title: photo.title,
-                    url: photo.url
+                    url: photo.url,
+                    user: photo.ownername 
                 });
             }
 
@@ -68,6 +69,7 @@ YUI.add('photos-model', function (Y, NAME) {
             select = 'select * from ' + 'flickr.photos.search ' +
                     '(' + (start || 0) + ',' + (count || 4) + ') ' +
                     'where has_geo="true" and ' + 'tags="' + search + '"' +
+                    'and extras="owner_name" ' +
                     'and api_key="' + API_KEY + '"';
             Y.log('YQL: ' + select, 'debug', NAME);
 
@@ -85,7 +87,7 @@ YUI.add('photos-model', function (Y, NAME) {
 
             // TODO caching
 
-            this.search('eiffel', 2, 4, function (err, articles) {
+            this.search('eiffel', 2, 13, function (err, articles) {
                 cb(err, articles);
             });
         }
