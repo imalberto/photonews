@@ -27,6 +27,5 @@ YUI.add('photo-model', function (Y, NAME) {
     Y.namespace('Models')[classify(NAME)] = Class;
 
 }, '@VERSION', { requires: [
-    'model',
-    'util'
+    'model'
 ]});

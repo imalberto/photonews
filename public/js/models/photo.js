@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE.txt file for terms.
+ */
+
+/*jslint nomen:true*/
+/*jshint esnext:true*/
+/*global */
+
+import {Models} from 'default-model';
+import {Model} from 'model';
+import {Base} from 'base';
+import {PN} from 'util';
+
+var Class,
+    classify = PN.util.classify;
+
+Class = Base.create('photo-model', Y.Model, [], {
+    initializer: function () {
+    }
+}, {
+    ATTRS: {
+        // "id" is managed by Y.Model
+        title: {
+            value: ''
+        },
+        url: {
+            value: ''
+        }
+    }
+});
+
+Models[classify(NAME)] = Class;
+
+export default Class;
