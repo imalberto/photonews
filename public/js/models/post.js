@@ -8,6 +8,7 @@
 /*jshint esnext:true*/
 
 import {Model} from 'model';
+import {Models} from 'default-model';
 import {Base} from 'base';
 import {PN} from 'util';
 
@@ -31,7 +32,7 @@ Class = Base.create('post-model', Model, [], {
     }
 });
 
-Models[classify(NAME)] = Class;
+Models[classify(Class.NAME)] = Class;
 
 export default Class;
 

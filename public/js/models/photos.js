@@ -8,10 +8,10 @@
 /*jshint esnext:true*/
 /*global */
 
+import PhotoModel from 'models/photo';
 import {Models} from 'default-model';
 import {PN} from 'util';
 import {ModelList} from 'model-list';
-import 'photo-model';
 import {Base} from 'base';
 import {YQL} from 'yql';
 
@@ -20,7 +20,7 @@ var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e',
     Class;
 
 Class = Base.create('photos-model', ModelList, [], {
-    model: Models.PhotoModel,
+    model: PhotoModel,
 
     initializer: function (config) {
         this.config = config;
@@ -96,7 +96,7 @@ Class = Base.create('photos-model', ModelList, [], {
     }
 });
 
-Models[classify(NAME)] = Class;
+Models[classify(Class.NAME)] = Class;
 
 export default Class;
 

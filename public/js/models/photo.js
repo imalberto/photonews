@@ -31,6 +31,6 @@ Class = Base.create('photo-model', Y.Model, [], {
     }
 });
 
-Models[classify(NAME)] = Class;
+Models[classify(Class.NAME)] = Class;
 
 export default Class;
