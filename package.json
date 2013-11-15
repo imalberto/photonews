@@ -14,10 +14,10 @@
     "express-annotations": "*",
     "express-map": "*",
     "express-state": "*",
-    "express-view": "git://github.com/yahoo/express-view",
-    "express-yui": "~0.1.0",
-    "locator": "git://github.com/caridy/locator#ready-promise",
-    "locator-handlebars": "git://github.com/caridy/locator-handlebars#bundle-templates",
+    "express-view": "*",
+    "express-yui": "~1.0.0",
+    "locator": "*",
+    "locator-handlebars": "*",
     "locator-yui": "0.1.x",
     "yui": "~3.13.0"
   },
@@ -26,6 +26,13 @@
     "yui-lint": "~0.1.3",
     "grunt": "~0.4.1",
     "grunt-contrib-sass": "~0.5.0"
+    "grunt-es6-module-transpiler": "git://github.com/caridy/grunt-es6-module-transpiler",
+    "es6-module-transpiler": "git://github.com/caridy/es6-module-transpiler"
+  },
+  "scripts": {
+    "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js *.js",
+    "pretest": "npm run lint",
+    "xtest": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js ./models/*.js ./public/**/*.js ./routes/*.js ./views/*.js"
   },
   "locator": {
     "-rulesets": "app-rulesets.js"

@@ -1,6 +1,17 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        transpile: {
+            main: {
+                type: "yui",
+                files: [{
+                    expand: true,
+                    cwd: 'public/js/',
+                    src: ['**/news.js'],
+                    dest: 'tmp/'
+                }]
+            }
+        },
         sass: {
             dist: {
                 options: {
@@ -18,6 +29,8 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-es6-module-transpiler');
 
-    grunt.registerTask('default', ['sass']);
+    grunt.registerTask('default', ['sass', 'transpile']);
+
 };
