@@ -21,15 +21,26 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/js/',
-                    src: ['**/news.js'],
+                    src: ['**/*.js'],
                     dest: 'tmp/'
                 }]
+            }
+        },
+        watch: {
+            scripts: {
+                files: ['public/js/**/*.js'],
+                tasks: ['transpile'],
+                options: {
+                    spawn: false
+                }
             }
         }
     });
 
+
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-es6-module-transpiler');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['sass', 'transpile']);
 
