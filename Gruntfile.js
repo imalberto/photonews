@@ -1,17 +1,6 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        transpile: {
-            main: {
-                type: "yui",
-                files: [{
-                    expand: true,
-                    cwd: 'public/js/',
-                    src: ['**/news.js'],
-                    dest: 'tmp/'
-                }]
-            }
-        },
         sass: {
             dist: {
                 options: {
@@ -23,6 +12,17 @@ module.exports = function (grunt) {
                     src: ['*.scss'],
                     dest: 'build/css',
                     ext: '.css'
+                }]
+            }
+        },
+        transpile: {
+            main: {
+                type: "yui",
+                files: [{
+                    expand: true,
+                    cwd: 'public/js/',
+                    src: ['**/news.js'],
+                    dest: 'tmp/'
                 }]
             }
         }
