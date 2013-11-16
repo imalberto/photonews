@@ -21,14 +21,21 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/js/',
-                    src: ['pnapp.js', 'controllers/*.js', 'handlers/*.js', 'models/*.js', 'views/*.js'],
+                    src: [
+                        'pnapp.js', 'controllers/*.js', 'handlers/*.js',
+                        'models/*.js', 'views/*.js'
+                    ],
                     dest: 'tmp/'
                 }]
             }
         },
         watch: {
             scripts: {
-                files: ['public/js/pnapp.js', 'public/js/controllers/*.js', 'public/js/handlers/*.js', 'public/js/models/*.js', 'public/js/views/*.js'],
+                files: [
+                    'public/js/pnapp.js', 'public/js/controllers/*.js',
+                    'public/js/handlers/*.js', 'public/js/models/*.js',
+                    'public/js/views/*.js'
+                ],
                 tasks: ['transpile'],
                 options: {
                     spawn: false
