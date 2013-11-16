@@ -16,7 +16,7 @@ import {PN} from 'util';
 var Class,
     classify = PN.util.classify;
 
-Class = Base.create('photo-model', Y.Model, [], {
+Class = Base.create('photo-model', Model, [], {
     initializer: function () {
     }
 }, {
