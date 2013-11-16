@@ -21,14 +21,14 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/js/',
-                    src: ['controllers/*.js', 'handlers/*.js', 'models/*.js'],
+                    src: ['controllers/*.js', 'handlers/*.js', 'models/*.js', 'views/*.js'],
                     dest: 'tmp/'
                 }]
             }
         },
         watch: {
             scripts: {
-                files: ['public/js/controllers/*.js', 'public/js/handlers/*.js', 'public/js/models/*.js'],
+                files: ['public/js/controllers/*.js', 'public/js/handlers/*.js', 'public/js/models/*.js', 'public/js/views/*.js'],
                 tasks: ['transpile'],
                 options: {
                     spawn: false
