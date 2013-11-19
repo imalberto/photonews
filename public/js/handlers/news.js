@@ -8,15 +8,14 @@
 /*jshint esnext:true*/
 
 import NewsModel from 'models/news';
-import {Handlers} from 'default-handler';
-import {Controllers} from 'default-controller';
+import NewsController from 'controllers/news';
 import {config} from 'yui';
 
 var Route;
 
 Route = function (req, res) {
 
-    var ControllerClass = Controllers.NewsController,
+    var ControllerClass = NewsController,
         ModelClass = NewsModel,
         controller,
         model,
@@ -30,7 +29,5 @@ Route = function (req, res) {
     res.render('news', controller);
 
 };
-
-Handlers.NewsHandler = Route;
 
 export default Route;

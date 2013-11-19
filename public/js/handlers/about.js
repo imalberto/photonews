@@ -7,12 +7,8 @@
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 
-import {Handlers} from 'default-handler';
-
 function Handler(req, res) {
     res.render('about');
 };
-
-Handlers.AboutHandler = Handler;
 
 export default Handler;

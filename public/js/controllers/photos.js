@@ -9,20 +9,14 @@
 
 import PhotosModel from 'models/photos';
 import {Base} from 'base';
-import {Controllers} from 'default-controller';
-import {PN} from 'util';
+import {DefaultController} from 'default-controller';
 
-var classify = PN.util.classify,
-    Class;
-
-Class = Base.create('photos-controller', Controllers.DefaultController, {}, {
+var Class = Base.create('photos-controller', DefaultController, {}, {
     ATTRS: {
         modelClass: {
             value: PhotosModel
         }
     }
 });
-
-Controllers[classify(Class.NAME)] = Class;
 
 export default Class;

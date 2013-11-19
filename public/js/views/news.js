@@ -8,15 +8,10 @@
 /*jshint esnext:true*/
 
 import {View} from 'view';
-import {Views} from 'default-view';
 import {Template} from 'photonews-template-news';
 import {Base} from 'base';
-import {log} from 'yui';
-import {one} from 'yui';
 
-var NewsView;
-
-NewsView = Base.create('news-view', View, [], {
+var NewsView = Base.create('news-view', View, [], {
 
     newsTemplate: Template.get('photonews/news'),
 
@@ -51,7 +46,5 @@ NewsView = Base.create('news-view', View, [], {
     }
 
 });
-
-Views.NewsView = NewsView;
 
 export default NewsView;

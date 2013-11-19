@@ -10,9 +10,6 @@
 import {View} from 'view';
 import {Template} from 'photonews-template-home';
 import {Base} from 'base';
-import {Views} from 'default-view';
-import {log} from 'yui';
-import {one} from 'yui';
 
 var HomeView;
 
@@ -37,7 +34,5 @@ HomeView = Base.create('home-view', View, [], {
     }
 
 });
-
-Views.HomeView = HomeView;
 
 export default HomeView;

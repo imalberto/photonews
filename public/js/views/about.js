@@ -7,18 +7,11 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {Views} from 'default-view';
 import {View} from 'view';
 import {Template} from 'photonews-template-about';
 import {Base} from 'base';
-import {log} from 'yui';
-import {one} from 'yui';
-import {View} from 'view';
-import {Node} from 'yui';
 
-var AboutView;
-
-AboutView = Base.create('about-view', View, [], {
+var AboutView = Base.create('about-view', View, [], {
 
     template: Template.get('photonews/about'),
 
@@ -32,14 +25,12 @@ AboutView = Base.create('about-view', View, [], {
         var container = this.get('container'),
             html;
 
-        html = this.template({ src: 'home' });
+        html = this.template({ src: 'about' });
         container.setHTML(html);
 
         return this;
     }
 
 });
-
-Views.AboutView = AboutView;
 
 export default AboutView;

@@ -8,19 +8,13 @@
 /*jshint esnext:true*/
 /*global */
 
-import {Models} from 'default-model';
-import {PN} from 'util';
 import {ModelList} from 'model-list';
-import 'model-list';
 import PostModel from 'models/post';
 import {Base} from 'base';
 import {YQL} from 'yql';
 import {Lang} from 'yui';
 
-var Class,
-    classify = PN.util.classify;
-
-Class = Base.create('news-model', ModelList, [], {
+var Class = Base.create('news-model', ModelList, [], {
     model: PostModel,
 
     API_KEY: '84921e87fb8f2fc338c3ff9bf51a412e',
@@ -103,7 +97,5 @@ Class = Base.create('news-model', ModelList, [], {
 }, {
     ATTRS: {}
 });
-
-Models[classify(Class.NAME)] = Class;
 
 export default Class;

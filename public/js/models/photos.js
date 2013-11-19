@@ -9,14 +9,11 @@
 /*global */
 
 import PhotoModel from 'models/photo';
-import {Models} from 'default-model';
-import {PN} from 'util';
 import {ModelList} from 'model-list';
 import {Base} from 'base';
 import {YQL} from 'yql';
 
 var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e',
-    classify = PN.util.classify,
     Class;
 
 Class = Base.create('photos-model', ModelList, [], {
@@ -90,12 +87,6 @@ Class = Base.create('photos-model', ModelList, [], {
             cb(err, articles);
         });
     }
-}, {
-    ATTRS: {}
-});
-
-Models[classify(Class.NAME)] = Class;
+}, {});
 
 export default Class;
-
-

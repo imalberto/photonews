@@ -6,14 +6,10 @@
 /*jshint esnext:true*/
 
 import NewsModel from 'models/news';
-import {Controllers} from 'default-controller';
-import {PN} from 'util';
+import {DefaultController} from 'default-controller';
 import {Base} from 'base';
 
-var classify = PN.util.classify,
-    Class;
-
-Class = Base.create('news-controller', Controllers.DefaultController, {}, {
+var Class = Base.create('news-controller', DefaultController, {}, {
     ATTRS: {
         // specify the model class to use for this controller
         // optional: if not specified, a default `NewsModel` will be used
@@ -22,7 +18,5 @@ Class = Base.create('news-controller', Controllers.DefaultController, {}, {
         }
     }
 });
-
-Controllers[classify(Class.NAME)] = Class;
 
 export default Class;
