@@ -14,6 +14,7 @@
     "locator": "*",
     "locator-handlebars": "*",
     "locator-yui": "0.1.x",
+    "photonews-lib": "git://github.com/imalberto/photonews-lib.git",
     "yui": "~3.13.0"
   },
   "devDependencies": {
