@@ -9,6 +9,13 @@
     "lib": "./lib"
   },
   "main": "./lib",
+  "keywords": [
+    "express",
+    "javascript",
+    "modown",
+    "mojito",
+    "photonews"
+  ],
   "peerDependencies": {
     "express": "3.x",
     "express-annotations": "*",
@@ -20,9 +27,11 @@
   },
   "devDependencies": {
     "jshint": "~1.1.0",
+    "yuidocjs": ">=0.3.46",
     "yui-lint": "~0.1.3"
   },
   "scripts": {
+    "docs": "node ./node_modules/.bin/yuidoc --config ./conf/yuidoc.json ./lib",
     "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js *.js",
     "pretest": "npm run lint"
   },

@@ -1,0 +1,10 @@
+{
+  "name": "photonews-lib API documentation",
+  "description": "photonews-lib API documentation",
+  "version": "0.0.1",
+  "url": "https://github.com/imalberto/photonews-lib",
+  "options": {
+    "paths": [ "lib" ],
+    "outdir": "./apidocs"
+  }
+}

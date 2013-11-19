@@ -1,0 +1,340 @@
+{
+    "project": {
+        "name": "photonews-lib API documentation",
+        "description": "photonews-lib API documentation",
+        "version": "0.0.1",
+        "url": "https://github.com/imalberto/photonews-lib"
+    },
+    "files": {
+        "lib/client/middleware/renderer.client.js": {
+            "name": "lib/client/middleware/renderer.client.js",
+            "modules": {
+                "renderer-middleware": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/client/middleware/router.client.js": {
+            "name": "lib/client/middleware/router.client.js",
+            "modules": {
+                "router-middleware": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/middleware/renderer.js": {
+            "name": "lib/middleware/renderer.js",
+            "modules": {
+                "renderer": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/application.js": {
+            "name": "lib/application.js",
+            "modules": {
+                "application": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/registry.js": {
+            "name": "lib/registry.js",
+            "modules": {
+                "registry": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/router.js": {
+            "name": "lib/router.js",
+            "modules": {
+                "router": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/store.js": {
+            "name": "lib/store.js",
+            "modules": {
+                "store": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "renderer-middleware": {
+            "name": "renderer-middleware",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/client/middleware/renderer.client.js",
+            "line": 11
+        },
+        "router-middleware": {
+            "name": "router-middleware",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/client/middleware/router.client.js",
+            "line": 11
+        },
+        "renderer": {
+            "name": "renderer",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/middleware/renderer.js",
+            "line": 10
+        },
+        "application": {
+            "name": "application",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/application.js",
+            "line": 11
+        },
+        "registry": {
+            "name": "registry",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/registry.js",
+            "line": 11
+        },
+        "router": {
+            "name": "router",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/router.js",
+            "line": 11,
+            "description": "`router` plugin that extends `express` `app`.\n\nUsage:\n\n    var express = require('express'),\n        app = express(),\n        router = require('./lib/router');\n\n    router.extend(app);"
+        },
+        "store": {
+            "name": "store",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/store.js",
+            "line": 11
+        }
+    },
+    "classes": {},
+    "classitems": [
+        {
+            "file": "lib/client/middleware/renderer.client.js",
+            "line": 28,
+            "params": [
+                {
+                    "name": "viewName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Promise|Object"
+                }
+            ],
+            "class": "",
+            "module": "renderer-middleware"
+        },
+        {
+            "file": "lib/middleware/renderer.js",
+            "line": 28,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "ctx",
+                    "description": "",
+                    "type": "Object|Promise"
+                }
+            ],
+            "class": "",
+            "module": "renderer"
+        },
+        {
+            "file": "lib/application.js",
+            "line": 22,
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "application"
+        },
+        {
+            "file": "lib/registry.js",
+            "line": 21,
+            "itemtype": "method",
+            "name": "controller",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "registry"
+        },
+        {
+            "file": "lib/registry.js",
+            "line": 40,
+            "itemtype": "method",
+            "name": "model",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "registry"
+        },
+        {
+            "file": "lib/registry.js",
+            "line": 60,
+            "itemtype": "method",
+            "name": "handler",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "registry"
+        },
+        {
+            "file": "lib/registry.js",
+            "line": 78,
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "registry"
+        },
+        {
+            "file": "lib/router.js",
+            "line": 34,
+            "itemtype": "method",
+            "name": "expose",
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "router"
+        },
+        {
+            "file": "lib/router.js",
+            "line": 55,
+            "itemtype": "method",
+            "name": "page",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "path",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "ExpressApp"
+            },
+            "class": "",
+            "module": "router"
+        },
+        {
+            "file": "lib/router.js",
+            "line": 120,
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "router"
+        },
+        {
+            "file": "lib/store.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "getServerModules",
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "store"
+        },
+        {
+            "file": "lib/store.js",
+            "line": 36,
+            "access": "public",
+            "tagname": "",
+            "class": "",
+            "module": "store"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type",
+            "line": " lib/client/middleware/renderer.client.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " lib/middleware/renderer.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " lib/application.js:22"
+        },
+        {
+            "message": "Missing item type",
+            "line": " lib/registry.js:78"
+        },
+        {
+            "message": "Missing item type",
+            "line": " lib/router.js:120"
+        },
+        {
+            "message": "Missing item type",
+            "line": " lib/store.js:36"
+        }
+    ]
+}

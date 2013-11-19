@@ -1,5 +1,5 @@
 
-Contributing to PhotoNews
+Contributing to `photonews-lib`
 =========================
 
 TODO
