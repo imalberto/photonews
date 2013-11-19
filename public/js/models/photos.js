@@ -47,7 +47,7 @@ Class = Base.create('photos-model', ModelList, [], {
                 id: photo.id,
                 title: photo.title,
                 url: photo.url,
-                user: photo.ownername 
+                user: photo.ownername
             });
         }
 
@@ -71,7 +71,6 @@ Class = Base.create('photos-model', ModelList, [], {
                 'where has_geo="true" and ' + 'tags="' + search + '"' +
                 'and extras="owner_name" ' +
                 'and api_key="' + API_KEY + '"';
-        Y.log('YQL: ' + select, 'debug', NAME);
 
         YQL(select, function (raw) {
             photos = my._process(search, raw);
@@ -92,8 +91,7 @@ Class = Base.create('photos-model', ModelList, [], {
         });
     }
 }, {
-    ATTRS: {
-    }
+    ATTRS: {}
 });
 
 Models[classify(Class.NAME)] = Class;

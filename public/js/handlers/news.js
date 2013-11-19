@@ -20,25 +20,17 @@ Route = function (req, res) {
         ModelClass = NewsModel,
         controller,
         model,
-        // TODO access DATA via Y.config.global
-        DATA,
+        GlobalDATA = config.global.DATA,
         data;
 
-    if (typeof document !== 'undefined') {
-        DATA = window.DATA;
-    } else {
-        DATA = global.DATA;
-    }
-    data = (DATA && DATA.news) || [];
+    data = (GlobalDATA && GlobalDATA.news) || [];
     model = new ModelClass(data);
-    controller = new ControllerClass({name: 'news', model: model});
+    controller = new ControllerClass({ name: 'news', model: model });
 
     res.render('news', controller);
 
 };
 
-
 Handlers.NewsHandler = Route;
 
 export default Route;
-

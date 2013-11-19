@@ -6,7 +6,6 @@
 
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
-/*global YApp*/
 
 import {View} from 'view';
 import {Template} from 'photonews-template-home';
@@ -21,30 +20,22 @@ HomeView = Base.create('home-view', View, [], {
 
     template: Template.get('photonews/home'),
 
-    events: {
-    },
+    events: {},
 
     initializer: function (config) {
         this.config = config;
-        log('Initialized !!!', 'info', NAME);
     },
 
     render: function () {
         var container = this.get('container'),
-            html = 'Loading ...';
-
-        if (!container.inDoc()) {
-            one('body').append(container);
-        }
+            html;
 
         html = this.template({ src: 'home'});
-
         container.setHTML(html);
 
         return this;
-    },
+    }
 
-    ATTRS: {}
 });
 
 Views.HomeView = HomeView;

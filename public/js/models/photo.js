@@ -16,12 +16,8 @@ import {PN} from 'util';
 var Class,
     classify = PN.util.classify;
 
-Class = Base.create('photo-model', Model, [], {
-    initializer: function () {
-    }
-}, {
+Class = Base.create('photo-model', Model, [], {}, {
     ATTRS: {
-        // "id" is managed by Y.Model
         title: {
             value: ''
         },

@@ -7,18 +7,12 @@
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 
-import {PN} from 'util';
 import {Handlers} from 'default-handler';
 
-
-var classify = PN.util.classify,
-    Handler;
-
-Handler = function (req, res) {
+function Handler(req, res) {
     res.render('about');
 };
 
 Handlers.AboutHandler = Handler;
 
 export default Handler;
-

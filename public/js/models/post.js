@@ -15,10 +15,8 @@ import {PN} from 'util';
 var Class,
     classify = PN.util.classify;
 
-Class = Base.create('post-model', Model, [], {
-    initializer: function () {
-    }
-}, {
+Class = Base.create('post-model', Model, [], {}, {
+
     ATTRS: {
         title: {
             value: ''
@@ -30,6 +28,7 @@ Class = Base.create('post-model', Model, [], {
             value: ''
         }
     }
+
 });
 
 Models[classify(Class.NAME)] = Class;

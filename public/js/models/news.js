@@ -90,10 +90,6 @@ Class = Base.create('news-model', ModelList, [], {
 
     },
 
-    initializer: function () {
-
-    },
-
     sync: function (action, options, cb) {
         if (action !== 'read') {
             return cb(new Error('action not supported: ' + action));
@@ -105,8 +101,7 @@ Class = Base.create('news-model', ModelList, [], {
     }
 
 }, {
-    ATTRS: {
-    }
+    ATTRS: {}
 });
 
 Models[classify(Class.NAME)] = Class;
