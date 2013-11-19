@@ -36,8 +36,7 @@
     "pretest": "npm run lint"
   },
   "locator": {
-    "-rulesets": "app-rulesets.js",
-    "-location": "."
+    "rulesets": "./conf/rulesets.js"
   },
   "repository": "https://github.com/imalberto/photonews-lib",
   "author": "alberto chan <imalberto@gmail.com>",
