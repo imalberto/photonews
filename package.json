@@ -31,7 +31,7 @@
   "locator": {
     "-rulesets": "app-rulesets.js"
   },
-  "repository": "",
+  "repository": "https://github.com/imalberto/photonews",
   "author": "alberto chan <imalberto@gmail.com>",
   "license": "BSD"
 }
