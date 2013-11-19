@@ -8,17 +8,14 @@
 /*jshint esnext:true*/
 
 import PhotosModel from 'models/photos';
-
 import {Base} from 'base';
 import {Controllers} from 'default-controller';
 import {PN} from 'util';
 
-
 var classify = PN.util.classify,
     Class;
 
-Class = Base.create('photos-controller', Controllers.DefaultController, {
-}, {
+Class = Base.create('photos-controller', Controllers.DefaultController, {}, {
     ATTRS: {
         modelClass: {
             value: PhotosModel
@@ -29,4 +26,3 @@ Class = Base.create('photos-controller', Controllers.DefaultController, {
 Controllers[classify(Class.NAME)] = Class;
 
 export default Class;
-

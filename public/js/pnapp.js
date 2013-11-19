@@ -46,8 +46,6 @@ PhotoNews = Base.create('photoNews', App, [], {
     },
 
     initializer: function () {
-        log('!!! initializer !!!', 'info', NAME);
-
         this.on('photosView:next', this.nextPhotos);
         this.on('photosView:prev', this.prevPhotos);
     },
@@ -76,19 +74,18 @@ PhotoNews = Base.create('photoNews', App, [], {
     nextPhotos: function () {
         var model;
         model = this.get('model');
-        model.load({}, function (err, res) {
-        });
+        model.load();
     },
     prevPhotos: function () {
         var model;
         model = this.get('model');
-        model.load({}, function (err, res) {
-        });
+        model.load();
     }
 
 }, {
-    ATTRS: {
-    }
+
+    ATTRS: {}
+
 });
 
 PN.App = PhotoNews;

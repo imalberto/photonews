@@ -13,8 +13,7 @@ import {Base} from 'base';
 var classify = PN.util.classify,
     Class;
 
-Class = Base.create('news-controller', Controllers.DefaultController, {
-}, {
+Class = Base.create('news-controller', Controllers.DefaultController, {}, {
     ATTRS: {
         // specify the model class to use for this controller
         // optional: if not specified, a default `NewsModel` will be used

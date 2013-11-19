@@ -20,48 +20,38 @@ NewsView = Base.create('news-view', View, [], {
 
     newsTemplate: Template.get('photonews/news'),
 
-    events: {
-    },
+    events: {},
 
     initializer: function (config) {
         this.config = config;
-        log('Initialized !!!', 'info', NAME);
     },
 
     render: function () {
-        var my = this,
-            container = this.get('container'),
+        var container = this.get('container'),
             locals = this.get('locals'),
-            html = '<h3> No Posts Available </h3>';
-
-        if (!container.inDoc()) {
-            one('body').append(container);
-        }
+            html;
 
         if (!locals.items) {
-            console.error('Error loading news items');
-            container.setHTML('Error loading news items');
-            return;
+            html = '<h3> No Posts Available </h3>';
+        } else {
+            html = this.newsTemplate({ items: locals.items });
         }
 
-        html = my.newsTemplate({items: locals.items});
         container.setHTML(html);
-
         return this;
     },
 
     // pagination
     next: function () {
-        console.log('IMPLEMENT ME');
-    },
-    prev: function () {
-        console.log('IMPLEMENT ME');
+        // todo
     },
 
-    ATTRS: {}
+    prev: function () {
+        // todo
+    }
+
 });
 
 Views.NewsView = NewsView;
 
 export default NewsView;
-
