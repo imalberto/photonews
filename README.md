@@ -2,12 +2,17 @@
 photonews
 =========
 
-Example web application to show usage of "modown" family of components.
+Photonews is an example web application showcasing the capabilty of "modown".
+
+The application uses the micro library
+[photonews-lib](/imalberto/photonews-lib) which is build using "modown" set 
+of modules.
+
 
 ## What's Next ?
 
-- ES6 modules
-- view composition
+- User interaction via pagination and search
+- View composition
 
 ## Instructions
 
@@ -20,11 +25,8 @@ Example web application to show usage of "modown" family of components.
 
 ```
 app_dir/
-├── build/ 
-├── lib/
-├── models/
-├── public/
-├── routes/
-├── tests/
-├── views/
+    ├── build/
+    ├── lib/
+    ├── public/
+    ├── tests/
 ```
