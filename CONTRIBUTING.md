@@ -1,5 +1,14 @@
 
 Contributing to `photonews-lib`
-=========================
+==============================
 
-TODO
+
+## To run unit tests
+
+    npm test
+
+## To generate API docs to include in your PR
+
+    npm run docs
+
+

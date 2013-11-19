@@ -4,14 +4,15 @@ photonews-lib
 
 This is the micro library that is used by the
 [photonews](http://github.com/imalberto/photonews) as shared infrastructure
-that is build on top of `modown` components.
+that is build on top of [modown](https://npmjs.org/search?q=modown)
+components.
 
 ## Instructions
 
-    npm i -g grunt (skip if you have `grunt` already installed globally)
-    npm i
-    grunt
-    node ./app.js
+From your application directory, edit your `package.json` with the following
+`dependencies`:
+
+    "photonews-lib": "git://github.com/imalberto/photonews-lib"
 
 ## Application Structure
 
