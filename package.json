@@ -26,6 +26,13 @@
     "yui": "~3.13.0"
   },
   "devDependencies": {
+    "express": "3.x",
+    "express-annotations": "*",
+    "express-map": "*",
+    "express-state": "*",
+    "express-view": "*",
+    "express-yui": "~1.0.0",
+    "yui": "~3.13.0",
     "jshint": "~1.1.0",
     "yuidocjs": ">=0.3.46",
     "yui-lint": "~0.1.3"
