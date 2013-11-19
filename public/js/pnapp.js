@@ -24,26 +24,27 @@ import ViewHome from 'views/home';
 import ViewPhotos from 'views/photos';
 import ViewNews from 'views/news';
 
-import PN from 'pn';
+import {Controllers, Handlers, Views, Models} from 'pn';
 
-PN.Controllers.register('news', ControllerNews);
-PN.Controllers.register('photos', ControllerPhotos);
+Controllers.register('news', ControllerNews);
+Controllers.register('photos', ControllerPhotos);
 
-PN.Handlers.register('news', HandlerNews);
-PN.Handlers.register('about', HandlerAbout);
+Handlers.register('news', HandlerNews);
+Handlers.register('about', HandlerAbout);
 
-PN.Models.register('news',   ModelNews);
-PN.Models.register('post',   ModelPost);
-PN.Models.register('photos', ModelPhotos);
-PN.Models.register('photo',  ModelPhoto);
+Models.register('news',   ModelNews);
+Models.register('post',   ModelPost);
+Models.register('photos', ModelPhotos);
+Models.register('photo',  ModelPhoto);
 
-PN.Views.register('about',  ViewAbout);
-PN.Views.register('home',   ViewHome);
-PN.Views.register('news',   ViewNews);
-PN.Views.register('photos', ViewPhotos);
+Views.register('about',  ViewAbout);
+Views.register('home',   ViewHome);
+Views.register('news',   ViewNews);
+Views.register('photos', ViewPhotos);
 
 import {App} from 'app';
 import {Base} from 'base';
+import {config} from 'yui';
 
 var PhotoNews = Base.create('photoNews', App, [], {
 
@@ -117,5 +118,5 @@ var PhotoNews = Base.create('photoNews', App, [], {
 
 });
 
-PN.PhotoNews = PhotoNews;
+config.global.PhotoNews = PhotoNews;
 export default PhotoNews;

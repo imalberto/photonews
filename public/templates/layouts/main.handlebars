@@ -42,39 +42,30 @@
 
 
     <script>{{{state}}}</script>
-
     <script>
-
-        var args;
-
-        function dispatchY(Y, NAME) {
-            var NS = Y.config.global,
-                routes = NS.ROUTES,
+        function initialize(PN) {
+            var global = PN.config.global,
+                routes = global.ROUTES,
                 YApp;
 
-            YApp = new Y.PhotoNews({
+            YApp = new global.PhotoNews({
                 container: '#pn-container',
                 viewContainer: '#pn-view-container',
-
                 transitions: true,
                 root: '/',
                 serverRouting: true
-
             });
 
-            NS.YApp = YApp;
+            global.YApp = YApp;
 
             Object.keys(routes).forEach(function (name) {
                 var routeConfig = routes[name];
                 app.page(name, routeConfig.path);
             });
 
-            YApp.render({rendered: true}).dispatch();
+            YApp.render({ rendered: true }).dispatch();
         }
-
-        args = window.CLIENT_MODULES.concat(dispatchY);
-        app.yui.use.apply(app.yui, args);
-
+        app.yui.use.apply(app.yui, window.CLIENT_MODULES.concat(initialize));
     </script>
 </body>
 </html>
