@@ -27,7 +27,6 @@
     "grunt-contrib-watch": "~0.5.3"
   },
   "scripts": {
-    "start": "grunt; node app.js",
     "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js *.js",
     "pretest": "npm run lint",
     "xtest": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js ./models/*.js ./public/**/*.js ./routes/*.js ./views/*.js"
