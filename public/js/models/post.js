@@ -8,7 +8,7 @@
 /*jshint esnext:true*/
 
 import {Model} from 'model';
-import {Base} from 'base';
+import {Base} from 'base-build';
 
 var Class = Base.create('post-model', Model, [], {}, {
 
@@ -27,4 +27,3 @@ var Class = Base.create('post-model', Model, [], {}, {
 });
 
 export default Class;
-

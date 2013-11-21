@@ -9,7 +9,7 @@
 /*global */
 
 import {Model} from 'model';
-import {Base} from 'base';
+import {Base} from 'base-build';
 
 var Class = Base.create('photo-model', Model, [], {}, {
     ATTRS: {

@@ -9,7 +9,7 @@
 
 import {View} from 'view';
 import {Template} from 'photonews-template-news';
-import {Base} from 'base';
+import {Base} from 'base-build';
 
 var NewsView = Base.create('news-view', View, [], {
 

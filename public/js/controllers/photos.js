@@ -8,7 +8,7 @@
 /*jshint esnext:true*/
 
 import PhotosModel from 'models/photos';
-import {Base} from 'base';
+import {Base} from 'base-build';
 import {DefaultController} from 'default-controller';
 
 var Class = Base.create('photos-controller', DefaultController, {}, {

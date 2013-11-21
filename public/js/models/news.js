@@ -10,7 +10,7 @@
 
 import {ModelList} from 'model-list';
 import PostModel from 'models/post';
-import {Base} from 'base';
+import {Base} from 'base-build';
 import {YQL} from 'yql';
 import {Lang} from 'yui';
 

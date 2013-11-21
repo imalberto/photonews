@@ -43,7 +43,7 @@ Views.register('news',   ViewNews);
 Views.register('photos', ViewPhotos);
 
 import {App} from 'app';
-import {Base} from 'base';
+import {Base} from 'base-build';
 import {config} from 'yui';
 
 var PhotoNews = Base.create('photoNews', App, [], {

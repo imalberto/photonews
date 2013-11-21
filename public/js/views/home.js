@@ -9,7 +9,7 @@
 
 import {View} from 'view';
 import {Template} from 'photonews-template-home';
-import {Base} from 'base';
+import {Base} from 'base-build';
 
 var HomeView;
 

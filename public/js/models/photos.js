@@ -10,7 +10,7 @@
 
 import PhotoModel from 'models/photo';
 import {ModelList} from 'model-list';
-import {Base} from 'base';
+import {Base} from 'base-build';
 import {YQL} from 'yql';
 
 var API_KEY = '84921e87fb8f2fc338c3ff9bf51a412e',

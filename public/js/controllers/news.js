@@ -7,7 +7,7 @@
 
 import NewsModel from 'models/news';
 import {DefaultController} from 'default-controller';
-import {Base} from 'base';
+import {Base} from 'base-build';
 
 var Class = Base.create('news-controller', DefaultController, {}, {
     ATTRS: {
