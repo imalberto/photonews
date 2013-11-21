@@ -10,7 +10,7 @@
 import {Model} from 'model';
 import {Base} from 'base-build';
 
-var Class = Base.create('post-model', Model, [], {}, {
+var PostModel = Base.create('post-model', Model, [], {}, {
 
     ATTRS: {
         title: {
@@ -26,4 +26,4 @@ var Class = Base.create('post-model', Model, [], {}, {
 
 });
 
-export default Class;
+export default PostModel;

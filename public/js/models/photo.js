@@ -11,7 +11,7 @@
 import {Model} from 'model';
 import {Base} from 'base-build';
 
-var Class = Base.create('photo-model', Model, [], {}, {
+var PhotoModel = Base.create('photo-model', Model, [], {}, {
     ATTRS: {
         title: {
             value: ''
@@ -22,4 +22,4 @@ var Class = Base.create('photo-model', Model, [], {}, {
     }
 });
 
-export default Class;
+export default PhotoModel;

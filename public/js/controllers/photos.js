@@ -11,7 +11,7 @@ import PhotosModel from 'models/photos';
 import {Base} from 'base-build';
 import {DefaultController} from 'default-controller';
 
-var Class = Base.create('photos-controller', DefaultController, {}, {
+var PhotosController = Base.create('photos-controller', DefaultController, {}, {
     ATTRS: {
         modelClass: {
             value: PhotosModel
@@ -19,4 +19,4 @@ var Class = Base.create('photos-controller', DefaultController, {}, {
     }
 });
 
-export default Class;
+export default PhotosController;

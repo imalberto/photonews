@@ -65,7 +65,7 @@
 
             YApp.render({ rendered: true }).dispatch();
         }
-        app.yui.use.apply(app.yui, window.CLIENT_MODULES.concat(initialize));
+        app.yui.use('pnapp', 'router-middleware', initialize);
     </script>
 </body>
 </html>
