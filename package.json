@@ -16,7 +16,7 @@
     "locator-yui": "0.1.x",
     "photonews-lib": "git://github.com/imalberto/photonews-lib.git",
     "grunt-es6-module-transpiler": "git://github.com/caridy/grunt-es6-module-transpiler.git",
-    "es6-module-transpiler": "git://github.com/caridy/es6-module-transpiler.git#yui",
+    "es6-module-transpiler": "~0.3.4",
     "yui": "~3.13.0"
   },
   "devDependencies": {
