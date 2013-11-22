@@ -1,6 +1,6 @@
 {
   "name": "feecbr-lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "feecbr micro lib based on imalberto/photonews-lib",
   "dependencies": {
     "debug": "*"
