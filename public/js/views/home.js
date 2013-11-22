@@ -11,9 +11,7 @@ import {DefaultView} from 'default-view';
 import {Template} from 'photonews-template-home';
 import {Base} from 'base-build';
 
-var HomeView;
-
-HomeView = Base.create('home-view', DefaultView, [], {
+var HomeView = Base.create('home-view', DefaultView, [], {
 
     template: Template.get('photonews/home'),
 

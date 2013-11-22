@@ -7,8 +7,8 @@
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 
-function Handler(req, res) {
+var AboutHandler = function (req, res) {
     res.render('about');
 };
 
-export default Handler;
+export default AboutHandler;

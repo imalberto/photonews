@@ -30,7 +30,7 @@ Controllers.register('news', ControllerNews);
 Controllers.register('photos', ControllerPhotos);
 
 Handlers.register('news', HandlerNews);
-Handlers.register('about', HandlerAbout);
+//Handlers.register('about', HandlerAbout);
 
 Models.register('news',   ModelNews);
 Models.register('post',   ModelPost);

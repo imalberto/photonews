@@ -9,20 +9,16 @@
 
 import NewsModel from 'models/news';
 import NewsController from 'controllers/news';
-import {config} from 'yui';
 
-var Route;
-
-Route = function (req, res) {
+var NewsHandler = function (req, res) {
 
     var ControllerClass = NewsController,
         ModelClass = NewsModel,
         controller,
         model,
-        GlobalDATA = config.global.DATA,
         data;
 
-    data = (GlobalDATA && GlobalDATA.news) || [];
+    data = (req.cache && req.cache.news) || [];
     model = new ModelClass(data);
     controller = new ControllerClass({ name: 'news', model: model });
 
@@ -30,4 +26,4 @@ Route = function (req, res) {
 
 };
 
-export default Route;
+export default NewsHandler;
