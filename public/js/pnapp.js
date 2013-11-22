@@ -8,10 +8,10 @@
 /*global DATA, YUI*/
 
 // classes
-import ControllerNews from 'controllers/news';
+//import ControllerNews from 'controllers/news';
 import ControllerPhotos from 'controllers/photos';
 
-import HandlerNews from 'handlers/news';
+//import HandlerNews from 'handlers/news';
 import HandlerAbout from 'handlers/about';
 
 import ModelNews from 'models/news';
@@ -26,10 +26,10 @@ import ViewNews from 'views/news';
 
 import {Controllers, Handlers, Views, Models} from 'pn';
 
-Controllers.register('news', ControllerNews);
+//Controllers.register('news', ControllerNews);
 Controllers.register('photos', ControllerPhotos);
 
-Handlers.register('news', HandlerNews);
+//Handlers.register('news', HandlerNews);
 //Handlers.register('about', HandlerAbout);
 
 Models.register('news',   ModelNews);
