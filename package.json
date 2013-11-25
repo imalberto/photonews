@@ -1,7 +1,7 @@
 {
-  "name": "feecbr-lib",
-  "version": "0.0.4",
-  "description": "feecbr micro lib based on imalberto/photonews-lib",
+  "name": "photonews-lib",
+  "version": "0.0.1",
+  "description": "photonews micro lib",
   "dependencies": {
     "debug": "*"
   },
@@ -14,7 +14,7 @@
     "javascript",
     "modown",
     "mojito",
-    "feecbr"
+    "photonews"
   ],
   "peerDependencies": {
     "express": "3.x",
@@ -41,7 +41,7 @@
     "pretest": "npm run lint"
   },
   "locator": {},
-  "repository": "https://github.com/caridy/feecbr-lib",
+  "repository": "https://github.com/imalberto/photonews-lib",
   "author": "alberto chan <imalberto@gmail.com>",
   "license": "BSD"
 }
