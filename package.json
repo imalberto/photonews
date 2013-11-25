@@ -39,7 +39,7 @@
   },
   "scripts": {
     "docs": "node ./node_modules/.bin/yuidoc --config ./conf/yuidoc.json ./lib",
-    "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js",
+    "lint": "node ./node_modules/.bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/**/*.js",
     "pretest": "npm run lint"
   },
   "locator": {
