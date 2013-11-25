@@ -10,8 +10,8 @@
 
 var express = require('express'),
     expyui = require('express-yui'),
-    librouter = require('photonews-lib').router,
-    libapp = require('photonews-lib').application,
+    librouter = require('./lib/server/router'),
+    libapp = require('./lib/server/application'),
     locator = require('./locator'),
     app,
     appPort;
