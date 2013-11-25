@@ -2,12 +2,12 @@
 photonews
 =========
 
-Example web application to show usage of "modown" family of components.
+Photonews is an example web application showing "modown" in action.
 
 ## What's Next ?
 
-- ES6 modules
-- view composition
+- User interaction via pagination and search
+- View composition
 
 ## Instructions
 
@@ -20,11 +20,8 @@ Example web application to show usage of "modown" family of components.
 
 ```
 app_dir/
-├── build/ 
-├── lib/
-├── models/
-├── public/
-├── routes/
-├── tests/
-├── views/
+    ├── build/
+    ├── lib/
+    ├── public/
+    ├── tests/
 ```

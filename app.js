@@ -10,33 +10,31 @@
 
 var express = require('express'),
     expyui = require('express-yui'),
-    librouter = require('./lib/router'),
-    libapp = require('./lib/application'),
+    librouter = require('./lib/server/router'),
+    libapp = require('./lib/server/application'),
     locator = require('./locator'),
     app,
     appPort;
 
-////
+// creating express app
 app = express();
 
 // Augment "app"
 libapp.extend(app);
 librouter.extend(app);
 
-////
+// default express app configuration
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
 app.set('layout', 'main');
 app.enable('strict routing');
 
-////
-// setup Locator
+// setup Locator to abstract the filesystem
 locator(app);
 
-//app.set('state namespace', 'MYAPP');
+// creating default namespace to expose data to the client
 app.expose({}, 'DATA');
 
-////
 // regular express.js middleware
 app.use(express.compress());
 app.use(express.favicon());
@@ -52,6 +50,7 @@ app.yui.applyConfig({
 // expose the router configuration
 app.use(librouter.expose());
 
+// waiting for yui to get ready to receive traffic
 app.yui.ready(function (err) {
     if (err) {
         console.error('------------------------------------------------------');
@@ -61,21 +60,18 @@ app.yui.ready(function (err) {
         return;
     }
 
-    app.yui.use.apply(app.yui, app.getServerModules());
+    // getting all modules provisioned for the server side
+    app.yui.use('pnapp');
 
-    //
     app.page('home', '/');
     app.page('news', '/news');
     app.page('photos');
+    app.page('about', '/about');
 
-    // app.page('about', '/about');
-
-    //
-    // app.page('contact', '/aboutus', function (req, res) {
-    //     res.render('aboutus');
+    // app.page('about', '/about', function (req, res) {
+    //     res.render('about');
     // });
 
-    //
     // app.page('admin', '/admin', function (req, res, next) {
     //     // authenticate request here
     //     req.params.isAuth = true;
@@ -87,7 +83,6 @@ app.yui.ready(function (err) {
     //         next(new Error('User not authenticated'));
     //     }
     // });
-    //
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);

@@ -3,4 +3,5 @@ build/
 data/
 node_modules/
 .sass-cache/
+tmp/
 DESIGN.md
