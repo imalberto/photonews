@@ -8,7 +8,7 @@
   "directories": {
     "lib": "./lib"
   },
-  "main": "./lib",
+  "main": "./lib/server",
   "keywords": [
     "express",
     "javascript",
