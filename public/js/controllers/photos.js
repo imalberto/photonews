@@ -8,14 +8,10 @@
 /*jshint esnext:true*/
 
 import PhotosModel from 'models/photos';
-import {Base} from 'base';
-import {Controllers} from 'default-controller';
-import {PN} from 'util';
+import {Base} from 'base-build';
+import {DefaultController} from 'default-controller';
 
-var classify = PN.util.classify,
-    Class;
-
-Class = Base.create('photos-controller', Controllers.DefaultController, {}, {
+var PhotosController = Base.create('photos-controller', DefaultController, {}, {
     ATTRS: {
         modelClass: {
             value: PhotosModel
@@ -23,6 +19,4 @@ Class = Base.create('photos-controller', Controllers.DefaultController, {}, {
     }
 });
 
-Controllers[classify(Class.NAME)] = Class;
-
-export default Class;
+export default PhotosController;

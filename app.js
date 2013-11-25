@@ -60,7 +60,8 @@ app.yui.ready(function (err) {
         return;
     }
 
-    app.yui.use.apply(app.yui, app.getServerModules());
+    // getting all modules provisioned for the server side
+    app.yui.use('pnapp');
 
     app.page('home', '/');
     app.page('news', '/news');

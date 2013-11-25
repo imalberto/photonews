@@ -7,16 +7,11 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {View} from 'view';
+import {DefaultView} from 'default-view';
 import {Template} from 'photonews-template-home';
-import {Base} from 'base';
-import {Views} from 'default-view';
-import {log} from 'yui';
-import {one} from 'yui';
+import {Base} from 'base-build';
 
-var HomeView;
-
-HomeView = Base.create('home-view', View, [], {
+var HomeView = Base.create('home-view', DefaultView, [], {
 
     template: Template.get('photonews/home'),
 
@@ -37,7 +32,5 @@ HomeView = Base.create('home-view', View, [], {
     }
 
 });
-
-Views.HomeView = HomeView;
 
 export default HomeView;

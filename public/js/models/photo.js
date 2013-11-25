@@ -8,15 +8,10 @@
 /*jshint esnext:true*/
 /*global */
 
-import {Models} from 'default-model';
 import {Model} from 'model';
-import {Base} from 'base';
-import {PN} from 'util';
+import {Base} from 'base-build';
 
-var Class,
-    classify = PN.util.classify;
-
-Class = Base.create('photo-model', Model, [], {}, {
+var PhotoModel = Base.create('photo-model', Model, [], {}, {
     ATTRS: {
         title: {
             value: ''
@@ -27,6 +22,4 @@ Class = Base.create('photo-model', Model, [], {}, {
     }
 });
 
-Models[classify(Class.NAME)] = Class;
-
-export default Class;
+export default PhotoModel;

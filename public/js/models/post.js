@@ -8,14 +8,9 @@
 /*jshint esnext:true*/
 
 import {Model} from 'model';
-import {Models} from 'default-model';
-import {Base} from 'base';
-import {PN} from 'util';
+import {Base} from 'base-build';
 
-var Class,
-    classify = PN.util.classify;
-
-Class = Base.create('post-model', Model, [], {}, {
+var PostModel = Base.create('post-model', Model, [], {}, {
 
     ATTRS: {
         title: {
@@ -31,7 +26,4 @@ Class = Base.create('post-model', Model, [], {}, {
 
 });
 
-Models[classify(Class.NAME)] = Class;
-
-export default Class;
-
+export default PostModel;
