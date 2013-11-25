@@ -1,0 +1,10 @@
+{
+  "name": "util",
+  "builds": {
+    "util": {
+      "jsfiles": [
+        "util.js"
+      ]
+    }
+  }
+}
