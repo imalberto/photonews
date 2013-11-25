@@ -10,11 +10,6 @@ import {DefaultController} from 'default-controller';
 import {Base} from 'base-build';
 
 var NewsController = Base.create('news-controller', DefaultController, {
-initializer: function () {
-debugger;
-}
-
-
 }, {
     ATTRS: {
         // specify the model class to use for this controller
@@ -25,4 +20,4 @@ debugger;
     }
 });
 
-//export default NewsController;
+export default NewsController;
