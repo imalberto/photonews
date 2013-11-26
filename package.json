@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-sass": "~0.5.0",
     "grunt-contrib-watch": "~0.5.3",
     "jshint": "~1.1.0",
     "yui-lint": "~0.1.3"
