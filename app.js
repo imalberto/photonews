@@ -40,6 +40,7 @@ app.use(express.compress());
 app.use(express.favicon());
 
 // move to CDN if necessary
+app.use('/css', expyui['static'](__dirname + '/public/css'));
 app.use(expyui['static'](__dirname + '/build'));
 app.yui.setCoreFromAppOrigin();
 app.yui.applyConfig({
