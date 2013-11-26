@@ -10,8 +10,9 @@
 
 var express = require('express'),
     expyui = require('express-yui'),
+    expview = require('express-view'),
+    libregistry = require('.lib/server/registry'),
     librouter = require('./lib/server/router'),
-    libapp = require('./lib/server/application'),
     locator = require('./locator'),
     app,
     appPort;
@@ -20,7 +21,9 @@ var express = require('express'),
 app = express();
 
 // Augment "app"
-libapp.extend(app);
+expview.extend(app);
+expyui.extend(app);
+libregistry.extend(app);
 librouter.extend(app);
 
 // default express app configuration
