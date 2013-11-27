@@ -9,9 +9,9 @@
 
 import PhotosModel from 'models/photos';
 import {Base} from 'base-build';
-import {DefaultController} from 'default-controller';
+import {BaseController} from 'base-controller';
 
-var PhotosController = Base.create('photos-controller', DefaultController, {}, {
+var PhotosController = Base.create('base-controller', BaseController, {}, {
     ATTRS: {
         modelClass: {
             value: PhotosModel

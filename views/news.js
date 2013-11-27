@@ -7,11 +7,11 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {DefaultView} from 'default-view';
+import {BaseView} from 'base-view';
 import {Template} from 'photonews-template-news';
 import {Base} from 'base-build';
 
-var NewsView = Base.create('news-view', DefaultView, [], {
+var NewsView = Base.create('news-view', BaseView, [], {
 
     newsTemplate: Template.get('photonews/news'),
 
