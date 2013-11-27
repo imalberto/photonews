@@ -36,9 +36,8 @@
   ],
   "scripts": {
     "start": "grunt && node app.js",
-    "lint": "jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js *.js",
-    "pretest": "npm run lint",
-    "xtest": "jshint --config ./node_modules/yui-lint/jshint.json ./lib/*.js ./models/*.js ./public/**/*.js ./routes/*.js ./views/*.js"
+    "lint": "jshint --config ./node_modules/yui-lint/jshint.json ./lib/**/*.js *.js",
+    "pretest": "npm run lint"
   },
   "locator": {},
   "repository": "https://github.com/imalberto/photonews",
