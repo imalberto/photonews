@@ -1,12 +1,5 @@
-/*
- * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
- * Copyrights licensed under the New BSD License.
- * See the accompanying LICENSE.txt file for terms.
- */
-
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
-/*global */
 
 import PhotoModel from 'models/photo';
 import {ModelList} from 'model-list';
@@ -54,7 +47,6 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
     search: function (search, start, count, callback) {
 
         var my = this,
-            photos,
             select;
 
         search = search || 'mojito';
@@ -72,10 +64,12 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
 console.warn('using mock data for query: ' + select);
 return callback(null, my._process(search, this.photosMock()));
 
-        YQL(select, function (raw) {
-            photos = my._process(search, raw);
-            callback(null, photos);
-        });
+        // Uncomment to test with live data
+        //
+        // YQL(select, function (raw) {
+        //     var photos = my._process(search, raw);
+        //     callback(null, photos);
+        // });
 
     },
 
