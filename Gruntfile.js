@@ -1,4 +1,7 @@
+var ES6ModulesPaths = ['views/*.js', 'models/*.js', 'controllers/*.js'];
+
 module.exports = function (grunt) {
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         transpile: {
@@ -6,17 +9,14 @@ module.exports = function (grunt) {
                 type: "yui",
                 files: [{
                     expand: true,
-                    cwd: 'public/js/',
-                    src: ['**/*.js'],
+                    src: ES6ModulesPaths,
                     dest: 'tmp/'
                 }]
             }
         },
         watch: {
             scripts: {
-                files: [
-                    'public/js/**/*.js'
-                ],
+                files: ES6ModulesPaths,
                 tasks: ['transpile'],
                 options: {
                     spawn: false

@@ -44,10 +44,10 @@
     <script>{{{state}}}</script>
     <script>
         function initialize(PN) {
-            var PhotoNews = PN.config.global.PhotoNews,
+            var MainView = PN.config.global.MainView,
                 pageView;
 
-            pageView = new PhotoNews({
+            pageView = new MainView({
                 container: '#pn-container',
                 viewContainer: '#pn-view-container',
                 transitions: true,
@@ -57,7 +57,7 @@
 
             app.rehydrate(pageView);
         }
-        app.yui.use('pnapp', 'router-middleware', initialize);
+        app.yui.use('views/main', 'router-middleware', initialize);
     </script>
 </body>
 </html>

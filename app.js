@@ -11,7 +11,7 @@
 var express = require('express'),
     expyui = require('express-yui'),
     expview = require('express-view'),
-    libregistry = require('.lib/server/registry'),
+    libregistry = require('./lib/server/registry'),
     librouter = require('./lib/server/router'),
     locator = require('./locator'),
     app,
@@ -65,7 +65,7 @@ app.yui.ready(function (err) {
     }
 
     // getting all modules provisioned for the server side
-    app.yui.use('pnapp');
+    app.yui.use('views/main');
 
     app.page('home', '/');
     app.page('news', '/news');
