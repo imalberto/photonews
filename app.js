@@ -11,7 +11,6 @@
 var express = require('express'),
     expyui = require('express-yui'),
     expview = require('express-view'),
-    libregistry = require('./lib/server/registry'),
     librouter = require('./lib/server/router'),
     locator = require('./locator'),
     app,
@@ -23,7 +22,6 @@ app = express();
 // Augment "app"
 expview.extend(app);
 expyui.extend(app);
-libregistry.extend(app);
 librouter.extend(app);
 
 // default express app configuration
@@ -54,6 +52,27 @@ app.yui.applyConfig({
 // expose the router configuration
 app.use(librouter.expose());
 
+app.page('home', '/');
+app.page('news', '/news');
+app.page('photos');
+app.page('about', '/about');
+
+// app.page('about', '/about', function (req, res) {
+//     res.render('about');
+// });
+
+// app.page('admin', '/admin', function (req, res, next) {
+//     // authenticate request here
+//     req.params.isAuth = true;
+//     next();
+// }, function (req, res) {
+//     if (req.params.isAuth) {
+//         res.render('admin');
+//     } else {
+//         next(new Error('User not authenticated'));
+//     }
+// });
+
 // waiting for yui to get ready to receive traffic
 app.yui.ready(function (err) {
     if (err) {
@@ -66,27 +85,6 @@ app.yui.ready(function (err) {
 
     // getting all modules provisioned for the server side
     app.yui.use('views/main');
-
-    app.page('home', '/');
-    app.page('news', '/news');
-    app.page('photos');
-    app.page('about', '/about');
-
-    // app.page('about', '/about', function (req, res) {
-    //     res.render('about');
-    // });
-
-    // app.page('admin', '/admin', function (req, res, next) {
-    //     // authenticate request here
-    //     req.params.isAuth = true;
-    //     next();
-    // }, function (req, res) {
-    //     if (req.params.isAuth) {
-    //         res.render('admin');
-    //     } else {
-    //         next(new Error('User not authenticated'));
-    //     }
-    // });
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);
