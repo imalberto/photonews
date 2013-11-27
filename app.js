@@ -12,7 +12,7 @@ var express = require('express'),
     expyui = require('express-yui'),
     expview = require('express-view'),
     librouter = require('./lib/server/router'),
-    locator = require('./locator'),
+    liblocator = require('./lib/server/locator'),
     app,
     appPort;
 
@@ -23,6 +23,7 @@ app = express();
 expview.extend(app);
 expyui.extend(app);
 librouter.extend(app);
+liblocator.extend(app);
 
 // default express app configuration
 appPort = process.env.PORT || 8666;
@@ -31,7 +32,10 @@ app.set('layout', 'main');
 app.enable('strict routing');
 
 // setup Locator to abstract the filesystem
-locator(app);
+app.parseBundle({
+    buildDirectory: __dirname + '/build',
+    applicationDirectory: __dirname
+});
 
 // creating default namespace to expose data to the client
 app.expose({}, 'DATA');
