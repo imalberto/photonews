@@ -1,12 +1,6 @@
-/*
- * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
- * Copyrights licensed under the New BSD License.
- * See the accompanying LICENSE.txt file for terms.
- */
-
 /*jslint nomen:true*/
 /*jshint esnext:true*/
-/*global */
+/*global console*/
 
 import {ModelList} from 'model-list';
 import PostModel from 'models/post';
@@ -61,7 +55,6 @@ var NewsModelList = Base.create('news-model', ModelList, [], {
     search: function (search, start, count, callback) {
 
         var my = this,
-            articles,
             select;
 
         search = search || 'senate';
@@ -79,10 +72,12 @@ var NewsModelList = Base.create('news-model', ModelList, [], {
 console.warn('using mock data for query: ' + select);
 return callback(null, my._process(search, this.newsMock()));
 
-        YQL(select, function (raw) {
-            articles = my._process(search, raw);
-            callback(null, articles);
-        });
+        // Uncomment to test with live data
+        //
+        // YQL(select, function (raw) {
+        //    var articles = my._process(search, raw);
+        //     callback(null, articles);
+        // });
 
     },
 
