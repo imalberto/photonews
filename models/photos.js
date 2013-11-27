@@ -49,7 +49,7 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
         var my = this,
             select;
 
-        search = search || 'mojito';
+        search = search || 'eiffel';
 
         count /= 1;
         start /= 1;
@@ -61,8 +61,8 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
                 'and api_key="' + this.API_KEY + '"';
 
 // returning mocking values for development
-console.warn('using mock data for query: ' + select);
-return callback(null, my._process(search, this.photosMock()));
+// console.warn('using mock data for query: ' + select);
+// return callback(null, my._process(search, this.photosMock()));
 
         // Uncomment to test with live data
         //
@@ -78,7 +78,7 @@ return callback(null, my._process(search, this.photosMock()));
             return cb(new Error('action not supported: ' + action));
         }
 
-        this.search('eiffel', 2, 13, function (err, articles) {
+        this.search(options.searchQuery, 2, 13, function (err, articles) {
             cb(err, articles);
         });
     },
