@@ -66,10 +66,10 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
 
         // Uncomment to test with live data
         //
-        // YQL(select, function (raw) {
-        //     var photos = my._process(search, raw);
-        //     callback(null, photos);
-        // });
+        YQL(select, function (raw) {
+             var photos = my._process(search, raw);
+             callback(null, photos);
+        });
 
     },
 
@@ -78,7 +78,7 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
             return cb(new Error('action not supported: ' + action));
         }
 
-        this.search(options.searchQuery, 2, 13, function (err, articles) {
+        this.search(options.query, 2, 13, function (err, articles) {
             cb(err, articles);
         });
     },

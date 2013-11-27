@@ -7,13 +7,13 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {DefaultView} from 'default-view';
+import {BaseView} from 'base-view';
 import {Template} from 'photonews-template-photos';
 import {Base} from 'base-build';
 
-var SearchView = Base.create('search-view', DefaultView, [], {
+var SearchView = Base.create('search-view', BaseView, [], {
 
-    template: Template.get('photonews/photos'),
+    photosTemplate: Template.get('photonews/photos'),
 
     events: {},
 
@@ -23,11 +23,15 @@ var SearchView = Base.create('search-view', DefaultView, [], {
 
     render: function () {
         var container = this.get('container'),
+            locals = this.get('locals'),
             html;
 
-        html = this.template({ src: 'search' });
+        if (!locals.items) {
+            html = '<h3>No Photos Available </h3>';
+        } else {
+            html = this.photosTemplate({ items: locals.items });
+        }
         container.setHTML(html);
-
         return this;
     }
 
