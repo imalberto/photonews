@@ -57,7 +57,7 @@ extend(SearchController, Base, {
     },
 
     then: function (fulfill, reject) {
-        this._promise.then(fulfill, reject);
+        return this._promise.then(fulfill, reject);
     }
 });
 

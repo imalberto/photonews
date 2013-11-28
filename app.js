@@ -22,7 +22,7 @@ liblocator.extend(app);
 // default express app configuration
 appPort = process.env.PORT || 8666;
 app.set('app port', appPort);
-app.set('layout', 'main');
+app.set('hack-layout', 'main');
 app.enable('strict routing');
 
 // setup Locator to abstract the filesystem
