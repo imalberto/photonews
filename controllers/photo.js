@@ -1,36 +1,17 @@
-/*
- * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
- * Copyrights licensed under the New BSD License.
- * See the accompanying LICENSE.txt file for terms.
- */
 
 /*jslint nomen:true*/
 /*jshint esnext:true*/
+/*global console*/
 
 import PhotosModel from 'models/photos';
-import {extend, merge} from 'oop';
+import {merge} from 'oop';
 import {Base} from 'base-build';
 import {Promise} from 'promise';
 
 'use strict';
 
-function PhotoController() {
-    PhotoController.superclass.constructor.apply(this, arguments);
-};
+var PhotoController = Base.create('photo-controller', Base, [], {
 
-PhotoController.ATTRS = {
-    modelClass: {
-        value: PhotosModel
-    },
-    model: {
-        value: null
-    },
-    name: {
-        value: 'search'
-    }
-};
-
-extend(PhotoController, Base, {
     initializer: function (config) {
         var modelClass  = this.get('modelClass'),
             name        = this.get('name'),
@@ -66,7 +47,7 @@ extend(PhotoController, Base, {
         if (photo) {
             mergedPhoto = merge(photo.toJSON(), {
                 prev: +id - 1,
-                next: +id + 1 
+                next: +id + 1
             });
 
             console.log(mergedPhoto);
@@ -78,6 +59,19 @@ extend(PhotoController, Base, {
 
     then: function (fulfill, reject) {
         return this._promise.then(fulfill, reject);
+    }
+}, {
+
+    ATTRS: {
+        modelClass: {
+            value: PhotosModel
+        },
+        model: {
+            value: null
+        },
+        name: {
+            value: 'search'
+        }
     }
 });
 
