@@ -34,6 +34,7 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
             // Attach the result.
             photos.push({
                 id: photo.id,
+                index: i,
                 title: photo.title,
                 url: photo.url,
                 user: photo.ownername
