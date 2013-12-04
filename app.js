@@ -53,6 +53,7 @@ app.use(librouter.expose());
 app.page('home', '/');
 app.page('news', '/news');
 app.page('photos');
+app.page('photo', '/photos/:id');
 app.page('search', '/search');
 app.page('about', '/about');
 

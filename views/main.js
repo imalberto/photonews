@@ -3,6 +3,7 @@
 
 // classes
 import ControllerNews from 'controllers/news';
+import ControllerPhoto from 'controllers/photo';
 import ControllerPhotos from 'controllers/photos';
 import ControllerSearch from 'controllers/search';
 
@@ -14,12 +15,14 @@ import ModelPhoto from 'models/photo';
 import ViewAbout from 'views/about';
 import ViewHome from 'views/home';
 import ViewPhotos from 'views/photos';
+import ViewPhoto from 'views/photo';
 import ViewNews from 'views/news';
 import ViewSearch from 'views/search';
 
 import {Controllers, Views, Models} from 'pn';
 
 Controllers.register('news', ControllerNews);
+Controllers.register('photo', ControllerPhoto);
 Controllers.register('photos', ControllerPhotos);
 Controllers.register('search', ControllerSearch);
 
@@ -32,6 +35,7 @@ Views.register('about',  ViewAbout);
 Views.register('home',   ViewHome);
 Views.register('news',   ViewNews);
 Views.register('photos', ViewPhotos);
+Views.register('photo',  ViewPhoto);
 Views.register('search', ViewSearch);
 
 import {BaseApp} from 'base-app';
@@ -60,6 +64,10 @@ var MainView = Base.create('main-view', BaseApp, [], {
             type: ViewPhotos,
             preserve: true
         },
+        photo: {
+            type: ViewPhoto,
+            preserve: true
+        },
         about: {
             type: ViewAbout,
             preserve: true
@@ -85,8 +93,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
 
         // Set up any other necessary
 
-        this.on('photosView:next', this.nextPhotos);
-        this.on('photosView:prev', this.prevPhotos);
+        this.on('photo:navigate', this.navigatePhotos);
     },
 
     render: function (options) {
@@ -123,18 +130,9 @@ var MainView = Base.create('main-view', BaseApp, [], {
         }
     },
 
-    nextPhotos: function () {
-        var model;
-        model = this.get('model');
-        model.load();
-    },
-
-    prevPhotos: function () {
-        var model;
-        model = this.get('model');
-        model.load();
+    navigatePhotos: function (e) {
+        this.navigate('/photos/' + e.page);
     }
-
 }, {
 
     ATTRS: {}
