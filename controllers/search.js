@@ -14,23 +14,7 @@ import {Promise} from 'promise';
 
 'use strict';
 
-function SearchController() {
-    SearchController.superclass.constructor.apply(this, arguments);
-};
-
-SearchController.ATTRS = {
-    modelClass: {
-        value: PhotosModel
-    },
-    model: {
-        value: null
-    },
-    name: {
-        value: 'search'
-    }
-};
-
-extend(SearchController, Base, {
+var SearchController = Base.create('search-controller', Base, [], {
     initializer: function (config) {
         var modelClass  = this.get('modelClass'),
             name        = this.get('name'),
@@ -58,6 +42,18 @@ extend(SearchController, Base, {
 
     then: function (fulfill, reject) {
         return this._promise.then(fulfill, reject);
+    }
+}, {
+    ATTRS: {
+        modelClass: {
+            value: PhotosModel
+        },
+        model: {
+            value: null
+        },
+        name: {
+            value: 'search'
+        }
     }
 });
 

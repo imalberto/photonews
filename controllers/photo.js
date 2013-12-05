@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
- * Copyrights licensed under the New BSD License.
- * See the accompanying LICENSE.txt file for terms.
- */
-
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 
@@ -14,23 +8,7 @@ import {Promise} from 'promise';
 
 'use strict';
 
-function PhotoController() {
-    PhotoController.superclass.constructor.apply(this, arguments);
-};
-
-PhotoController.ATTRS = {
-    modelClass: {
-        value: PhotosModel
-    },
-    model: {
-        value: null
-    },
-    name: {
-        value: 'search'
-    }
-};
-
-extend(PhotoController, Base, {
+var PhotoController = Base.create("photo-controller", Base, [], {
     initializer: function (config) {
         var modelClass  = this.get('modelClass'),
             name        = this.get('name'),
@@ -69,7 +47,6 @@ extend(PhotoController, Base, {
                 next: +id + 1 
             });
 
-            console.log(mergedPhoto);
             return mergedPhoto;
         }
 
@@ -78,6 +55,18 @@ extend(PhotoController, Base, {
 
     then: function (fulfill, reject) {
         return this._promise.then(fulfill, reject);
+    }
+}, {
+    ATTRS: {
+        modelClass: {
+            value: PhotosModel
+        },
+        model: {
+            value: null
+        },
+        name: {
+            value: 'search'
+        }
     }
 });
 
