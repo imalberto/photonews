@@ -1,4 +1,3 @@
-
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 /*global console*/
@@ -10,8 +9,7 @@ import {Promise} from 'promise';
 
 'use strict';
 
-var PhotoController = Base.create('photo-controller', Base, [], {
-
+var PhotoController = Base.create("photo-controller", Base, [], {
     initializer: function (config) {
         var modelClass  = this.get('modelClass'),
             name        = this.get('name'),
@@ -50,7 +48,6 @@ var PhotoController = Base.create('photo-controller', Base, [], {
                 next: +id + 1
             });
 
-            console.log(mergedPhoto);
             return mergedPhoto;
         }
 
@@ -61,7 +58,6 @@ var PhotoController = Base.create('photo-controller', Base, [], {
         return this._promise.then(fulfill, reject);
     }
 }, {
-
     ATTRS: {
         modelClass: {
             value: PhotosModel

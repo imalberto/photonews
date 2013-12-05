@@ -40,23 +40,23 @@ var PhotoView = Base.create('photo-view', BaseView, [], {
     // for pagination
     prev: function (e) {
         var container = this.get('container'),
-            prevPage  = container.one('.left-arrow').getData('page');
+            prevId    = container.one('.left-arrow').getData('page');
 
         e.preventDefault();
 
         this.fire('photo:navigate', {
-            page: prevPage
+            photoId: prevId
         });
     },
 
     next: function (e) {
         var container = this.get('container'),
-            nextPage  = container.one('.right-arrow').getData('page');
+            nextId    = container.one('.right-arrow').getData('page');
 
         e.preventDefault();
 
         this.fire('photo:navigate', {
-            page: nextPage
+            photoId: nextId
         });
     }
 
