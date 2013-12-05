@@ -131,7 +131,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
     },
 
     navigatePhotos: function (e) {
-        this.navigate('/photos/' + e.page);
+        this.navigate('/photos/' + e.photoId);
     }
 }, {
 
