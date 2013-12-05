@@ -12,6 +12,8 @@ import ModelPost from 'models/post';
 import ModelPhotos from 'models/photos';
 import ModelPhoto from 'models/photo';
 
+import RouteSearch from 'routes/search';
+
 import ViewAbout from 'views/about';
 import ViewHome from 'views/home';
 import ViewPhotos from 'views/photos';
@@ -19,7 +21,7 @@ import ViewPhoto from 'views/photo';
 import ViewNews from 'views/news';
 import ViewSearch from 'views/search';
 
-import {Controllers, Views, Models} from 'pn';
+import {Controllers, Models, Routes, Views} from 'pn';
 
 Controllers.register('news', ControllerNews);
 Controllers.register('photo', ControllerPhoto);
@@ -30,6 +32,8 @@ Models.register('news',   ModelNews);
 Models.register('post',   ModelPost);
 Models.register('photos', ModelPhotos);
 Models.register('photo',  ModelPhoto);
+
+Routes.register('search', RouteSearch);
 
 Views.register('about',  ViewAbout);
 Views.register('home',   ViewHome);

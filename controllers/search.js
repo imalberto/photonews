@@ -1,53 +1,88 @@
-/*
- * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
- * Copyrights licensed under the New BSD License.
- * See the accompanying LICENSE.txt file for terms.
- */
 
 /*jslint nomen:true*/
 /*jshint esnext:true*/
+/*global console*/
 
-import PhotosModel from 'models/photos';
-import {extend} from 'oop';
+// import PhotosModel from 'models/photos';
+// import {extend} from 'oop';
+import {BaseController} from 'base-controller';
 import {Base} from 'base-build';
 import {Promise} from 'promise';
 
 'use strict';
 
-var SearchController = Base.create('search-controller', Base, [], {
-    initializer: function (config) {
-        var modelClass  = this.get('modelClass'),
-            name        = this.get('name'),
-            model       = new modelClass(),
-            query       = config.query.q;
+var SearchController = Base.create('search-controller', BaseController, [], {
 
-        this.set('model', model);
+    // config: {
+    //   params: {}
+    //   query: {},
+    //   name: {}
+    // }
+    initializer: function () {
+       // this.config = config; 
+    },
 
-        this._promise = new Promise(function (fulfill, reject) {
-            if (model.isNew ? !model.isNew() : (model.size() > 0)) {
-                fulfill(model.toJSON());
-                return;
-            }
+    toJSON: function () {
+        var model = this.get('model'),
+            name = this.get('name'),
+            q = this.config.query.q;
 
-            model.load({name: name, query: query}, function (err) {
+        return new Promise(function (fulfill, reject) {
+
+            // FIXME doing a search, so let's not reuse cache
+            // TODO need a flag to detect if it's the same search, and if so do
+            //      not redo the same query.
+            //
+            // if (model.isNew ? !model.isNew() : (model.size() > 0)) {
+            //     fulfill(model.toJSON());
+            //     return;
+            // }
+
+            model.load({name: name, query: q}, function (err/*, res*/) {
                 if (err) {
-                    console.error('** ERROR **: search-controller.initializer() failed: %s', err);
+                    console.error('** ERROR **: base-controller.initializer() failed: %s', err);
                     reject(err);
                     return;
                 }
                 fulfill(model.toJSON());
             });
         });
-    },
-
-    then: function (fulfill, reject) {
-        return this._promise.then(fulfill, reject);
+        // return SearchController.superclass.toJSON.call(this);
     }
+
+    // initializerXX: function (config) {
+    //     var modelClass  = this.get('modelClass'),
+    //         name        = this.get('name'),
+    //         model       = new modelClass(),
+    //         query       = config.query.q;
+
+    //     this.set('model', model);
+
+    //     this._promise = new Promise(function (fulfill, reject) {
+    //         if (model.isNew ? !model.isNew() : (model.size() > 0)) {
+    //             fulfill(model.toJSON());
+    //             return;
+    //         }
+
+    //         model.load({name: name, query: query}, function (err) {
+    //             if (err) {
+    //                 console.error('** ERROR **: search-controller.initializer() failed: %s', err);
+    //                 reject(err);
+    //                 return;
+    //             }
+    //             fulfill(model.toJSON());
+    //         });
+    //     });
+    // },
+
+    // then: function (fulfill, reject) {
+    //     return this._promise.then(fulfill, reject);
+    // }
 }, {
     ATTRS: {
-        modelClass: {
-            value: PhotosModel
-        },
+        // modelClass: {
+        //     value: PhotosModel
+        // },
         model: {
             value: null
         },
