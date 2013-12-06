@@ -5,7 +5,7 @@
 import {Base} from 'base-build';
 import {BaseRoute} from 'base-route';
 import PhotosModel from 'models/photos';
-//import {Promise} from 'promise';
+import {Promise} from 'promise';
 
 var SearchRoute = Base.create('search-route', BaseRoute, [], {
     initializer: function (config) {
@@ -13,8 +13,24 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
     },
 
     /**
+    @params {Object} config
+        @params {Object} config.params
+        @params {Object} config.query
     @return {Object}
     **/
+    modelP: function (config) {
+       return new Promise(function (fulfill, reject) {
+            var model = new PhotosModel();
+
+            model.load({query: config.query.q}, function (err) {
+                if (err) {
+                    return reject(err);
+                }
+                fulfill(model.toJSON());
+            });
+       });
+    },
+
     model: function () {
 
         // return new Promise(function (fulfill, reject) {
@@ -40,7 +56,13 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
     },
 
     setupController: function (controller, model) {
-        controller.set('model', model);
+        SearchRoute.superclass.setupController.call(this, controller, model);
+
+        controller.FOO = 'BAR';
+        // OR the attribute is defined
+        // controller.set('FOO', 'BAR');
+
+        // add custom code here
     }
 }, {
     ATTRS: {
