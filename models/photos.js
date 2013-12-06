@@ -82,7 +82,8 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
 
         if (typeof window !== 'undefined') {
             if (config.global.DATA && config.global.DATA.photos) {
-                if (photos.items && photos.items.lenght > 0) {
+                var photos = config.global.DATA.photos;
+                if (photos.items && photos.items.length > 0) {
                     return cb(null, photos.items);
                 }
             }

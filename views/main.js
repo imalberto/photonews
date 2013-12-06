@@ -1,5 +1,6 @@
 /*jslint nomen:true, browser:true*/
 /*jshint esnext:true*/
+/*global Y*/
 
 // classes
 import ControllerNews from 'controllers/news';
@@ -80,7 +81,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
         },
         search: {
             type: ViewSearch,
-            preserve: true
+            preserve: false
         }
     },
 
@@ -103,9 +104,6 @@ var MainView = Base.create('main-view', BaseApp, [], {
     },
 
     render: function (options) {
-        var viewContainer,
-            container;
-
         MainView.superclass.render.apply(this, arguments);
 
         options = options || {};

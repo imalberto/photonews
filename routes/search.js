@@ -6,6 +6,7 @@ import {Base} from 'base-build';
 import {BaseRoute} from 'base-route';
 import PhotosModel from 'models/photos';
 import {Promise} from 'promise';
+import {config as Yconfig} from 'yui';
 
 var SearchRoute = Base.create('search-route', BaseRoute, [], {
     initializer: function (config) {
@@ -21,6 +22,11 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
     model: function (config) {
        return new Promise(function (fulfill, reject) {
             var model = new PhotosModel();
+
+            // reset the global photos cache
+            if (typeof window !== 'undefined') {
+                Yconfig.global.DATA.photos = [];
+            }
 
             model.load({query: config.query.q}, function (err) {
                 if (err) {

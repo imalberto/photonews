@@ -15,6 +15,11 @@ var PhotoController = Base.create("photo-controller", Base, [], {
 
     },
 
+    /**
+    TODO Find a more appropriate name for this
+
+    @return {Object|Promise}
+    **/
     toJSON: function () {
         var model = this.get('model'),
             data = {prev: this.prev, next: this.next};
@@ -22,103 +27,9 @@ var PhotoController = Base.create("photo-controller", Base, [], {
         return new Promise(function (fulfill) {
             fulfill(merge(data, model.toJSON()));
         });
-        // OR returnmodel.toJSON();
+        // OR return model.toJSON();
     }
 
-    // toJSONX: function () {
-    //     var name = this.get('name'),
-    //         model = this.get('model'),
-    //         photoId = this.config.params.id,
-    //         self = this;
-
-    //     return new Promise(function (fulfill, reject) {
-    //         if (model.isNew ? !model.isNew() : (model.size() > 0)) {
-    //             fulfill(self.mergeData(model, photoId));
-    //         }
-
-    //         model.load({name: name}, function (err) {
-    //             if (err) {
-    //                 console.error('** ERROR **: photo-controller.initializer() failed: %s', err);
-    //                 reject(err);
-    //                 return;
-    //             }
-
-    //             fulfill(self.mergeData(model, photoId));
-    //         });
-    //     });
-    // },
-
-    // mergeData: function (model, id) {
-    //     var photo,
-    //         mergedPhoto;
-
-    //     photo = model.item(id);
-
-    //     if (photo) {
-    //         mergedPhoto = merge(photo.toJSON(), {
-    //             prev: +id - 1,
-    //             next: +id + 1
-    //         });
-
-    //         return mergedPhoto;
-    //     }
-
-    //     return null;
-    // },
-
-    // then: function (fulfill, reject) {
-    //     return this._promise.then(fulfill, reject);
-    // }
-
-
-    ///////////
-    // initializer: function (config) {
-    //     var modelClass  = this.get('modelClass'),
-    //         name        = this.get('name'),
-    //         model       = new modelClass(),
-    //         photoId     = config.id,
-    //         self        = this;
-
-    //     this.set('model', model);
-
-    //     this._promise = new Promise(function (fulfill, reject) {
-    //         if (model.isNew ? !model.isNew() : (model.size() > 0)) {
-    //             fulfill(self.mergeData(model, photoId));
-    //         }
-
-    //         model.load({name: name}, function (err) {
-    //             if (err) {
-    //                 console.error('** ERROR **: photo-controller.initializer() failed: %s', err);
-    //                 reject(err);
-    //                 return;
-    //             }
-
-    //             fulfill(self.mergeData(model, photoId));
-    //         });
-    //     });
-    // },
-
-    // mergeData: function (model, id) {
-    //     var photo,
-    //         mergedPhoto;
-
-    //     photo = model.item(id);
-
-    //     if (photo) {
-    //         mergedPhoto = merge(photo.toJSON(), {
-    //             prev: +id - 1,
-    //             next: +id + 1
-    //         });
-
-    //         return mergedPhoto;
-    //     }
-
-    //     return null;
-    // },
-
-    // then: function (fulfill, reject) {
-    //     return this._promise.then(fulfill, reject);
-    // }
 }, {
     ATTRS: {
         model: {
