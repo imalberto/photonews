@@ -3,6 +3,7 @@
 'use strict';
 
 var express = require('express'),
+    expslash = require('express-slash'),
     expyui = require('express-yui'),
     expview = require('express-view'),
     librouter = require('./lib/server/router'),
@@ -49,6 +50,9 @@ app.yui.applyConfig({
 
 // expose the router configuration
 app.use(librouter.expose());
+
+app.use(app.router);
+app.use(expslash());
 
 app.page('home', '/');
 app.page('news', '/news');
