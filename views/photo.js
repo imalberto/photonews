@@ -18,7 +18,7 @@ var PhotoView = Base.create('photo-view', BaseView, [], {
         }
     },
 
-    initializer: function (config) {        
+    initializer: function (config) {
         this.config = config;
     },
 

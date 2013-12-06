@@ -12,6 +12,7 @@ import ModelPost from 'models/post';
 import ModelPhotos from 'models/photos';
 import ModelPhoto from 'models/photo';
 
+import RoutePhoto from 'routes/photo';
 import RouteSearch from 'routes/search';
 
 import ViewAbout from 'views/about';
@@ -33,6 +34,7 @@ Models.register('post',   ModelPost);
 Models.register('photos', ModelPhotos);
 Models.register('photo',  ModelPhoto);
 
+Routes.register('photo', RoutePhoto);
 Routes.register('search', RouteSearch);
 
 Views.register('about',  ViewAbout);
@@ -70,7 +72,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
         },
         photo: {
             type: ViewPhoto,
-            preserve: true
+            preserve: false
         },
         about: {
             type: ViewAbout,
@@ -97,7 +99,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
 
         // Set up any other necessary
 
-        this.on('photo:navigate', this.navigatePhotos);
+        // this.on('photo:navigate', this.navigatePhotos);
     },
 
     render: function (options) {
@@ -135,7 +137,7 @@ var MainView = Base.create('main-view', BaseApp, [], {
     },
 
     navigatePhotos: function (e) {
-        this.navigate('/photos/' + e.photoId);
+        this.navigate('/photo/' + e.photoId);
     }
 }, {
 

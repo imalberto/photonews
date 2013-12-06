@@ -18,7 +18,7 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
         @params {Object} config.query
     @return {Object}
     **/
-    modelP: function (config) {
+    model: function (config) {
        return new Promise(function (fulfill, reject) {
             var model = new PhotosModel();
 
@@ -31,7 +31,7 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
        });
     },
 
-    model: function () {
+    modelX: function (data) {
 
         // return new Promise(function (fulfill, reject) {
         //     var model = new PhotosModel();
@@ -48,8 +48,8 @@ var SearchRoute = Base.create('search-route', BaseRoute, [], {
         //     });
         // });
 
-        // // In this case, we are using the PhotosModel
-        var model = new PhotosModel();
+        // In this case, we are using the PhotosModel
+        var model = new PhotosModel(data);
 
         // return a promise ??
         return model;

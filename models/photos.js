@@ -5,6 +5,7 @@ import PhotoModel from 'models/photo';
 import {ModelList} from 'model-list';
 import {Base} from 'base-build';
 import {YQL} from 'yql';
+import {config} from 'yui';
 
 var PhotosModelList = Base.create('photos-model', ModelList, [], {
     model: PhotoModel,
@@ -77,6 +78,14 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
     sync: function (action, options, cb) {
         if (action !== 'read') {
             return cb(new Error('action not supported: ' + action));
+        }
+
+        if (typeof window !== 'undefined') {
+            if (config.global.DATA && config.global.DATA.photos) {
+                if (photos.items && photos.items.lenght > 0) {
+                    return cb(null, photos.items);
+                }
+            }
         }
 
         this.search(options.query, 2, 13, function (err, articles) {
