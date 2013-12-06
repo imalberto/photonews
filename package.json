@@ -8,6 +8,7 @@
     "express": "3.x",
     "express-annotations": "*",
     "express-map": "*",
+    "express-slash": "~0.2.1",
     "express-state": "*",
     "express-view": "*",
     "express-yui": "~1.0.0",
@@ -15,8 +16,7 @@
     "locator": "*",
     "locator-handlebars": "*",
     "locator-yui": "0.1.x",
-    "yui": "3.x",
-    "express-slash": "~0.2.1"
+    "yui": "3.x"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
