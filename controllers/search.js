@@ -13,15 +13,25 @@ import {Promise} from 'promise';
 
 var SearchController = Base.create('search-controller', BaseController, [], {
 
+    // This hook can be used to customize the controller based on the incoming
+    // configuration passed in.
+    //
     // config: {
     //   params: {}
     //   query: {},
     //   name: {}
     // }
-    initializer: function () {
-       // this.config = config; 
-    },
+    // initializer: function (config) {
+    //    this.config = config; 
+    // },
 
+    /**
+    This method returns a Promise or object to load the model based on any
+    configuration (if necessary) that was passed in via the `initializer`
+    method.
+
+    @return {Object|Promise} 
+    **/
     toJSON: function () {
         var model = this.get('model'),
             name = this.get('name'),
