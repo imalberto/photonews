@@ -10,9 +10,6 @@ import PhotoModel from 'models/photo';
 import {config as Yconfig} from 'yui';
 
 var PhotoRoute = Base.create('photo-route', BaseRoute, [], {
-    // initializer: function (config) {
-    //     console.log('PhotoRoute initialized: ' + config);
-    // },
 
     model: function (config) {
 

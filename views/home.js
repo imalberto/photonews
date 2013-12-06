@@ -11,10 +11,6 @@ var HomeView = Base.create('home-view', BaseView, [], {
 
     events: {},
 
-    initializer: function (config) {
-        this.config = config;
-    },
-
     render: function () {
         var container = this.get('container'),
             html;

@@ -12,17 +12,19 @@ import {Promise} from 'promise';
 
 var SearchController = Base.create('search-controller', BaseController, [], {
 
-    // This hook can be used to customize the controller based on the incoming
-    // configuration passed in.
+    /**
+    @params {Object} config
+        @params {Object} config.params
+        @params {Object} config.query
+        @params {String} config.name
+    **/
     //
-    // config: {
-    //   params: {}
-    //   query: {},
-    //   name: {}
-    // }
-    initializer: function (config) {
-       this.config = config;
-    },
+    // Unless customizing initializer, no need to define it. `BaseController`
+    // will take care of saving the `config`.
+    //
+    // initializer: function (config) {
+    //    this.config = config;
+    // },
 
     /**
     This method returns a Promise or object to load the model based on any
@@ -34,23 +36,17 @@ var SearchController = Base.create('search-controller', BaseController, [], {
     toJSON: function () {
         var model = this.get('model');
 
-        return new Promise(function (fulfill) {
+        return new Promise(function (fulfill, reject) {
             if (model && Promise.isPromise(model)) {
                 model.then(function (json) {
                     fulfill(json);
                 });
+            } else if (model) {
+                fulfill(model);
             } else {
-                fulfill([]);
+                reject(new Error('controllers/search: invalid model'));
             }
         });
-
-        // return new Promise(function (fulfill, reject) {
-        //     if (model && typeof model.toJSON === 'function') {
-        //         fulfill(model.toJSON());
-        //     } else {
-        //         reject(new Error('invalid model: ' + name + '-model'));
-        //     }
-        // });
     }
 }, {
     ATTRS: {

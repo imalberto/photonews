@@ -6,7 +6,6 @@ import {merge} from 'oop';
 import {Base} from 'base-build';
 import {Promise} from 'promise';
 
-'use strict';
 
 var PhotoController = Base.create("photo-controller", Base, [], {
 

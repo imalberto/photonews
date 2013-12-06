@@ -16,6 +16,26 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
         this.config = config;
     },
 
+    // @params {String} options.query the filter to apply to the search results
+    sync: function (action, options, cb) {
+        if (action !== 'read') {
+            return cb(new Error('action not supported: ' + action));
+        }
+
+        if (typeof window !== 'undefined') {
+            if (config.global.DATA && config.global.DATA.photos) {
+                var photos = config.global.DATA.photos;
+                if (photos.items && photos.items.length > 0) {
+                    return cb(null, photos.items);
+                }
+            }
+        }
+
+        this.search(options.query, 2, 13, function (err, articles) {
+            cb(err, articles);
+        });
+    },
+
     _process: function (search, raw) {
         var photos = [],
             photo,
@@ -73,25 +93,6 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
              callback(null, photos);
         });
 
-    },
-
-    sync: function (action, options, cb) {
-        if (action !== 'read') {
-            return cb(new Error('action not supported: ' + action));
-        }
-
-        if (typeof window !== 'undefined') {
-            if (config.global.DATA && config.global.DATA.photos) {
-                var photos = config.global.DATA.photos;
-                if (photos.items && photos.items.length > 0) {
-                    return cb(null, photos.items);
-                }
-            }
-        }
-
-        this.search(options.query, 2, 13, function (err, articles) {
-            cb(err, articles);
-        });
     },
 
     photosMock: function () {

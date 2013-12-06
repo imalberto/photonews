@@ -17,10 +17,6 @@ var SearchView = Base.create('search-view', BaseView, [], {
 
     events: {},
 
-    initializer: function (config) {
-        this.config = config;
-    },
-
     render: function () {
         var container = this.get('container'),
             locals = this.get('locals'),

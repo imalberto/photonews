@@ -5,12 +5,6 @@
 import {Base} from 'base-build';
 import {BaseController} from 'base-controller';
 
-var PhotosController = Base.create('base-controller', BaseController, {}, {
-    ATTRS: {
-        // modelClass: {
-        //     value: PhotosModel
-        // }
-    }
-});
+var PhotosController = Base.create('base-controller', BaseController, {}, {});
 
 export default PhotosController;
