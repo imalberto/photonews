@@ -2,11 +2,11 @@
 /*jshint esnext:true*/
 
 import {PN} from 'pn';
-import {Template} from 'photonews-template-photo';
+import {Template} from 'photonews-template-search-photo';
 
-var PhotoView = PN.View.extend({
+var SearchPhotoView = PN.View.extend({
 
-    photoTemplate: Template.get('photonews/photo'),
+    photoTemplate: Template.get('photonews/search-photo'),
 
     events: {
         '.left-arrow': {
@@ -25,7 +25,8 @@ var PhotoView = PN.View.extend({
         html = this.photoTemplate({
             prev : locals.prev,
             next : locals.next,
-            photo: locals.photo
+            photo: locals.photo,
+            query: locals.query
         });
 
         container.setHTML(html);
@@ -57,4 +58,4 @@ var PhotoView = PN.View.extend({
 
 });
 
-export default PhotoView;
+export default SearchPhotoView;

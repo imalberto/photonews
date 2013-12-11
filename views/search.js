@@ -12,7 +12,7 @@ import {Template} from 'photonews-template-photos';
 
 var SearchView = PN.View.extend({
 
-    photosTemplate: Template.get('photonews/photos'),
+    photosTemplate: Template.get('photonews/search'),
 
     events: {},
 

@@ -60,16 +60,27 @@ app.map('/news', 'news');
 app.get('/photos', librouter.context, librouter.dispatch);
 app.map('/photos', 'photos');
 
-app.get('/photo', librouter.context, librouter.dispatch);
-app.map('/photo', 'photo');
+app.get('/photo/:id', librouter.context, librouter.dispatch);
+app.map('/photo/:id', 'photo');
+app.annotate('/photo/:id', {
+    controller: 'main',
+    view: 'photo',
+    route: 'photo'
+});
 
 app.get('/search/photos', librouter.context, librouter.dispatch);
 app.map('/search/photos', 'search-photos');
-app.annotate('/search/photos', { view: 'photos', route: 'photos' });
+app.annotate('/search/photos', {
+    view: 'search',
+    route: 'search-photos'
+});
 
-app.get('/search/photo', librouter.context, librouter.dispatch);
-app.map('/search/photo', 'search-photo');
-app.annotate('/search/photo', { view: 'photo' });
+app.get('/search/photo/:id', librouter.context, librouter.dispatch);
+app.map('/search/photo/:id', 'search-photo');
+app.annotate('/search/photo/:id', {
+    view: 'search-photo',
+    route: 'search-photo'
+});
 
 app.get('/about', librouter.context, librouter.dispatch);
 app.map('/about', 'about');

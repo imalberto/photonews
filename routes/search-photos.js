@@ -6,7 +6,14 @@ function PhotosRoute(req, res, next) {
     // sharing this route for photos and search-photos routes
     var query = (req.query && req.query.q) || 'miami';
     req.store.find('photos', { query: query }).then(function (model) {
-        res.render('photos', {items: model.toJSON()});
+        var i,
+            items = model.toJSON();
+
+        for (i = 0; i < items.length; i++) {
+            items[i].query = query;
+        }
+
+        res.render('search', {items: items});
     }, next);
 }
 

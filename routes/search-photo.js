@@ -3,16 +3,21 @@
 /*jshint esnext:true*/
 
 function SearchPhotoRoute(req, res, next) {
-    req.store.find('photos', { query: req.query.q }).then(function (model) {
+    var query = (req.query && req.query.q) || 'miami';
 
-        var selectedPhoto = model.item(req.params.id);
-            data = ({
-                photo: selectedPhoto,
+    req.store.find('photos', {query: query}).then(function (model) {
+        var index = parseInt(req.params.id, 10) || 0,
+            selectedPhoto = model.item(index),
+            data = {
+                query: query,
+                photo: selectedPhoto.toJSON(),
+                prev: (index > 0) ? (index - 1) : index,
+                next: (index < model.size()) ? (index + 1) : index,
                 nextPhoto: model.item(model.indexOf(selectedPhoto) + 1),
-                prevPhoto: model.item(model.indexOf(selectedPhoto) - 1),
-            }).toJSON();
+                prevPhoto: model.item(model.indexOf(selectedPhoto) - 1)
+            };
 
-        res.render('photo', data);
+        res.render('search-photo', data);
 
     }, next);
 }
