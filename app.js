@@ -49,7 +49,7 @@ app.use(expyui.expose());
 
 app.get('/', librouter.context, librouter.dispatch);
 app.map('/', 'home');
-app.annotate('about', {
+app.annotate('/', {
     route: 'default'
 });
 
@@ -64,11 +64,11 @@ app.map('/photo', 'photo');
 
 app.get('/search/photos', librouter.context, librouter.dispatch);
 app.map('/search/photos', 'search-photos');
-app.annotate('search-photos', { view: 'photos', route: 'photos' });
+app.annotate('/search/photos', { view: 'photos', route: 'photos' });
 
 app.get('/search/photo', librouter.context, librouter.dispatch);
 app.map('/search/photo', 'search-photo');
-app.annotate('search-photo', { view: 'photo' });
+app.annotate('/search/photo', { view: 'photo' });
 
 app.get('/about', librouter.context, librouter.dispatch);
 app.map('/about', 'about');
