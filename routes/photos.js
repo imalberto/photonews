@@ -1,0 +1,13 @@
+
+/*jslint nomen:true, node:true*/
+/*jshint esnext:true*/
+
+function PhotosRoute(req, res, next) {
+    // sharing this route for photos and search-photos routes
+    var query = (req.query && req.query.q) || 'miami';
+    req.store.find('photos', { query: query }).then(function (model) {
+        res.render('photos', model.toJSON());
+    }, next);
+}
+
+export default PhotosRoute;

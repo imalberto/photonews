@@ -1,11 +1,10 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {BaseView} from 'base-view';
+import {PN} from 'pn';
 import {Template} from 'photonews-template-photo';
-import {Base} from 'base-build';
 
-var PhotoView = Base.create('photo-view', BaseView, [], {
+var PhotoView = PN.View.extend({
 
     photoTemplate: Template.get('photonews/photo'),
 

@@ -2,12 +2,12 @@
 /*jshint esnext:true*/
 
 import PhotoModel from 'models/photo';
-import {ModelList} from 'model-list';
-import {Base} from 'base-build';
 import {YQL} from 'yql';
 import {config} from 'yui';
+import {PN} from 'pn';
 
-var PhotosModelList = Base.create('photos-model', ModelList, [], {
+var PhotosModelList = PN.ModelList.extend({
+
     model: PhotoModel,
 
     API_KEY: '84921e87fb8f2fc338c3ff9bf51a412e',
@@ -250,6 +250,6 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
             }
         };
     }
-}, {});
+});
 
 export default PhotosModelList;

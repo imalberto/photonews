@@ -7,11 +7,10 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {BaseView} from 'base-view';
+import {PN} from 'pn';
 import {Template} from 'photonews-template-photos';
-import {Base} from 'base-build';
 
-var SearchView = Base.create('search-view', BaseView, [], {
+var SearchView = PN.View.extend({
 
     photosTemplate: Template.get('photonews/photos'),
 

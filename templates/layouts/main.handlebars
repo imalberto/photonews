@@ -41,24 +41,12 @@
 
     </div>
 
-
     <script>{{{state}}}</script>
     <script>
-        function initialize(PN) {
-            var MainView = PN.config.global.MainView,
-                pageView;
-
-            pageView = new MainView({
-                container: '#pn-container',
-                viewContainer: '#pn-view-container',
-                transitions: true,
-                root: '/',
-                serverRouting: true
-            });
-
-            app.rehydrate(pageView);
-        }
-        app.yui.use('views/main', 'router-middleware', initialize);
+        app.rehydrate({
+            container: '#pn-container',
+            viewContainer: '#pn-view-container'
+        });
     </script>
 </body>
 </html>
