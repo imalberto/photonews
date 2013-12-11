@@ -62,10 +62,6 @@ var MainController = PN.Controller.extend({
 
         // Set up and cache often-used DOM elements as attributes
         this.set('searchBox', searchBox);
-
-        // Set up any other necessary
-
-        // this.on('photo:navigate', this.navigatePhotos);
     },
 
     render: function (options) {
