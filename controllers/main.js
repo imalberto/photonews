@@ -7,6 +7,7 @@ import PhotosViewClass from 'views/photos';
 import PhotoViewClass from 'views/photo';
 import NewsViewClass from 'views/news';
 import SearchViewClass from 'views/search';
+import SearchPhotoViewClass from 'views/search-photo';
 
 import {PN} from 'pn';
 
@@ -41,6 +42,10 @@ var MainController = PN.Controller.extend({
         },
         search: {
             type: SearchViewClass,
+            preserve: false
+        },
+        'search-photo': {
+            type: SearchPhotoViewClass,
             preserve: false
         }
     },

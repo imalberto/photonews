@@ -3,14 +3,18 @@
 /*jshint esnext:true*/
 
 function PhotoRoute(req, res, next) {
-    req.store.find('photos', { query: 'miami' }).then(function (model) {
+    var query = (req.query && req.query.q) || 'miami';
+    req.store.find('photos', { query: query }).then(function (model) {
 
-        var selectedPhoto = model.item(req.params.id),
-            data = ({
-                photo: selectedPhoto,
+        var index = parseInt(req.params.id, 10) || 0,
+            selectedPhoto = model.item(index),
+            data = {
+                photo: selectedPhoto.toJSON(),
+                prev: (index > 0) ? (index - 1) : index,
+                next: (index < model.size()) ? (index + 1) : index,
                 nextPhoto: model.item(model.indexOf(selectedPhoto) + 1),
-                prevPhoto: model.item(model.indexOf(selectedPhoto) - 1),
-            }).toJSON();
+                prevPhoto: model.item(model.indexOf(selectedPhoto) - 1)
+            };
 
         res.render('photo', data);
 
