@@ -43,9 +43,12 @@
 
     <script>{{{state}}}</script>
     <script>
-        app.rehydrate({
-            container: '#pn-container',
-            viewContainer: '#pn-view-container'
+        // todo: use app.yui.import() or System.import()
+        app.yui.use('rehydrate-client', function (Y) {
+            Y.rehydrate({
+                container: '#pn-container',
+                viewContainer: '#pn-view-container'
+            });
         });
     </script>
 </body>

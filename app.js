@@ -50,7 +50,8 @@ app.use(expyui.expose());
 app.get('/', librouter.context, librouter.dispatch);
 app.map('/', 'home');
 app.annotate('/', {
-    route: 'default'
+    route: 'default',
+    view: 'home'
 });
 
 app.get('/news', librouter.context, librouter.dispatch);
@@ -74,7 +75,6 @@ app.get('/about', librouter.context, librouter.dispatch);
 app.map('/about', 'about');
 app.annotate('/about', {
     controller: 'main',
-    view: 'about',
     route: 'default'
 });
 
