@@ -6,6 +6,8 @@ function PhotoRoute(req, res, next) {
     var query = (req.query && req.query.q) || 'miami';
     req.store.find('photos', { query: query }).then(function (model) {
 
+        // TODO: add express-params into app.js so we don't need
+        // to do this parseInt thing
         var index = parseInt(req.params.id, 10) || 0,
             selectedPhoto = model.item(index),
             data = {
