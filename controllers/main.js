@@ -26,11 +26,11 @@ var MainController = PN.Controller.extend({
         },
         news: {
             type: NewsViewClass,
-            preserve: true
+            preserve: false
         },
         photos: {
             type: PhotosViewClass,
-            preserve: true
+            preserve: false
         },
         photo: {
             type: PhotoViewClass,
