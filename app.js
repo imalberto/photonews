@@ -99,6 +99,10 @@ app.yui.ready(function (err) {
         console.error('------------------------------------------------------');
         return;
     }
+
+    // provision some stuff so we don't have to do it per request
+    app.yui.use('controllers/main', 'store', 'handlebars-helpers');
+
     // hack to get import working on the server side until express-yui solves this
     app.yui.use('import');
     app.yui.import = app.yui._Y.import;

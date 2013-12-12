@@ -26,11 +26,11 @@ var MainController = PN.Controller.extend({
         },
         news: {
             type: NewsViewClass,
-            preserve: true
+            preserve: false
         },
         photos: {
             type: PhotosViewClass,
-            preserve: true
+            preserve: false
         },
         photo: {
             type: PhotoViewClass,
@@ -64,13 +64,35 @@ var MainController = PN.Controller.extend({
         this.set('searchBox', searchBox);
     },
 
-    render: function (options) {
+    render: function (viewName, locals) {
+        var viewContainer = this.get('viewContainer'),
+            className,
+            rendered,
+            viewInfo;
+
         MainController.superclass.render.apply(this, arguments);
 
-        options = options || {};
+        className = viewName + '-view';
+        rendered = viewContainer.one('.' + className);
+        viewInfo = this.getViewInfo(viewName);
 
-        if (options.rendered) {
-            return this;
+        if ((rendered && viewInfo && !viewInfo.instance) ||
+                (rendered && viewInfo && viewInfo.instance &&
+                this.get('activeView') === viewInfo.instance &&
+                viewInfo.preserve)) {
+            this.showContent(rendered, {
+                view: viewName,
+                update: false,
+                transition: false
+            });
+        } else {
+            this.showView(viewName, {
+                container: viewContainer.create('<div class="' + className + '"></div>'),
+                locals: locals
+            }, {
+                render: true,
+                update: true
+            });
         }
 
         return this;
