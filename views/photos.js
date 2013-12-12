@@ -22,15 +22,6 @@ var PhotosView = PN.View.extend({
         }
         container.setHTML(html);
         return this;
-    },
-
-    // for pagination
-    prev: function () {
-        // todo
-    },
-
-    next: function () {
-        // todo
     }
 
 });

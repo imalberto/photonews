@@ -111,9 +111,7 @@ var MainController = PN.Controller.extend({
         var query = this.get('searchBox').get('value');
 
         if (query) {
-            this.navigate('/search?q=' + query);
-        } else {
-            this.navigate('/search');
+            this.navigate('/search/photos?q=' + query);
         }
     },
 
