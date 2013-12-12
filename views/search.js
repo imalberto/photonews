@@ -8,7 +8,7 @@
 /*jshint esnext:true*/
 
 import {PN} from 'pn';
-import {Template} from 'photonews-template-photos';
+import {Template} from 'photonews-template-search';
 
 var SearchView = PN.View.extend({
 
