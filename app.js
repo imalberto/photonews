@@ -41,6 +41,7 @@ app.use(expyui['static'](__dirname + '/build'));
 app.yui.setCoreFromAppOrigin();
 app.yui.applyConfig({
     debug: true,
+    filter: 'raw',
     combine: false
 });
 
