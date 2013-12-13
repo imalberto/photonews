@@ -1,23 +1,20 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {Model} from 'model';
-import {Base} from 'base-build';
+import {PN} from 'pn';
 
-var PostModel = Base.create('post-model', Model, [], {}, {
+var PostModel = PN.Model.extend({});
 
-    ATTRS: {
-        title: {
-            value: ''
-        },
-        url: {
-            value: ''
-        },
-        content: {
-            value: ''
-        }
+PostModel.ATTRS = {
+    title: {
+        value: ''
+    },
+    url: {
+        value: ''
+    },
+    content: {
+        value: ''
     }
-
-});
+};
 
 export default PostModel;

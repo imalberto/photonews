@@ -55,6 +55,41 @@ h1,h2,h3,h4,h5,h6 {
     background-color: rgb(244, 237, 247);
 }
 
+.photo-view {
+    background-color: rgb(28, 28, 37);
+}
+
+.photo-container {
+    margin: 0 auto;
+    margin-top: 50px;
+    display: inline-block;
+    height: 700px;
+}
+
+.left-arrow {
+    width: 0; 
+    height: 0;
+    display: block;
+    margin-left: 80px;
+    margin-top: 180px; 
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent; 
+    border-right: 40px solid rgb(244, 237, 247); 
+    float: left;
+}
+
+.right-arrow {
+    width: 0; 
+    height: 0;
+    display: block;
+    margin-right: 80px;
+    margin-top: 180px; 
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent; 
+    border-left: 40px solid rgb(244, 237, 247); 
+    float: right;
+}
+
 .content {
     background-color: white;
     padding-left: 60px;

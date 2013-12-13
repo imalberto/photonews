@@ -1,12 +1,18 @@
+/*
+ * Copyright (c) 2013, Yahoo! Inc.  All rights reserved.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE.txt file for terms.
+ */
+
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
 import {PN} from 'pn';
-import {Template} from 'photonews-template-photos';
+import {Template} from 'photonews-template-search';
 
-var PhotosView = PN.View.extend({
+var SearchView = PN.View.extend({
 
-    photosTemplate: Template.get('photonews/photos'),
+    photosTemplate: Template.get('photonews/search'),
 
     events: {},
 
@@ -26,4 +32,4 @@ var PhotosView = PN.View.extend({
 
 });
 
-export default PhotosView;
+export default SearchView;

@@ -2,17 +2,38 @@
 /*jshint esnext:true*/
 
 import PhotoModel from 'models/photo';
-import {ModelList} from 'model-list';
-import {Base} from 'base-build';
 import {YQL} from 'yql';
+import {config} from 'yui';
+import {PN} from 'pn';
 
-var PhotosModelList = Base.create('photos-model', ModelList, [], {
+var PhotosModelList = PN.ModelList.extend({
+
     model: PhotoModel,
 
     API_KEY: '84921e87fb8f2fc338c3ff9bf51a412e',
 
     initializer: function (config) {
         this.config = config;
+    },
+
+    // @params {String} options.query the filter to apply to the search results
+    sync: function (action, options, cb) {
+        if (action !== 'read') {
+            return cb(new Error('action not supported: ' + action));
+        }
+
+        if (typeof window !== 'undefined') {
+            if (config.global.DATA && config.global.DATA.photos) {
+                var photos = config.global.DATA.photos;
+                if (photos.items && photos.items.length > 0) {
+                    return cb(null, photos.items);
+                }
+            }
+        }
+
+        this.search(options.query, 2, 13, function (err, articles) {
+            cb(err, articles);
+        });
     },
 
     _process: function (search, raw) {
@@ -34,6 +55,7 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
             // Attach the result.
             photos.push({
                 id: photo.id,
+                index: i,
                 title: photo.title,
                 url: photo.url,
                 user: photo.ownername
@@ -49,7 +71,7 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
         var my = this,
             select;
 
-        search = search || 'mojito';
+        search = search || 'eiffel';
 
         count /= 1;
         start /= 1;
@@ -61,26 +83,16 @@ var PhotosModelList = Base.create('photos-model', ModelList, [], {
                 'and api_key="' + this.API_KEY + '"';
 
 // returning mocking values for development
-console.warn('using mock data for query: ' + select);
-return callback(null, my._process(search, this.photosMock()));
+// console.warn('using mock data for query: ' + select);
+// return callback(null, my._process(search, this.photosMock()));
 
         // Uncomment to test with live data
         //
-        // YQL(select, function (raw) {
-        //     var photos = my._process(search, raw);
-        //     callback(null, photos);
-        // });
-
-    },
-
-    sync: function (action, options, cb) {
-        if (action !== 'read') {
-            return cb(new Error('action not supported: ' + action));
-        }
-
-        this.search('eiffel', 2, 13, function (err, articles) {
-            cb(err, articles);
+        YQL(select, function (raw) {
+             var photos = my._process(search, raw);
+             callback(null, photos);
         });
+
     },
 
     photosMock: function () {
@@ -238,6 +250,6 @@ return callback(null, my._process(search, this.photosMock()));
             }
         };
     }
-}, {});
+});
 
 export default PhotosModelList;

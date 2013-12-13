@@ -4,9 +4,9 @@
 
 var express = require('express'),
     expslash = require('express-slash'),
-    expyui = require('express-yui'),
-    expview = require('express-view'),
-    librouter = require('./lib/server/router'),
+    expyui  = require('express-yui'),
+    libview    = require('./lib/server/view'),
+    librouter  = require('./lib/server/router'),
     liblocator = require('./lib/server/locator'),
     app,
     appPort;
@@ -15,8 +15,8 @@ var express = require('express'),
 app = express();
 
 // Augment "app"
-expview.extend(app);
 expyui.extend(app);
+libview.extend(app);
 librouter.extend(app);
 liblocator.extend(app);
 
@@ -32,9 +32,6 @@ app.parseBundle({
     applicationDirectory: __dirname
 });
 
-// creating default namespace to expose data to the client
-app.expose({}, 'DATA');
-
 // regular express.js middleware
 app.use(express.compress());
 app.use(express.favicon());
@@ -45,35 +42,54 @@ app.use(expyui['static'](__dirname + '/build'));
 app.yui.setCoreFromAppOrigin();
 app.yui.applyConfig({
     debug: true,
+    filter: 'raw',
     combine: false
 });
 
-// expose the router configuration
-app.use(librouter.expose());
+// expose yui configuration
+app.use(expyui.expose());
 
-app.use(app.router);
-app.use(expslash());
+app.get('/', librouter.context, librouter.dispatch);
+app.map('/', 'home');
+app.annotate('/', {
+    route: 'default',
+    view: 'home'
+});
 
-app.page('home', '/');
-app.page('news', '/news');
-app.page('photos');
-app.page('about', '/about');
+app.get('/news', librouter.context, librouter.dispatch);
+app.map('/news', 'news');
 
-// app.page('about', '/about', function (req, res) {
-//     res.render('about');
-// });
+app.get('/photos', librouter.context, librouter.dispatch);
+app.map('/photos', 'photos');
 
-// app.page('admin', '/admin', function (req, res, next) {
-//     // authenticate request here
-//     req.params.isAuth = true;
-//     next();
-// }, function (req, res) {
-//     if (req.params.isAuth) {
-//         res.render('admin');
-//     } else {
-//         next(new Error('User not authenticated'));
-//     }
-// });
+app.get('/photo/:id', librouter.context, librouter.dispatch);
+app.map('/photo/:id', 'photo');
+app.annotate('/photo/:id', {
+    controller: 'main',
+    view: 'photo',
+    route: 'photo'
+});
+
+app.get('/search/photos', librouter.context, librouter.dispatch);
+app.map('/search/photos', 'search-photos');
+app.annotate('/search/photos', {
+    view: 'search',
+    route: 'search-photos'
+});
+
+app.get('/search/photo/:id', librouter.context, librouter.dispatch);
+app.map('/search/photo/:id', 'search-photo');
+app.annotate('/search/photo/:id', {
+    view: 'search-photo',
+    route: 'search-photo'
+});
+
+app.get('/about', librouter.context, librouter.dispatch);
+app.map('/about', 'about');
+app.annotate('/about', {
+    controller: 'main',
+    route: 'default'
+});
 
 // waiting for yui to get ready to receive traffic
 app.yui.ready(function (err) {
@@ -85,8 +101,12 @@ app.yui.ready(function (err) {
         return;
     }
 
-    // getting all modules provisioned for the server side
-    app.yui.use('views/main');
+    // provision some stuff so we don't have to do it per request
+    app.yui.use('controllers/main', 'store', 'handlebars-helpers');
+
+    // hack to get import working on the server side until express-yui solves this
+    app.yui.use('import');
+    app.yui.import = app.yui._Y.import;
 
     app.listen(appPort, function () {
         console.log('Ready to serve on port %s', appPort);
