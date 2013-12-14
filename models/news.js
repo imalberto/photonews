@@ -2,13 +2,13 @@
 /*jshint esnext:true*/
 /*global console*/
 
-import {ModelList} from 'model-list';
 import PostModel from 'models/post';
-import {Base} from 'base-build';
 import {YQL} from 'yql';
 import {Lang} from 'yui';
+import {PN} from 'pn';
 
-var NewsModelList = Base.create('news-model', ModelList, [], {
+var NewsModelList = PN.ModelList.extend({
+
     model: PostModel,
 
     _process: function (search, raw) {
@@ -177,8 +177,6 @@ return callback(null, my._process(search, this.newsMock()));
         };
     }
 
-}, {
-    ATTRS: {}
 });
 
 export default NewsModelList;

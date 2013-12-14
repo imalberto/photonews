@@ -1,18 +1,16 @@
 /*jslint nomen:true*/
 /*jshint esnext:true*/
 
-import {Model} from 'model';
-import {Base} from 'base-build';
+import {PN} from 'pn';
 
-var PhotoModel = Base.create('photo-model', Model, [], {}, {
-    ATTRS: {
-        title: {
-            value: ''
-        },
-        url: {
-            value: ''
-        }
+var PhotoModel = PN.Model.extend({});
+PhotoModel.ATTRS = {
+    title: {
+        value: ''
+    },
+    url: {
+        value: ''
     }
-});
+};
 
 export default PhotoModel;

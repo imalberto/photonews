@@ -4,7 +4,9 @@
   "description": "PhotoNews web app showcasing modown components",
   "main": "app.js",
   "dependencies": {
+    "connect": "2.x",
     "debug": "*",
+    "es6-module-transpiler": "~0.3.4",
     "express": "3.x",
     "express-annotations": "*",
     "express-map": "*",

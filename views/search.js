@@ -7,19 +7,14 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {BaseView} from 'base-view';
-import {Template} from 'photonews-template-photos';
-import {Base} from 'base-build';
+import {PN} from 'pn';
+import {Template} from 'photonews-template-search';
 
-var SearchView = Base.create('search-view', BaseView, [], {
+var SearchView = PN.View.extend({
 
-    photosTemplate: Template.get('photonews/photos'),
+    photosTemplate: Template.get('photonews/search'),
 
     events: {},
-
-    initializer: function (config) {
-        this.config = config;
-    },
 
     render: function () {
         var container = this.get('container'),

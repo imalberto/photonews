@@ -1,19 +1,14 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {BaseView} from 'base-view';
+import {PN} from 'pn';
 import {Template} from 'photonews-template-photos';
-import {Base} from 'base-build';
 
-var PhotosView = Base.create('photos-view', BaseView, [], {
+var PhotosView = PN.View.extend({
 
     photosTemplate: Template.get('photonews/photos'),
 
     events: {},
-
-    initializer: function (config) {
-        this.config = config;
-    },
 
     render: function () {
         var container = this.get('container'),
@@ -27,15 +22,6 @@ var PhotosView = Base.create('photos-view', BaseView, [], {
         }
         container.setHTML(html);
         return this;
-    },
-
-    // for pagination
-    prev: function () {
-        // todo
-    },
-
-    next: function () {
-        // todo
     }
 
 });

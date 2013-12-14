@@ -1,19 +1,14 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
-import {BaseView} from 'base-view';
+import {PN} from 'pn';
 import {Template} from 'photonews-template-about';
-import {Base} from 'base-build';
 
-var AboutView = Base.create('about-view', BaseView, [], {
+var AboutView = PN.View.extend({
 
     template: Template.get('photonews/about'),
 
     events: {},
-
-    initializer: function (config) {
-        this.config = config;
-    },
 
     render: function () {
         var container = this.get('container'),

@@ -23,7 +23,7 @@
             <div class="pure-menu pure-menu-open pure-menu-horizontal">
                 <a class="pure-menu-heading" href="/">PhotoNews</a>
                 <ul>
-                    <li><form action="/search" class="pure-form"><input class="search-box" type="text" name="q" placeholder="Search"/></form></li>
+                    <li><form action="/search/photos" class="pure-form"><input class="search-box" type="text" name="q" placeholder="Search"/></form></li>
                     <li class="pure-menu-selected"><a href="/news">News</a></li>
                     <li><a href="/photos">Photos</a></li>
                     <li><a href="/about">About</a></li>
@@ -41,24 +41,15 @@
 
     </div>
 
-
     <script>{{{state}}}</script>
     <script>
-        function initialize(PN) {
-            var MainView = PN.config.global.MainView,
-                pageView;
-
-            pageView = new MainView({
+        // todo: use app.yui.import() or System.import()
+        app.yui.use('rehydrate-client', function (Y) {
+            Y.rehydrate({
                 container: '#pn-container',
-                viewContainer: '#pn-view-container',
-                transitions: true,
-                root: '/',
-                serverRouting: true
+                viewContainer: '#pn-view-container'
             });
-
-            app.rehydrate(pageView);
-        }
-        app.yui.use('views/main', 'router-middleware', initialize);
+        });
     </script>
 </body>
 </html>
