@@ -18,9 +18,12 @@ function PhotoRoute(req, res, next) {
                 prevPhoto: model.item(model.indexOf(selectedPhoto) - 1)
             };
 
-        res.render('photo', data);
-
-    }, next);
+        req.data = data;
+        return req.store.find('news', { query: query });
+    }).then(function (model) {
+        req.data.news = model.toJSON();
+        res.render('photo', req.data);
+    });
 }
 
 export default PhotoRoute;
