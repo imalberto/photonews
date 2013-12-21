@@ -3,6 +3,7 @@
 'use strict';
 
 var express = require('express'),
+    expslash = require('express-slash'),
     expyui  = require('express-yui'),
     libview    = require('./lib/server/view'),
     librouter  = require('./lib/server/router'),
