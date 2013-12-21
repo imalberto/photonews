@@ -9,3 +9,14 @@
   <a data-page="{{next}}" href="/photo/{{next}}" class="right-arrow">
   </a>
 </div>
+<div class="photo-news pure-g-r">
+    <div class="photo-news-container pure-u">
+        <h2>Check out related news from Tumblr:</h2>
+        <ul class="photo-news-list">
+            {{#each news}}
+                <!-- Not sure why this isn't working -->
+                <li>{{ title }}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
