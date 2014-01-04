@@ -25,8 +25,8 @@ var PhotosModelList = PN.ModelList.extend({
         if (typeof window !== 'undefined') {
             if (config.global.DATA && config.global.DATA.photos) {
                 var photos = config.global.DATA.photos;
-                if (photos.items && photos.items.length > 0) {
-                    return cb(null, photos.items);
+                if (photos && Array.isArray(photos) && photos.length > 0) {
+                    return cb(null, photos);
                 }
             }
         }

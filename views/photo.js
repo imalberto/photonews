@@ -26,7 +26,7 @@ var PhotoView = PN.View.extend({
             prev : locals.prev,
             next : locals.next,
             photo: locals.photo
-        }, this.get('container'));
+        });
         if (html) {
             container.setHTML(html);
         }
