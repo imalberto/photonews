@@ -62,8 +62,19 @@ h1,h2,h3,h4,h5,h6 {
 .photo-container {
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 25px;
     display: inline-block;
-    height: 700px;
+}
+
+.photo-news {
+    background-color: rgb(45, 17, 82);
+    height: 300px;
+    padding: 25px;
+}
+
+.photo-news-container h2 {
+    color: white;
+    font-weight: lighter;
 }
 
 .left-arrow {

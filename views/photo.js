@@ -25,7 +25,8 @@ var PhotoView = PN.View.extend({
         html = this.photoTemplate({
             prev : locals.prev,
             next : locals.next,
-            photo: locals.photo
+            photo: locals.photo,
+            news: locals.news
         });
         if (html) {
             container.setHTML(html);
