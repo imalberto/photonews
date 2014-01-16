@@ -76,23 +76,83 @@ var MainController = PN.Controller.extend({
         rendered = viewContainer.one('.' + className);
         viewInfo = this.getViewInfo(viewName);
 
-        if ((rendered && viewInfo && !viewInfo.instance) ||
+        if (viewName !== 'photo' && (
+            (rendered && viewInfo && !viewInfo.instance) ||
                 (rendered && viewInfo && viewInfo.instance &&
                 this.get('activeView') === viewInfo.instance &&
-                viewInfo.preserve)) {
+                viewInfo.preserve) )) {
             this.showContent(rendered, {
                 view: viewName,
                 update: false,
                 transition: false
             });
         } else {
-            this.showView(viewName, {
-                container: viewContainer.create('<div class="' + className + '"></div>'),
-                locals: locals
-            }, {
-                render: true,
-                update: true
-            });
+            if (viewName === 'photo') {
+                var activeView;
+                // HACK to work around React issue for now
+
+                // Before we render, let's detach the current activeView
+                // so that we have a clean patch
+                activeView = this.get('activeView');
+                if (activeView) {
+                    this._detachView(activeView);
+                    this.removeAttr('activeView');
+                }
+
+                if (!rendered) {
+                    // Reuse it if its already there
+                    rendered = viewContainer.create('<div class="' + className + '"></div>');
+                    // add the view only if it does not exist
+                    viewContainer.appendChild(rendered);
+                }
+                var view;
+                // Copied from App.Base
+                // Reuse the view instance if it's already set
+                if (viewInfo && /*viewInfo.preserve && */viewInfo.instance) {
+                    view = viewInfo.instance;
+                } else {
+                    view = this.createView(viewName, {
+                        render: false,
+                        update: false
+                    });
+                    viewInfo = this.getViewInfo(viewName);
+                    if (viewInfo) {
+                        viewInfo.instance = view;
+                    }
+                }
+                view.setAttrs({
+                    container: rendered,
+                    locals: locals
+                });
+
+                view.render();
+
+            } else {
+
+                // HACK
+                // remove the photo view if it exists
+                var photoNode = viewContainer.one('.photo-view'),
+                    reactNode;
+                if (photoNode) {
+                    reactNode = photoNode.get('children').item(0);
+                    // remove it from the view container
+                    // viewContainer.removeChild(photoNode);
+                    var photoView = this.getViewInfo('photo');
+                    if (photoView.instance) {
+                        React.unmountComponentAtNode(photoNode._node);
+                        // umount will detach the component
+                        // this._detachView(photoView.instance); 
+                    }
+                }
+
+                this.showView(viewName, {
+                    container: viewContainer.create('<div class="' + className + '"></div>'),
+                    locals: locals
+                }, {
+                    render: true,
+                    update: true
+                });
+            }
         }
 
         return this;
