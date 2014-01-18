@@ -1,5 +1,6 @@
 /*jslint nomen:true, browser:true*/
 /*jshint esnext:true*/
+/*global React*/
 
 import AboutViewClass from 'views/about';
 import HomeViewClass from 'views/home';
@@ -8,6 +9,9 @@ import PhotoViewClass from 'views/photo';
 import NewsViewClass from 'views/news';
 import SearchViewClass from 'views/search';
 import SearchPhotoViewClass from 'views/search-photo';
+
+import PhotoComponent from 'jsx/photo';
+import PhotosComponent from 'jsx/photos';
 
 import {PN} from 'pn';
 
@@ -30,11 +34,13 @@ var MainController = PN.Controller.extend({
         },
         photos: {
             type: PhotosViewClass,
-            preserve: false
+            preserve: false,
+            viewType: 'reactjs' // vs 'yui'
         },
         photo: {
             type: PhotoViewClass,
-            preserve: false
+            preserve: false,
+            viewType: 'reactjs'
         },
         about: {
             type: AboutViewClass,
@@ -64,6 +70,15 @@ var MainController = PN.Controller.extend({
         this.set('searchBox', searchBox);
     },
 
+    /**
+    This `render` is different from the `app.render()` function.
+
+    This provides a consistent api for the library to render a view the same way
+    when running on either client or server env.
+
+    In order to support Y.View vs React Components, App framework has to
+    understand the difference between the two.
+    **/
     render: function (viewName, locals) {
         var viewContainer = this.get('viewContainer'),
             className,

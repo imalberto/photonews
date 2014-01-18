@@ -4,7 +4,7 @@
 
 function PhotosRoute(req, res, next) {
     // sharing this route for photos and search-photos routes
-    var query = (req.query && req.query.q) || 'miami';
+    var query = (req.query && req.query.q) || 'golden gate bridge';
     req.store.find('photos', { query: query }).then(function (model) {
         res.render('photos', {items: model.toJSON()});
     }, next);

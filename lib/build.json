@@ -1,0 +1,11 @@
+{
+    "name": "react",
+    "builds": {
+        "react": {
+            "prependfiles": ["js/react.js"],
+            "jsfiles": ["js/noop.js"],
+            "config": {
+            }
+        }
+    }
+}

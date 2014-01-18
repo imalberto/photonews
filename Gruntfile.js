@@ -1,5 +1,5 @@
 /*global module*/
-var ES6ModulesPaths = ['controllers/*.js', 'models/*.js', 'routes/*.js', 'views/*.js'];
+var ES6ModulesPaths = ['controllers/*.js', 'models/*.js', 'routes/*.js', 'views/*.js', 'jsx/*.js'];
 
 module.exports = function (grunt) {
 
