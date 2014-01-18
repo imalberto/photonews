@@ -1,6 +1,7 @@
 Makefile
 build/
 data/
+jsx/
 node_modules/
 .sass-cache/
 tmp/
