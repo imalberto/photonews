@@ -12,6 +12,7 @@ import SearchPhotoViewClass from 'views/search-photo';
 
 import PhotoComponent from 'jsx/photo';
 import PhotosComponent from 'jsx/photos';
+import AboutComponent from 'jsx/about';
 
 import {PN} from 'pn';
 
@@ -34,17 +35,15 @@ var MainController = PN.Controller.extend({
         },
         photos: {
             type: PhotosViewClass,
-            preserve: false,
-            viewType: 'reactjs' // vs 'yui'
+            preserve: false
         },
         photo: {
             type: PhotoViewClass,
-            preserve: false,
-            viewType: 'reactjs'
+            preserve: false
         },
         about: {
             type: AboutViewClass,
-            preserve: true
+            preserve: false
         },
         search: {
             type: SearchViewClass,
@@ -80,6 +79,64 @@ var MainController = PN.Controller.extend({
     understand the difference between the two.
     **/
     render: function (viewName, locals) {
+        var viewContainer = this.get('viewContainer'),
+            className,
+            rendered,
+            viewInfo;
+
+        MainController.superclass.render.apply(this, arguments);
+
+        className = viewName + '-view';
+        rendered = viewContainer.one('.' + className);
+        viewInfo = this.getViewInfo(viewName);
+
+        if (!viewInfo) {
+            // TODO what's the best way to handle this?
+            throw new Error('No valid view found');
+        }
+
+        // if ((rendered && viewInfo && !viewInfo.instance) ||
+        //         (rendered && viewInfo && viewInfo.instance &&
+        //         this.get('activeView') === viewInfo.instance &&
+        //         viewInfo.preserve) ) {
+        if (rendered && !viewInfo.instance) {
+            // server generated on that first request
+            this.showContent(rendered, {
+                view: viewName,
+                update: false,
+                transition: false
+            });
+        } else if (rendered && viewInfo.instance &&
+                   this.get('activeView') === viewInfo.instance) {
+            // NO OP
+        } else {
+
+            // HACK
+            // NOTE: reactjs expect the DOM to be mounted
+            // Use case:
+            // - Transitioning from /photos => /about
+            // - the markup for /about is not yet available
+            // - React expects that the container passed it is a valid DOM
+            if (!rendered) {
+                // Reuse it if its already there
+                rendered = viewContainer.create('<div class="' + className + '"></div>');
+                // add the view only if it does not exist
+                viewContainer.appendChild(rendered);
+            }
+
+            this.showView(viewName, {
+                // container: viewContainer.create('<div class="' + className + '"></div>'),
+                container: viewContainer.one('.' + className),
+                locals: locals
+            }, {
+                render: true,
+                update: true
+            });
+        }
+
+        return this;
+    },
+    renderXX: function (viewName, locals) {
         var viewContainer = this.get('viewContainer'),
             className,
             rendered,
