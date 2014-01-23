@@ -1,6 +1,7 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
+/*
 import {PN} from 'pn';
 import {Template} from 'photonews-template-search-photo';
 
@@ -59,3 +60,4 @@ var SearchPhotoView = PN.View.extend({
 });
 
 export default SearchPhotoView;
+*/
