@@ -2,26 +2,20 @@
 /*jshint esnext:true*/
 
 import {PN} from 'pn';
-import {Template} from 'photonews-template-news';
+import NewsComponent from 'jsx/news';
 
 var NewsView = PN.View.extend({
 
-    newsTemplate: Template.get('photonews/news'),
+    component: NewsComponent,
 
     events: {},
 
     render: function () {
         var container = this.get('container'),
-            locals = this.get('locals'),
-            html;
+            locals = this.get('locals');
 
-        if (!locals.items) {
-            html = '<h3> No Posts Available </h3>';
-        } else {
-            html = this.newsTemplate({ items: locals.items });
-        }
+        this.renderComponent(locals, container);
 
-        container.setHTML(html);
         return this;
     },
 

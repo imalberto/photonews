@@ -2,20 +2,18 @@
 /*jshint esnext:true*/
 
 import {PN} from 'pn';
-import {Template} from 'photonews-template-home';
+import HomeComponent from 'jsx/home';
 
 var HomeView = PN.View.extend({
 
-    template: Template.get('photonews/home'),
+    component: HomeComponent,
 
     events: {},
 
     render: function () {
-        var container = this.get('container'),
-            html;
+        var container = this.get('container');
 
-        html = this.template({ src: 'home'});
-        container.setHTML(html);
+        this.renderComponent({}, container);
 
         return this;
     }
