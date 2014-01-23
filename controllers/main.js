@@ -33,15 +33,15 @@ var MainController = PN.Controller.extend({
             type: AboutViewClass,
             preserve: true
         },
-        //
         home: {
             type: HomeViewClass,
-            preserve: false
+            preserve: true
         },
         news: {
             type: NewsViewClass,
-            preserve: false
+            preserve: true
         },
+        //
         search: {
             type: SearchViewClass,
             preserve: false
