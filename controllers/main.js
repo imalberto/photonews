@@ -1,6 +1,5 @@
 /*jslint nomen:true, browser:true*/
 /*jshint esnext:true*/
-/*global React*/
 
 import AboutViewClass from 'views/about';
 import HomeViewClass from 'views/home';
@@ -10,15 +9,7 @@ import NewsViewClass from 'views/news';
 import SearchViewClass from 'views/search';
 import SearchPhotoViewClass from 'views/search-photo';
 
-import PhotoComponent from 'jsx/photo';
-import PhotosComponent from 'jsx/photos';
-import AboutComponent from 'jsx/about';
-
-import {config} from 'yui';
-
 import {PN} from 'pn';
-
-// var React = config.global.React;
 
 var MainController = PN.Controller.extend({
 
@@ -106,7 +97,7 @@ var MainController = PN.Controller.extend({
             // server generated on that first request
             this.showContent(rendered, {
                 view: viewName,
-                update: false,
+                update: true,
                 transition: false
             });
         } else if (rendered && viewInfo.instance &&

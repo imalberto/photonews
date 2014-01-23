@@ -1,12 +1,8 @@
 /** @jsx React.DOM */
 
 import 'react';
-import {config} from 'yui';
-
-var React = config.global.React;
 
 var PhotoComponent = React.createClass({
-
 
     prevPhoto: function () {
 

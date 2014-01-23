@@ -6,20 +6,13 @@ import PhotosComponent from 'jsx/photos';
 
 var PhotosView = PN.View.extend({
 
-    template: PhotosComponent(),
-
-    events: {},
+    component: PhotosComponent,
 
     render: function () {
         var container = this.get('container'),
-            locals = this.get('locals'),
-            html;
+            locals = this.get('locals');
 
-        // NOTE: handle rendering both on server and client runtimes
-        html = this.renderComponent(locals, container);
-        if (html) {
-            container.setHTML(html);
-        }
+        this.renderComponent(locals, container);
 
         return this;
     }

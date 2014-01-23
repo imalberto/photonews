@@ -6,24 +6,13 @@ import AboutComponent from 'jsx/about';
 
 var AboutView = PN.View.extend({
 
-    template: null,
-
-    events: {},
-
-    initializer: function () {
-        this.template = AboutComponent();
-    },
+    component: AboutComponent,
 
     render: function () {
         var container = this.get('container'),
-            locals = this.get('locals'),
-            html;
+            locals = this.get('locals');
 
-        // NOTE: handle rendering both on server and client runtimes
-        html = this.renderComponent(locals, container);
-        if (html) {
-            container.setHTML(html);
-        }
+        this.renderComponent(locals, container);
 
         return this;
     }

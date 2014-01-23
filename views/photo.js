@@ -6,8 +6,7 @@ import PhotoComponent from 'jsx/photo';
 
 var PhotoView = PN.View.extend({
 
-    template: PhotoComponent(),
-
+    component: PhotoComponent,
 
     events: {
         '.left-arrow': {
@@ -20,19 +19,15 @@ var PhotoView = PN.View.extend({
 
     render: function () {
         var container = this.get('container'),
-            locals = this.get('locals'),
-            html;
+            locals = this.get('locals');
 
-        html = this.renderComponent({
+        this.renderComponent({
             prev : locals.prev,
             next : locals.next,
             photo: locals.photo,
             news: locals.news
         }, container);
 
-        if (html) {
-            container.setHTML(html);
-        }
         return this;
     },
 

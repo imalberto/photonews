@@ -1,8 +1,6 @@
 /** @jsx React.DOM */
 
-import {config} from 'yui';
-
-var React = config.global.React;
+import 'react';
 
 var TestComponent = React.createClass({
     render: function () {

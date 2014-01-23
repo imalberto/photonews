@@ -1,9 +1,6 @@
 /** @jsx React.DOM */
 
 import 'react';
-import {config} from 'yui';
-
-var React = config.global.React;
 
 var PhotosComponent = React.createClass({
 
