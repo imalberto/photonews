@@ -16,7 +16,7 @@ var PhotoComponent = React.createClass({
         var data = this.props;
 
         return (
-            <div className="photoComponent">
+            <div className="photo-view photoComponent">
                 <div className="pure-g-r">
                     <a data-page={data.prev}
                         href={'/photo/' + data.prev}
