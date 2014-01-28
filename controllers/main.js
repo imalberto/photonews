@@ -48,6 +48,7 @@ var MainController = PN.Controller.extend({
             component: NewsComponent,
             preserve: true
         },
+
         // TODO  search and search-photo
         search: {
             type: SearchViewClass,
