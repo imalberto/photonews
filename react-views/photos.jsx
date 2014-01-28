@@ -5,7 +5,8 @@ import 'react';
 var PhotosComponent = React.createClass({
 
     render: function () {
-        var items = this.props.items;
+        var items = this.props.items,
+            query = this.props.query;
 
         return (
             <div className="photosComponent">
@@ -21,7 +22,7 @@ var PhotosComponent = React.createClass({
                     {items.map(function (item, i) {
                         return (
                             <div className="pure-u-1-3 photo-box">
-                                <a href={"/photo/" + item.index}>
+                                <a href={query ? "/photo/" + item.index + "?q=" + query : "/photo/" + item.index}>
                                     <img src={item.url}
                                          alt={item.title} />
                                 </a>

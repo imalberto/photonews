@@ -13,13 +13,14 @@ var PhotoComponent = React.createClass({
     },
 
     render: function () {
-        var data = this.props;
+        var data = this.props,
+            query = data.query;
 
         return (
             <div className="photo-view photoComponent">
                 <div className="pure-g-r">
                     <a data-page={data.prev}
-                        href={'/photo/' + data.prev}
+                        href={query ? '/photo/' + data.prev + '?q=' + query : '/photo/' + data.prev}
                         className="left-arrow"
                         onClick={this.prevPhoto} />
                     <div className="photo-container">
@@ -28,7 +29,7 @@ var PhotoComponent = React.createClass({
                         </div>
                     </div>
                     <a data-page={data.next}
-                        href={'/photo/' + data.next}
+                        href={query ? '/photo/' + data.next + '?q=' + query : '/photo/' + data.next}
                         className="right-arrow"
                         onClick={this.nextPhoto} />
                 </div>

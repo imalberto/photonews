@@ -70,20 +70,6 @@ app.annotate('/photo/:id', {
     route: 'photo'
 });
 
-app.get('/search/photos', librouter.context, librouter.dispatch);
-app.map('/search/photos', 'search-photos');
-app.annotate('/search/photos', {
-    view: 'search',
-    route: 'search-photos'
-});
-
-app.get('/search/photo/:id', librouter.context, librouter.dispatch);
-app.map('/search/photo/:id', 'search-photo');
-app.annotate('/search/photo/:id', {
-    view: 'search-photo',
-    route: 'search-photo'
-});
-
 app.get('/about', librouter.context, librouter.dispatch);
 app.map('/about', 'about');
 app.annotate('/about', {

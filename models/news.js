@@ -70,7 +70,7 @@ var NewsModelList = PN.ModelList.extend({
         var my = this,
             select;
 
-        search = search || 'yahoo';
+        search = 'yahoo';
 
         count /= 1;
         start /= 1;

@@ -2,9 +2,6 @@
 /*jshint esnext:true*/
 /*global React*/
 
-import SearchViewClass from 'views/search';
-import SearchPhotoViewClass from 'views/search-photo';
-
 import AboutComponent from 'jsx/about';
 import HomeComponent from 'jsx/home';
 import PhotosComponent from 'jsx/photos';
@@ -47,16 +44,6 @@ var MainController = PN.Controller.extend({
             type: ReactView,
             component: NewsComponent,
             preserve: true
-        },
-
-        // TODO  search and search-photo
-        search: {
-            type: SearchViewClass,
-            preserve: false
-        },
-        'search-photo': {
-            type: SearchPhotoViewClass,
-            preserve: false
         }
     },
 
@@ -110,7 +97,7 @@ var MainController = PN.Controller.extend({
         var query = this.get('searchBox').get('value');
 
         if (query) {
-            this.navigate('/search/photos?q=' + query);
+            this.navigate('/photos?q=' + query);
         }
     }
 
