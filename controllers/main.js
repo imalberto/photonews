@@ -1,14 +1,14 @@
 /*jslint nomen:true, browser:true*/
 /*jshint esnext:true*/
+/*global React*/
 
-import AboutViewClass from 'views/about';
-import HomeViewClass from 'views/home';
-import PhotosViewClass from 'views/photos';
-import PhotoViewClass from 'views/photo';
-import NewsViewClass from 'views/news';
-import SearchViewClass from 'views/search';
-import SearchPhotoViewClass from 'views/search-photo';
+import AboutComponent from 'jsx/about';
+import HomeComponent from 'jsx/home';
+import PhotosComponent from 'jsx/photos';
+import PhotoComponent from 'jsx/photo';
+import NewsComponent from 'jsx/news';
 
+import {ReactView} from 'yui';
 import {PN} from 'pn';
 
 var MainController = PN.Controller.extend({
@@ -20,33 +20,30 @@ var MainController = PN.Controller.extend({
     },
 
     views: {
+        photos: {
+            type: ReactView,
+            component: PhotosComponent,
+            preserve: true
+        },
+        photo: {
+            type: ReactView,
+            component: PhotoComponent,
+            preserve: true
+        },
+        about: {
+            component: AboutComponent,
+            type: ReactView,
+            preserve: true
+        },
         home: {
-            type: HomeViewClass,
+            type: ReactView,
+            component: HomeComponent,
             preserve: true
         },
         news: {
-            type: NewsViewClass,
-            preserve: false
-        },
-        photos: {
-            type: PhotosViewClass,
-            preserve: false
-        },
-        photo: {
-            type: PhotoViewClass,
-            preserve: false
-        },
-        about: {
-            type: AboutViewClass,
+            type: ReactView,
+            component: NewsComponent,
             preserve: true
-        },
-        search: {
-            type: SearchViewClass,
-            preserve: false
-        },
-        'search-photo': {
-            type: SearchPhotoViewClass,
-            preserve: false
         }
     },
 
@@ -65,37 +62,26 @@ var MainController = PN.Controller.extend({
     },
 
     render: function (viewName, locals) {
+
         var viewContainer = this.get('viewContainer'),
+            component,
             className,
             rendered,
-            viewInfo;
-
+            viewInfo,
+            view;
         MainController.superclass.render.apply(this, arguments);
 
-        className = viewName + '-view';
-        rendered = viewContainer.one('.' + className);
-        viewInfo = this.getViewInfo(viewName);
+        viewInfo = this.views[viewName];
+        component = viewInfo.component;
 
-        if ((rendered && viewInfo && !viewInfo.instance) ||
-                (rendered && viewInfo && viewInfo.instance &&
-                this.get('activeView') === viewInfo.instance &&
-                viewInfo.preserve)) {
-            this.showContent(rendered, {
-                view: viewName,
-                update: false,
-                transition: false
-            });
-        } else {
-            this.showView(viewName, {
-                container: viewContainer.create('<div class="' + className + '"></div>'),
-                locals: locals
-            }, {
-                render: true,
-                update: true
-            });
-        }
-
-        return this;
+        this.showView(viewName, {
+            container: viewContainer,
+            component: component,
+            locals: locals
+        }, {
+            update: true,
+            render: true
+        });
     },
 
     enter: function (e) {
@@ -111,12 +97,8 @@ var MainController = PN.Controller.extend({
         var query = this.get('searchBox').get('value');
 
         if (query) {
-            this.navigate('/search/photos?q=' + query);
+            this.navigate('/photos?q=' + query);
         }
-    },
-
-    navigatePhotos: function (e) {
-        this.navigate('/photo/' + e.photoId);
     }
 
 });

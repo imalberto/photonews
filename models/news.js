@@ -11,6 +11,19 @@ var NewsModelList = PN.ModelList.extend({
 
     model: PostModel,
 
+    initializer: function (config) {
+        this.config = config;
+    },
+
+    createTitle: function (search, index) {
+        var adjectives = ['Amazing', 'Breaking', 'Cool', 'Dashing', 'Excellent'],
+            searchTitle = search.replace(/\w\S*/g, function (text) {
+                return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+            });
+
+        return adjectives[index] + ' News About ' + searchTitle; 
+    },
+
     _process: function (search, raw) {
         var articles = [],
             article,
@@ -28,7 +41,7 @@ var NewsModelList = PN.ModelList.extend({
         results = raw.query.results.posts.post;
         // total = parseInt(raw.query.results.posts.total, 10) || 0;
         total = results.length;
-        for (i = 0; i < total; i = i + 1) {
+        for (i = 0; i < total; i++) {
             article = results[i];
             if (!article) {
                 continue;
@@ -37,7 +50,7 @@ var NewsModelList = PN.ModelList.extend({
             articles.push({
                 id: article.id,
                 content: article['regular-body'],
-                title: article['regular-title'],
+                title: article['regular-title'] || this.createTitle(search, i),
                 url: article.url,
                 format: article.format,
                 publisher: article.publisher,
@@ -57,27 +70,28 @@ var NewsModelList = PN.ModelList.extend({
         var my = this,
             select;
 
-        search = search || 'senate';
+        search = 'yahoo';
 
         count /= 1;
         start /= 1;
 
         select = 'select * from tumblr.posts where username="{search}" ' +
                     'and start={start} and num={count}';
-        select = Lang.sub(select, {search: 'yahoo'});
+
+        select = Lang.sub(select, {search: search});
         select = Lang.sub(select, {start: start});
         select = Lang.sub(select, {count: count});
 
 // returning mocking values for development
-console.warn('using mock data for query: ' + select);
-return callback(null, my._process(search, this.newsMock()));
+// console.warn('using mock data for query: ' + select);
+// return callback(null, my._process(search, this.newsMock()));
 
         // Uncomment to test with live data
         //
-        // YQL(select, function (raw) {
-        //    var articles = my._process(search, raw);
-        //     callback(null, articles);
-        // });
+        YQL(select, function (raw) {
+            var articles = my._process(search, raw);
+             callback(null, articles);
+        });
 
     },
 
@@ -86,7 +100,7 @@ return callback(null, my._process(search, this.newsMock()));
             return cb(new Error('action not supported: ' + action));
         }
 
-        this.search('yahoo', 2, 5, function (err, articles) {
+        this.search(options.query, 2, 5, function (err, articles) {
             cb(err, articles);
         });
     },

@@ -3,7 +3,6 @@
 'use strict';
 
 var express = require('express'),
-    expslash = require('express-slash'),
     expyui  = require('express-yui'),
     libview    = require('./lib/server/view'),
     librouter  = require('./lib/server/router'),
@@ -68,20 +67,6 @@ app.annotate('/photo/:id', {
     controller: 'main',
     view: 'photo',
     route: 'photo'
-});
-
-app.get('/search/photos', librouter.context, librouter.dispatch);
-app.map('/search/photos', 'search-photos');
-app.annotate('/search/photos', {
-    view: 'search',
-    route: 'search-photos'
-});
-
-app.get('/search/photo/:id', librouter.context, librouter.dispatch);
-app.map('/search/photo/:id', 'search-photo');
-app.annotate('/search/photo/:id', {
-    view: 'search-photo',
-    route: 'search-photo'
 });
 
 app.get('/about', librouter.context, librouter.dispatch);

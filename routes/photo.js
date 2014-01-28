@@ -2,8 +2,10 @@
 /*jslint nomen:true, node:true*/
 /*jshint esnext:true*/
 
+var DEFAULT_QUERY = 'golden gate bridge';
+
 function PhotoRoute(req, res, next) {
-    var query = (req.query && req.query.q) || 'miami';
+    var query = (req.query && req.query.q) || DEFAULT_QUERY;
     req.store.find('photos', { query: query }).then(function (model) {
 
         // TODO: add express-params into app.js so we don't need
@@ -11,6 +13,7 @@ function PhotoRoute(req, res, next) {
         var index = parseInt(req.params.id, 10) || 0,
             selectedPhoto = model.item(index),
             data = {
+                query: query,
                 photo: selectedPhoto.toJSON(),
                 prev: (index > 0) ? (index - 1) : index,
                 next: (index < model.size()) ? (index + 1) : index,
@@ -18,9 +21,12 @@ function PhotoRoute(req, res, next) {
                 prevPhoto: model.item(model.indexOf(selectedPhoto) - 1)
             };
 
-        res.render('photo', data);
-
-    }, next);
+        req.data = data;
+        return req.store.find('news', { query: query });
+    }).then(function (model) {
+        req.data.news = model.toJSON();
+        res.render('photo', req.data);
+    });
 }
 
 export default PhotoRoute;
