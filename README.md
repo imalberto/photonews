@@ -1,6 +1,8 @@
 photonews
 =========
 
+[![Build Status](https://travis-ci.org/imalberto/photonews.png?branch=master)](https://travis-ci.org/imalberto/photonews)
+
 Photonews is an example web application showing "modown" in action.
 
 ## To setup and run the app
