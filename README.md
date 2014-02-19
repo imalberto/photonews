@@ -21,8 +21,7 @@ components.
 
 - Isomophic design, meaning that controllers, models and views are both shared
   between the client and server runtimes.
-- Sharing of Express routes configuration to the browser that the client
-  framework (YAF) uses to setup its own routing.
+- Sharing of configuration to the client runtime.
 - Application level modules are written in ES6 module format, and levaraging the
   ES6 transpiler to enable loader metadata generation for YUI modules to share
   with the client runtime.
