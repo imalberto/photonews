@@ -1,5 +1,6 @@
 Makefile
 build/
+coverage/
 data/
 node_modules/
 .sass-cache/
