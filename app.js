@@ -49,17 +49,14 @@ app.yui.applyConfig({
 app.use(expyui.expose());
 
 app.get('/', librouter.context, librouter.dispatch);
-app.map('/', 'home');
+app.map('/', 'photos');
 app.annotate('/', {
-    route: 'default',
-    view: 'home'
+    route: 'photos',
+    view: 'photos'
 });
 
-app.get('/news', librouter.context, librouter.dispatch);
-app.map('/news', 'news');
-
-app.get('/photos', librouter.context, librouter.dispatch);
-app.map('/photos', 'photos');
+// app.get('/photos', librouter.context, librouter.dispatch);
+// app.map('/photos', 'photos');
 
 app.get('/photo/:id', librouter.context, librouter.dispatch);
 app.map('/photo/:id', 'photo');
@@ -83,12 +80,6 @@ app.annotate('/search/photo/:id', {
     route: 'search-photo'
 });
 
-app.get('/about', librouter.context, librouter.dispatch);
-app.map('/about', 'about');
-app.annotate('/about', {
-    controller: 'main',
-    route: 'default'
-});
 
 // waiting for yui to get ready to receive traffic
 app.yui.ready(function (err) {

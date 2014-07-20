@@ -31,7 +31,8 @@ var PhotosModelList = PN.ModelList.extend({
             }
         }
 
-        this.search(options.query, 2, 13, function (err, articles) {
+        // this.search(options.query, 2, 13, function (err, articles) {
+        this.search(options.query, 2, 100, function (err, articles) {
             cb(err, articles);
         });
     },
@@ -75,7 +76,7 @@ var PhotosModelList = PN.ModelList.extend({
 
         count /= 1;
         start /= 1;
-
+        // select = 'select * from flickr.photos.search where has_geo="true" and text="san francisco" and api_key="84921e87fb8f2fc338c3ff9bf51a412e"';
         select = 'select * from ' + 'flickr.photos.search ' +
                 '(' + (start || 0) + ',' + (count || 4) + ') ' +
                 'where has_geo="true" and ' + 'tags="' + search + '"' +
@@ -91,6 +92,8 @@ var PhotosModelList = PN.ModelList.extend({
         YQL(select, function (raw) {
              var photos = my._process(search, raw);
              callback(null, photos);
+        }, { }, {
+            proto: "https"
         });
 
     },
