@@ -1,0 +1,8 @@
+
+
+## Look for TODO in files 
+
+find . -name \*.js -exec grep -l TODO {} \; | grep -v node_modules | grep -v build 
+
+shifter --yui-module tmp/controllers/news.js --build-dir ./foo --no-lint
+
