@@ -16,7 +16,9 @@
     "express-yui": "~1.0.0",
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.11",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-es6-module-transpiler": "~0.5.2",
+    "jshint": "~2.5.2",
     "locator": "~0.3.7",
     "locator-handlebars": "~0.3.0",
     "locator-yui": "0.1.x",
@@ -27,9 +29,7 @@
   },
   "devDependencies": {
     "chai": "~1.9.0",
-    "grunt-contrib-watch": "~0.5.3",
     "istanbul": "~0.2.4",
-    "jshint": "~1.1.0",
     "mocha": "~1.16.0",
     "mockery": "1.4.x",
     "ytestrunner": "0.3.x",
@@ -50,7 +50,7 @@
   "scripts": {
     "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt",
     "start": "./node_modules/grunt-cli/bin/grunt && node app.js",
-    "lint": "jshint --config ./node_modules/yui-lint/jshint.json ./lib/**/*.js *.js",
+    "lint": "./node_modules/jshint/bin/jshint --config ./node_modules/yui-lint/jshint.json ./lib/**/*.js *.js",
     "cover": "./node_modules/.bin/istanbul cover -- ./node_modules/.bin/_mocha tests/test-*.js --reporter spec",
     "test": "./node_modules/mocha/bin/mocha tests/test-*.js"
   },
