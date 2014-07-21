@@ -38,6 +38,9 @@
   "directories": {
     "lib": "./lib"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "keywords": [
     "express",
     "javascript",
