@@ -48,6 +48,7 @@
     "photonews"
   ],
   "scripts": {
+    "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt",
     "start": "./node_modules/grunt-cli/bin/grunt && node app.js",
     "lint": "jshint --config ./node_modules/yui-lint/jshint.json ./lib/**/*.js *.js",
     "cover": "./node_modules/.bin/istanbul cover -- ./node_modules/.bin/_mocha tests/test-*.js --reporter spec",
