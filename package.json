@@ -22,7 +22,7 @@
     "locator-yui": "0.1.x",
     "locator-react": "~0.1.0",
     "react-tools": "0.8.0",
-    "yui": "3.13.x"
+    "yui": "~3.17.x"
   },
   "devDependencies": {
     "chai": "~1.9.0",
