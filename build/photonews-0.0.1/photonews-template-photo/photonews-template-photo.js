@@ -35,9 +35,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
        }
    });
 
-   Y.Template.register("photonews/photo", function (data) {
-       return fn(data, {
-           partials: partials
-       });
+   Y.Template.register("photonews/photo", function (data, options) {
+       options = options || {};
+       options.partials = options.partials ? Y.merge(partials, options.partials) : partials;
+       return fn(data, options);
    });
 }, '@VERSION@', {"requires": ["template-base", "handlebars-base"]});

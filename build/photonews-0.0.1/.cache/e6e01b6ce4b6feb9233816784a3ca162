@@ -36,7 +36,9 @@ YUI.add('resize-client', function (Y) {
             //   height: height
             // });
             //
-            // $(images[i]).attr('src', $(images[i]).attr('src').replace(/w[0-9]+-h[0-9]+/, 'w' + $(images[i]).width() + '-h' + $(images[i]).height()));
+            // $(images[i]).attr('src', $(images[i]).attr('src').
+            // replace(/w[0-9]+-h[0-9]+/, 'w' + $(images[i]).width() +
+            // '-h' + $(images[i]).height()));
 
 
             imgNode = Y.one(images[i]);
@@ -46,9 +48,9 @@ YUI.add('resize-client', function (Y) {
         }
     }
 
-    function resize(images, width) {
-        setHeight(images, getHeight(images, width));
-    }
+    // function resize(images, width) {
+    //     setHeight(images, getHeight(images, width));
+    // }
 
     function run(max_height) {
         var size = window.innerWidth - 50;

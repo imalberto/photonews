@@ -1,28 +1,22 @@
-/*global document, YUI*/
-
 YUI.add('template-react', function (Y) {
 
     var React = Y.config.global.React;
 
-    React.revive = React.revive || function (component) {
-        var instance = component();
+    React.revive = React.revive || function (fn) {
         return function (data, node) {
-            var html;
+            var fragment = !node && document.createDocumentFragment(),
+                component = React.createClass({
+                    render: fn
+                }),
+                instance = component();
 
+            // supporting node and elements
+            node = (node && node._node) || node;
+            // mixing in the template data
             Y.mix(instance.props, data, true);
-
-            if (node) {
-                // supporting node and elements
-                React.renderComponent(instance, node._node || node);
-                return; // not need to return the html since the node was passed in
-            }
-            // fallback to return the html if node was not provided
-            node = document.createElement('div');
-            React.renderComponent(instance, node);
-            return node.innerHTML;
+            React.renderComponent(instance, node || fragment);
+            return !node && fragment.innerHTML;
         };
     };
-
-    Y.React = React;
 
 }, '', {requires: ['template-base']});

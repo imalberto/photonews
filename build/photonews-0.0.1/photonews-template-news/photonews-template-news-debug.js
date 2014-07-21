@@ -41,9 +41,9 @@ function program1(depth0,data) {
        }
    });
 
-   Y.Template.register("photonews/news", function (data) {
-       return fn(data, {
-           partials: partials
-       });
+   Y.Template.register("photonews/news", function (data, options) {
+       options = options || {};
+       options.partials = options.partials ? Y.merge(partials, options.partials) : partials;
+       return fn(data, options);
    });
 }, '@VERSION@', {"requires": ["template-base", "handlebars-base"]});
