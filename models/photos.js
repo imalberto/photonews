@@ -32,7 +32,7 @@ var PhotosModelList = PN.ModelList.extend({
         }
 
         // this.search(options.query, 2, 2*3, function (err, articles) {
-        this.search(options.query, 2, 10*99, function (err, articles) {
+        this.search(options.query, 1, options.count * 30, function (err, articles) {
             cb(err, articles);
         });
     },
@@ -90,7 +90,7 @@ var PhotosModelList = PN.ModelList.extend({
         select = 'select * from ' + 'flickr.photos.search ' +
                 '(' + (start || 0) + ',' + (count || 4) + ') ' +
                 'where has_geo="true" and ' + 'tags="' + search + '"' +
-                'and extras="owner_name,url_m" ' +
+                'and extras="owner_name,url_s,url_n,url_m" ' +
                 'and api_key="' + this.API_KEY + '"';
 
 // returning mocking values for development
