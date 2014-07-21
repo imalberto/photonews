@@ -1,0 +1,1 @@
+YUI.add("routes/default",function(e,t,n,r){"use strict";var i=function(e,t,n){var r=e.annotations.name;e.store.find(r,e.params).then(function(e){t.render(r,e.toJSON())},n).then(null,n)};return r["default"]=i,r},"@VERSION@",{es:!0,requires:[]});

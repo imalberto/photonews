@@ -1,0 +1,1 @@
+YUI.add("handlebars-helpers",function(e){"use strict";e.Handlebars.registerHelper("viewOutlet",function(){return'<div class="'+this.name+'-view">'+this.output+"</div>"})},"@VERSION@",{requires:["handlebars-base"]});

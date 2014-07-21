@@ -1,0 +1,1 @@
+YUI.add("import",function(e){"use strict";e.import=function(t,n){t=e.Array(t),t.push(function(e){var r=[],i;t.pop();for(i=0;i<t.length;i+=1)r.push(e.Env._exported[t[i]]||e);n.apply(this,r)}),e.use.apply(e,t)}},"@VERSION@",{requires:[]});

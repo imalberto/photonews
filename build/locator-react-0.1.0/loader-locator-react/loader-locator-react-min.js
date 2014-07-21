@@ -1,0 +1,1 @@
+YUI.add("loader-locator-react",function(e,t){YUI.Env[e.version].modules=YUI.Env[e.version].modules||{},e.mix(YUI.Env[e.version].modules,{react:{affinity:"client",condition:{name:"react",trigger:"template-react"},group:"locator-react"},"template-react":{group:"locator-react",requires:["template-base"]}})},"@VERSION@",{requires:["loader-base"]});

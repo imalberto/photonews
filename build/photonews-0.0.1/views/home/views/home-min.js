@@ -1,0 +1,1 @@
+YUI.add("views/home",function(e,t,n,r){"use strict";var i=n.pn.PN,s=n["photonews-template-home"].Template,o=i.View.extend({template:s.get("photonews/home"),events:{},render:function(){var e=this.get("container"),t;return t=this.template({src:"home"}),e.setHTML(t),this}});return r["default"]=o,r},"@VERSION@",{es:!0,requires:["pn","photonews-template-home"]});

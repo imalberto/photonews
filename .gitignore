@@ -1,8 +1,8 @@
-Makefile
-build/
+xMakefile
+xbuild/
 coverage/
 data/
 node_modules/
 .sass-cache/
-tmp/
+xtmp/
 DESIGN.md

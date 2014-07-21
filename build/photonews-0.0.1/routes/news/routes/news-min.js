@@ -1,0 +1,1 @@
+YUI.add("routes/news",function(e,t,n,r){"use strict";var i=function(e,t,n){e.store.find("news",{}).then(function(e){t.render("news",{items:e.toJSON()})},n)};return r["default"]=i,r},"@VERSION@",{es:!0,requires:[]});

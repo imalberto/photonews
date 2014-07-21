@@ -1,0 +1,1 @@
+YUI.add("routes/photos",function(e,t,n,r){"use strict";function i(e,t,n){var r=e.query&&e.query.q||"jpop 2014",i=e.query&&e.query.c||1;e.store.find("photos",{query:r,count:i}).then(function(e){t.render("photos",{items:e.toJSON()})},n)}return r["default"]=i,r},"@VERSION@",{es:!0,requires:[]});
