@@ -13,7 +13,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.state) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.state; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</script>\n    <script>\n        // TODO: use app.yui.import() or System.import()\n        app.yui.use('rehydrate-client', function (Y) {\n            Y.rehydrate({\n                container: '#pn-container',\n                viewContainer: '#pn-view-container'\n            });\n        });\n    </script>\n</body>\n</html>\n";
+  buffer += "</script>\n    <script>\n        // TODO: use app.yui.import() or System.import()\n        app.yui.use('rehydrate-client', function (Y) {\n            Y.rehydrate({\n                container: '#pn-container',\n                viewContainer: '#pn-view-container'\n            });\n        });\n    </script>\n    <script>\n      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n      ga('create', 'UA-53011697-1', 'auto');\n      ga('send', 'pageview');\n\n    </script>\n\n</body>\n</html>\n";
   return buffer;
   }),
        partials = {};
