@@ -9,6 +9,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
 
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="/css/justifiedGallery.min.css" />
+    <script src="/js/jquery.justifiedGallery.min.js"></script>
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="/css/style.css">
     <!-- TODO selectively include css assets based on route -->
@@ -19,21 +23,21 @@
 
     <div id="pn-container">
 
+        <!--
         <div class="header">
             <div class="pure-menu pure-menu-open pure-menu-horizontal">
                 <a class="pure-menu-heading" href="/">Photo Search</a>
                 <ul>
                     <li><form action="/search/photos" class="pure-form"><input class="search-box" type="text" name="q" placeholder="Search"/></form></li>
-                    <!--
                     <li class="pure-menu-selected"><a href="/news">News</a></li>
                     <li><a href="/photos">Photos</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/photos">Photos</a></li>
                     <li><a href="/about">About</a></li>
-                    -->
                 </ul>
             </div>
         </div>
+        -->
 
         <div id="pn-view-container">
             {{{viewOutlet}}}
@@ -43,7 +47,7 @@
 
     <script>{{{state}}}</script>
     <script>
-        // todo: use app.yui.import() or System.import()
+        // TODO: use app.yui.import() or System.import()
         app.yui.use('rehydrate-client', function (Y) {
             Y.rehydrate({
                 container: '#pn-container',

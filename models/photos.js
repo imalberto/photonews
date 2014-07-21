@@ -31,8 +31,8 @@ var PhotosModelList = PN.ModelList.extend({
             }
         }
 
-        // this.search(options.query, 2, 13, function (err, articles) {
-        this.search(options.query, 2, 100, function (err, articles) {
+        // this.search(options.query, 2, 2*3, function (err, articles) {
+        this.search(options.query, 2, 10*99, function (err, articles) {
             cb(err, articles);
         });
     },
@@ -45,13 +45,21 @@ var PhotosModelList = PN.ModelList.extend({
         raw.query = raw.query || {};
         raw.query.count = raw.query.count || 0;
 
+        console.log('Found %s photos', raw.query.count);
+
         if (raw.query.count === 0) {
             return photos;
         }
 
         for (i = 0; i < raw.query.count; i = i + 1) {
             photo = raw.query.results.photo[i];
-            photo.url = 'http://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
+            // photo.url = 'http://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
+
+            // Use the "url_m" sizes
+            photo.url = photo.url_m;
+            photo['data-width'] = photo.width_m;
+            photo['data-height'] = photo.height_m;
+
             photo.title = (!photo.title) ? search + ':' + i : photo.title;
             // Attach the result.
             photos.push({
@@ -59,6 +67,8 @@ var PhotosModelList = PN.ModelList.extend({
                 index: i,
                 title: photo.title,
                 url: photo.url,
+                'data-height': photo['data-height'],
+                'data-width': photo['data-width'],
                 user: photo.ownername
             });
         }
@@ -80,7 +90,7 @@ var PhotosModelList = PN.ModelList.extend({
         select = 'select * from ' + 'flickr.photos.search ' +
                 '(' + (start || 0) + ',' + (count || 4) + ') ' +
                 'where has_geo="true" and ' + 'tags="' + search + '"' +
-                'and extras="owner_name" ' +
+                'and extras="owner_name,url_m" ' +
                 'and api_key="' + this.API_KEY + '"';
 
 // returning mocking values for development
