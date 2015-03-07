@@ -1,6 +1,8 @@
 
-/*jslint nomen:true, node:true*/
+/*jslint nomen:true, node:true, vars:true*/
 /*jshint esnext:true*/
+
+'use strict';
 
 function PhotosRoute(req, res, next) {
     // sharing this route for photos and search-photos routes

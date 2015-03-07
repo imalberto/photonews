@@ -1,4 +1,4 @@
-YUI.add('store', function (Y/*, NAME*/) {
+YUI.add('store', function (Y, NAME) {
 
     'use strict';
 
