@@ -6,8 +6,9 @@ YUI.add('routes/search-photos', function (Y, NAME, __imports__, __exports__) {
 
     function PhotosRoute(req, res, next) {
         // sharing this route for photos and search-photos routes
-        var query = (req.query && req.query.q) || 'miami';
-        req.store.find('photos', { query: query }).then(function (model) {
+        var query = (req.query && req.query.q) || 'miami',
+            count = (req.query && req.query.c) || 1;
+        req.store.find('photos', { query: query, count: count }).then(function (model) {
             var i,
                 items = model.toJSON();
 
